@@ -1,158 +1,158 @@
-ï»¿# 1. ë§ë­‰ì¹˜ ì›ìžë£Œ íŒŒì¼ì„ ë¶„ì„ ê°€ëŠ¥í•œ í˜•ì‹ìœ¼ë¡œ ë³€í™˜í•˜ê¸°
+# 1. ¸»¹¶Ä¡ ¿øÀÚ·á ÆÄÀÏÀ» ºÐ¼® °¡´ÉÇÑ Çü½ÄÀ¸·Î º¯È¯ÇÏ±â
 
-# 2. ë§ë­‰ì¹˜ ì›ìžë£Œì— ëŒ€í•œ ì „ì²˜ë¦¬ ìž‘ì—… ìˆ˜í–‰í•˜ê¸°
+# 2. ¸»¹¶Ä¡ ¿øÀÚ·á¿¡ ´ëÇÑ ÀüÃ³¸® ÀÛ¾÷ ¼öÇàÇÏ±â
 
-## (1) ë§ë­‰ì¹˜ ì›ìžë£Œ íŒŒì¼ ë‚´ë ¤ë°›ê¸°
-# ì••ì¶•ëœ ë§ë­‰ì¹˜ ì›ìžë£Œ íŒŒì¼ì˜ url ì£¼ì†Œ ì¶•ì•½í•˜ê¸°.
+## (1) ¸»¹¶Ä¡ ¿øÀÚ·á ÆÄÀÏ ³»·Á¹Þ±â
+# ¾ÐÃàµÈ ¸»¹¶Ä¡ ¿øÀÚ·á ÆÄÀÏÀÇ url ÁÖ¼Ò Ãà¾àÇÏ±â.
 raw <- "https://raw.github.com/cognitivepsychology/cognitive_psychology/master/RawData/RawData.zip"
-# ì••ì¶•ëœ ë§ë­‰ì¹˜ ì›ìžë£Œ íŒŒì¼ ë‚´ë ¤ë°›ê¸°.
+# ¾ÐÃàµÈ ¸»¹¶Ä¡ ¿øÀÚ·á ÆÄÀÏ ³»·Á¹Þ±â.
 download.file(raw, "raw.zip")
-# ì••ì¶•ëœ ë§ë­‰ì¹˜ ì›ìžë£Œ íŒŒì¼ì„ RawData í´ë”ì— í’€ê¸°.
+# ¾ÐÃàµÈ ¸»¹¶Ä¡ ¿øÀÚ·á ÆÄÀÏÀ» RawData Æú´õ¿¡ Ç®±â.
 unzip("raw.zip", exdir="RawData")
 
-## (2) ë§ë­‰ì¹˜ ì›ìžë£Œ íŒŒì¼ ê°€ê³µí•˜ê¸°
+## (2) ¸»¹¶Ä¡ ¿øÀÚ·á ÆÄÀÏ °¡°øÇÏ±â
 
-# ëª¨ë“  ë§ë­‰ì¹˜ ì›ìžë£Œ íŒŒì¼ëª…ì— ëŒ€í•œ ëª©ë¡ ìž‘ì„±í•˜ê¸°.
+# ¸ðµç ¸»¹¶Ä¡ ¿øÀÚ·á ÆÄÀÏ¸í¿¡ ´ëÇÑ ¸ñ·Ï ÀÛ¼ºÇÏ±â.
 whole <- list.files(path = "RawData/", pattern = "*CT*")
-# ë§ë­‰ì¹˜ ì›ìžë£Œ íŒŒì¼ì´ ì €ìž¥ëœ ë””ë ‰í† ë¦¬ë¥¼ ì›Œí‚¹ ë””ë ‰í† ë¦¬ë¡œ ë³€ê²½í•˜ê¸°.
+# ¸»¹¶Ä¡ ¿øÀÚ·á ÆÄÀÏÀÌ ÀúÀåµÈ µð·ºÅä¸®¸¦ ¿öÅ· µð·ºÅä¸®·Î º¯°æÇÏ±â.
 setwd("RawData/")
-# ìžë£Œ ë³€í˜• ë° ê°€ê³µì„ ë„ì™€ì£¼ëŠ” íŒ¨í‚¤ì§€ plyr ë¶ˆëŸ¬ì˜¤ê¸°.
+# ÀÚ·á º¯Çü ¹× °¡°øÀ» µµ¿ÍÁÖ´Â ÆÐÅ°Áö plyr ºÒ·¯¿À±â.
 library(plyr) 
-# ëª©ë¡ ë‚´ ëª¨ë“  ë§ë­‰ì¹˜ ì›ìžë£Œ íŒŒì¼ì˜ í…ìŠ¤íŠ¸ ë¼ì¸ ì½ì–´ë“¤ì´ê¸°.
+# ¸ñ·Ï ³» ¸ðµç ¸»¹¶Ä¡ ¿øÀÚ·á ÆÄÀÏÀÇ ÅØ½ºÆ® ¶óÀÎ ÀÐ¾îµéÀÌ±â.
 list.whole <- llply(whole, readLines)
-# íŒŒì¼ëª…ì´ ë“¤ì–´ê°€ ìžˆìœ¼ë©´ì„œ "<"ë¥¼ ì§€ë‹Œ ë¶€ë¶„ì„ ""ìœ¼ë¡œ ë°”ê¾¸ê¸°. 
+# ÆÄÀÏ¸íÀÌ µé¾î°¡ ÀÖÀ¸¸é¼­ "<"¸¦ Áö´Ñ ºÎºÐÀ» ""À¸·Î ¹Ù²Ù±â. 
 whole.1 <- llply(list.whole, function(x) gsub("[0-9]CT.*<", "", x)) 
-# "<"ê°€ ì—†ëŠ” ë¼ì¸ë“¤ë§Œ ì¶”ë¦¬ê¸°(í•´ë‹¹ ë§ë­‰ì¹˜ íŒŒì¼ì— ëŒ€í•œ ì•žë¶€ë¶„ì˜ ì†Œê°œê¸€ ì œê±°).
+# "<"°¡ ¾ø´Â ¶óÀÎµé¸¸ Ãß¸®±â(ÇØ´ç ¸»¹¶Ä¡ ÆÄÀÏ¿¡ ´ëÇÑ ¾ÕºÎºÐÀÇ ¼Ò°³±Û Á¦°Å).
 whole.2 <- llply(whole.1, function(x) grep("[0-9]CT", x, value=T)) 
-# ë¼ì¸ ë²ˆí˜¸ì™€ í˜•íƒœì†Œ ë¶„ì„ íƒœê·¸ ì—†ëŠ” ì–´ì ˆì„ ì§€ìš°ê³ , íƒœê·¸ëœ ì–´ì ˆë§Œ ë‚¨ê¸°ê¸°.
+# ¶óÀÎ ¹øÈ£¿Í ÇüÅÂ¼Ò ºÐ¼® ÅÂ±× ¾ø´Â ¾îÀýÀ» Áö¿ì°í, ÅÂ±×µÈ ¾îÀý¸¸ ³²±â±â.
 whole.3 <- llply(whole.2, function(x) gsub("[0-9]CT.*\t.*\t", "", x)) 
-# ê°ì¢… punctuation ê¸°í˜¸ ì œê±°(ë‹¨, ì‚¬ì„  "/"ë§Œ ë‚¨ê²¨ë‘ ).
+# °¢Á¾ punctuation ±âÈ£ Á¦°Å(´Ü, »ç¼± "/"¸¸ ³²°ÜµÒ).
 whole.4 <- llply(whole.3, function(x) gsub("[]$*+.?[^{|(\\#%&~_<=>'!,:;`\")}@-]", "", x))
-# ë§ë­‰ì¹˜ ì›ìžë£Œ íŒŒì¼ì— ë°˜ë³µì ìœ¼ë¡œ ë‚˜íƒ€ë‚˜ëŠ” ì•ŒíŒŒë²³ "c" ì—†ì• ê¸°.
+# ¸»¹¶Ä¡ ¿øÀÚ·á ÆÄÀÏ¿¡ ¹Ýº¹ÀûÀ¸·Î ³ªÅ¸³ª´Â ¾ËÆÄºª "c" ¾ø¾Ö±â.
 whole.5 <- llply(whole.4, function(x) gsub("c", "", x)) 
-# ë¶€í˜¸ë¥¼ ë‚˜íƒ€ë‚´ëŠ” íƒœê·¸(/SF, /SP, /SS, /SE, /SO, ./SW) ì œê±°.
+# ºÎÈ£¸¦ ³ªÅ¸³»´Â ÅÂ±×(/SF, /SP, /SS, /SE, /SO, ./SW) Á¦°Å.
 whole.6 <- llply(whole.5, function(x) gsub("/SF|/SP|/SS|/SE|/SO|/SW", "", x))
-# ì¼ì°¨ ê°€ê³µì´ ì™„ë£Œëœ 200ê°œì˜ ìžë£Œ íŒŒì¼ì„ í•©ì³ í•˜ë‚˜ì˜ R í…ìŠ¤íŠ¸ ë²¡í„°ë¡œ ë§Œë“¤ê¸°.
+# ÀÏÂ÷ °¡°øÀÌ ¿Ï·áµÈ 200°³ÀÇ ÀÚ·á ÆÄÀÏÀ» ÇÕÃÄ ÇÏ³ªÀÇ R ÅØ½ºÆ® º¤ÅÍ·Î ¸¸µé±â.
 whole.7 <- paste(whole.6, collapse=" ")
 
-# í…ìŠ¤íŠ¸ ë§ˆì´ë‹ íŒ¨í‚¤ì§€ stylo ë¶ˆëŸ¬ì˜¤ê¸°.
+# ÅØ½ºÆ® ¸¶ÀÌ´× ÆÐÅ°Áö stylo ºÒ·¯¿À±â.
 library(stylo) 
-# í…ìŠ¤íŠ¸ì˜ ë‹¨ìœ„ë¥¼ í–‰(line)ì—ì„œ ì–´ì ˆ(word)ë¡œ ë°”ê¿”ì¤Œ.
+# ÅØ½ºÆ®ÀÇ ´ÜÀ§¸¦ Çà(line)¿¡¼­ ¾îÀý(word)·Î ¹Ù²ãÁÜ.
 whole.words <- txt.to.words(whole.7, splitting.rule ="[ \t\n]+", preserve.case = T) 
-# ìž¡ë‹¤í•œ punctuation ê¸°í˜¸ ì—†ì• ê¸°(ë‹¨, "/"ëŠ” ë‚¨ê²¨ë‘ ).
+# Àâ´ÙÇÑ punctuation ±âÈ£ ¾ø¾Ö±â(´Ü, "/"´Â ³²°ÜµÒ).
 whole.words.1<- gsub("[]$*+.?[^{|(\\#%&~_<=>'!,:;`\")}@-]", "", whole.words) 
-# ì¼ì°¨ ê°€ê³µëœ ìžë£Œë¥¼ ë‘ ë‹¨ì–´ ì—°ì‡„ ë‹¨ìœ„ë¡œ ë¶„ì ˆí•¨.
+# ÀÏÂ÷ °¡°øµÈ ÀÚ·á¸¦ µÎ ´Ü¾î ¿¬¼â ´ÜÀ§·Î ºÐÀýÇÔ.
 whole.2gram <- make.ngrams(whole.words.1, ngram.size = 2)
-# ì¼ì°¨ ê°€ê³µëœ ìžë£Œë¥¼ ì„¸ ë‹¨ì–´ ì—°ì‡„ë¡œ ë¶„ì ˆí•¨. ì´ëŠ” ëª©ì ì–´+ë¶€ì‚¬ì–´+ì„œìˆ ì–´ ì—°ì‡„ë¥¼ ê°€ë ¤ë‚´ê¸° ìœ„í•´ ì‚¬ìš©ë  ê²ƒìž„.
+# ÀÏÂ÷ °¡°øµÈ ÀÚ·á¸¦ ¼¼ ´Ü¾î ¿¬¼â·Î ºÐÀýÇÔ. ÀÌ´Â ¸ñÀû¾î+ºÎ»ç¾î+¼­¼ú¾î ¿¬¼â¸¦ °¡·Á³»±â À§ÇØ »ç¿ëµÉ °ÍÀÓ.
 whole.3gram <- make.ngrams(whole.words.1, ngram.size = 3)
 
-# JKO(ëª©ì ê²© ì¡°ì‚¬ í‘œì§€)ì™€ VV(ì¼ë°˜ë™ì‚¬) ë˜ëŠ” JKOì™€ XSV(íŒŒìƒë™ì‚¬)ë¡œ êµ¬ì„±ëœ ë‘ ë‹¨ì–´ ì—°ì‡„ë§Œ ì¶”ë¦¬ê¸°.
+# JKO(¸ñÀû°Ý Á¶»ç Ç¥Áö)¿Í VV(ÀÏ¹Ýµ¿»ç) ¶Ç´Â JKO¿Í XSV(ÆÄ»ýµ¿»ç)·Î ±¸¼ºµÈ µÎ ´Ü¾î ¿¬¼â¸¸ Ãß¸®±â.
 whole.2gram.n.v <- grep("JKO[ \t\n]+[^a-zA-Z]+VV|JKO[ \t\n]+.+XSV", whole.2gram, value=T)
-# Rì— ë‚´ìž¥ëœ ê¸°ë³¸ í…ìŠ¤íŠ¸ ë§ˆì´ë‹ ëª…ë ¹ì–´ì¸ grep, gsubì˜ ê¸°ëŠ¥ì´ í™•ìž¥ëœ í…ìŠ¤íŠ¸ ë§ˆì´ë‹ íŒ¨í‚¤ì§€ stringr ë¶ˆëŸ¬ì˜¤ê¸°.
+# R¿¡ ³»ÀåµÈ ±âº» ÅØ½ºÆ® ¸¶ÀÌ´× ¸í·É¾îÀÎ grep, gsubÀÇ ±â´ÉÀÌ È®ÀåµÈ ÅØ½ºÆ® ¸¶ÀÌ´× ÆÐÅ°Áö stringr ºÒ·¯¿À±â.
 library(stringr) 
-# ìš©ì–¸+ëª…ì‚¬í˜• ì „ì„±ì–´ë¯¸/ì¢…ê²°ì–´ë¯¸ êµ¬ì„±(ì´ 286ê°œ)ì´ ì•žì— ì˜¤ëŠ” ê²½ìš°ë§Œ ì œì™¸í•˜ê¸°.
+# ¿ë¾ð+¸í»çÇü Àü¼º¾î¹Ì/Á¾°á¾î¹Ì ±¸¼º(ÃÑ 286°³)ÀÌ ¾Õ¿¡ ¿À´Â °æ¿ì¸¸ Á¦¿ÜÇÏ±â.
 whole.2gram.n.v <- grep("^+.+/ETN+.+[ \t\n\r\f\v]|^+.+/EF+.+[ \t\n\r\f\v]", whole.2gram.n.v, value = T, invert = T) 
-# VV ì–´ê°„ë§Œ ë‚¨ê¸°ê³ , ë¶„ì„ì˜ íŽ¸ì˜ë¥¼ ìœ„í•´ ê·¸ ë’¤ì— ë§ˆì¹¨í‘œë¥¼ ë¶™ì´ê¸°.
+# VV ¾î°£¸¸ ³²±â°í, ºÐ¼®ÀÇ ÆíÀÇ¸¦ À§ÇØ ±× µÚ¿¡ ¸¶Ä§Ç¥¸¦ ºÙÀÌ±â.
 whole.2gram.n.v.root <- str_replace_all(whole.2gram.n.v, c("VV+.+."), "VV.")
-# XSV ì–´ê°„ë§Œ ë‚¨ê¸°ê³ , ë¶„ì„ì˜ íŽ¸ì˜ë¥¼ ìœ„í•´ ê·¸ ë’¤ì— ë§ˆì¹¨í‘œë¥¼ ë¶™ì´ê¸°.
+# XSV ¾î°£¸¸ ³²±â°í, ºÐ¼®ÀÇ ÆíÀÇ¸¦ À§ÇØ ±× µÚ¿¡ ¸¶Ä§Ç¥¸¦ ºÙÀÌ±â.
 whole.2gram.n.v.root.1 <- str_replace_all(whole.2gram.n.v.root, c("XSV+.+."), "XSV.")  
-# ë¶„ì„ì˜ íŽ¸ì˜ë¥¼ ìœ„í•´ "ã„¹, ì„, ë¥¼/JKO"ë¥¼" "ì„/JKO"ë¡œ í†µì¼í•˜ê¸°.
-whole.2gram.n.v.root.2 <- str_replace_all(whole.2gram.n.v.root.1, "ë¥¼/JKO", "ì„/JKO")
-whole.2gram.n.v.root.2 <- str_replace_all(whole.2gram.n.v.root.2, "ã„¹/JKO", "ì„/JKO")
-# ëª©ì ì–´ + ì„œìˆ ì–´ ì—°ì‡„ ëª©ë¡ ë²¡í„°.
+# ºÐ¼®ÀÇ ÆíÀÇ¸¦ À§ÇØ "¤©, À», ¸¦/JKO"¸¦" "À»/JKO"·Î ÅëÀÏÇÏ±â.
+whole.2gram.n.v.root.2 <- str_replace_all(whole.2gram.n.v.root.1, "¸¦/JKO", "À»/JKO")
+whole.2gram.n.v.root.2 <- str_replace_all(whole.2gram.n.v.root.2, "¤©/JKO", "À»/JKO")
+# ¸ñÀû¾î + ¼­¼ú¾î ¿¬¼â ¸ñ·Ï º¤ÅÍ.
 whole.2gram.n.v.root.2
 
-# ì„¸ ë‹¨ì–´ ì—°ì‡„ ìžë£Œì—ì„œ ëª©ì ì–´(JKO) + ë¶€ì‚¬ì–´[í˜•ìš©ì‚¬(vA)+ì—°ê²°ì–´ë¯¸/ë¶€ì‚¬(MAG)] + ì„œìˆ ì–´ ì—°ì‡„ ì°¾ì•„ë‚´ê¸°.
+# ¼¼ ´Ü¾î ¿¬¼â ÀÚ·á¿¡¼­ ¸ñÀû¾î(JKO) + ºÎ»ç¾î[Çü¿ë»ç(vA)+¿¬°á¾î¹Ì/ºÎ»ç(MAG)] + ¼­¼ú¾î ¿¬¼â Ã£¾Æ³»±â.
 whole.3gram.n.a.v <- grep("JKO[ \t\n]+[^a-zA-Z]+VA+.+VV|JKO[ \t\n]+[^a-zA-Z]+VA+.+XSV|JKO[ \t\n]+[^a-zA-Z]+MAG+.+VV|JKO[ \t\n]+[^a-zA-Z]+MAG+.+XSV", whole.3gram, value=T) 
-# ë¶€ì‚¬(MAG)+ë™ì‚¬ íŒŒìƒ ì ‘ë¯¸ì‚¬(XSV) ê²°í•©ëœ ì„¸ ë‹¨ì–´ ì—°ì‡„ë¥¼ ëª©ë¡ì—ì„œ ì œê±°í•˜ê¸°(ì´ êµ¬ì„±ì€ ì´ë¯¸ ë‘ ë‹¨ì–´ ì—°ì‡„ ëª©ë¡ì— ìžˆìŒ).
+# ºÎ»ç(MAG)+µ¿»ç ÆÄ»ý Á¢¹Ì»ç(XSV) °áÇÕµÈ ¼¼ ´Ü¾î ¿¬¼â¸¦ ¸ñ·Ï¿¡¼­ Á¦°ÅÇÏ±â(ÀÌ ±¸¼ºÀº ÀÌ¹Ì µÎ ´Ü¾î ¿¬¼â ¸ñ·Ï¿¡ ÀÖÀ½).
 whole.3gram.n.a.v.1 <- gsub("[^a-zA-Z]/MAG+[^a-zA-Z]/XSV", "", whole.3gram.n.a.v)
-# ì„¸ ë‹¨ì–´ ì—°ì‡„ ìžë£Œì—ì„œ ëª©+ë¶€+ìˆ  ì—°ì‡„ë§Œ ì¶”ë¦¬ê¸°.
+# ¼¼ ´Ü¾î ¿¬¼â ÀÚ·á¿¡¼­ ¸ñ+ºÎ+¼ú ¿¬¼â¸¸ Ãß¸®±â.
 whole.3gram.n.a.v.2 <- grep("JKO[ \t\n]+[^a-zA-Z]/VA+.+/VV|JKO[ \t\n]+[^a-zA-Z]/VA+.+/XSV|JKO[ \t\n]+[^a-zA-Z]/MAG+.+/VV|JKO[ \t\n]+[^a-zA-Z]/MAG+.+/XSV", whole.3gram.n.a.v.1, value=T) 
-# ë¶€ì‚¬(MAG)ë¥¼ ì œê±°í•˜ì—¬ ëª©+ë¶€+ìˆ  ì—°ì‡„ë¥¼ ëª©+ìˆ  ì—°ì‡„ë¡œ ë§Œë“¤ê¸°.
+# ºÎ»ç(MAG)¸¦ Á¦°ÅÇÏ¿© ¸ñ+ºÎ+¼ú ¿¬¼â¸¦ ¸ñ+¼ú ¿¬¼â·Î ¸¸µé±â.
 whole.3gram.n.a.v.3 <- str_replace_all(whole.3gram.n.a.v.2, "[^a-zA-Z]/MAG", "")
-# ë¶€ì‚¬ì–´(í˜•ìš©ì‚¬+ì—°ê²°ì–´ë¯¸)ë¥¼ ì œê±°í•˜ì—¬ ëª©+ë¶€+ìˆ  ì—°ì‡„ë¥¼ ëª©+ìˆ  ì—°ì‡„ë¡œ ë§Œë“¤ê¸°.
+# ºÎ»ç¾î(Çü¿ë»ç+¿¬°á¾î¹Ì)¸¦ Á¦°ÅÇÏ¿© ¸ñ+ºÎ+¼ú ¿¬¼â¸¦ ¸ñ+¼ú ¿¬¼â·Î ¸¸µé±â.
 whole.3gram.n.a.v.4 <- str_replace_all(whole.3gram.n.a.v.3, "[^a-zA-Z]/VA+.+[ \t\n\r\f\v]", " ")  
-# ìŠ¤íŽ˜ì´ìŠ¤ ë‘ ê°œë¥¼ í•œ ê°œë¡œ ì¤„ì´ê¸°.
+# ½ºÆäÀÌ½º µÎ °³¸¦ ÇÑ °³·Î ÁÙÀÌ±â.
 whole.3gram.n.a.v.4 <- str_replace_all(whole.3gram.n.a.v.4, "  ", " ")
-# ìš©ì–¸+ëª…ì‚¬í˜• ì „ì„±ì–´ë¯¸/ì¢…ê²°ì–´ë¯¸ êµ¬ì„±(ì´ 12ê°œ)ì´ ì•žì— ì˜¤ëŠ” ê²½ìš°ë§Œ ì œì™¸í•˜ê¸°.
+# ¿ë¾ð+¸í»çÇü Àü¼º¾î¹Ì/Á¾°á¾î¹Ì ±¸¼º(ÃÑ 12°³)ÀÌ ¾Õ¿¡ ¿À´Â °æ¿ì¸¸ Á¦¿ÜÇÏ±â.
 whole.3gram.n.a.v.5 <- grep("^+.+/ETN+.+[ \t\n\r\f\v]|^+.+/EF+.+[ \t\n\r\f\v]", whole.3gram.n.a.v.4, value =T, invert = T) 
-# VV ì–´ê°„ë§Œ ë‚¨ê¸°ê³ , ë¶„ì„ì˜ íŽ¸ì˜ë¥¼ ìœ„í•´ ê·¸ ë’¤ì— ë§ˆì¹¨í‘œë¥¼ ë¶™ì´ê¸°.
+# VV ¾î°£¸¸ ³²±â°í, ºÐ¼®ÀÇ ÆíÀÇ¸¦ À§ÇØ ±× µÚ¿¡ ¸¶Ä§Ç¥¸¦ ºÙÀÌ±â.
 whole.3gram.n.a.v.6 <- str_replace_all(whole.3gram.n.a.v.5, c("VV+.+."), "VV.")
-# XSV ì–´ê°„ë§Œ ë‚¨ê¸°ê³ , ë¶„ì„ì˜ íŽ¸ì˜ë¥¼ ìœ„í•´ ê·¸ ë’¤ì— ë§ˆì¹¨í‘œë¥¼ ë¶™ì´ê¸°.
+# XSV ¾î°£¸¸ ³²±â°í, ºÐ¼®ÀÇ ÆíÀÇ¸¦ À§ÇØ ±× µÚ¿¡ ¸¶Ä§Ç¥¸¦ ºÙÀÌ±â.
 whole.3gram.n.a.v.7 <- str_replace_all(whole.3gram.n.a.v.6, c("XSV+.+."), "XSV.")  
-# "ã„¹, ì„, ë¥¼/JKO"ì„" "ì„/JKO"ë¡œ í†µì¼í•˜ê¸°.
-whole.3gram.n.a.v.8 <- str_replace_all(whole.3gram.n.a.v.7, "ë¥¼/JKO", "ì„/JKO")
-whole.3gram.n.a.v.8 <- str_replace_all(whole.3gram.n.a.v.8, "ã„¹/JKO", "ì„/JKO")
-# ëª©+ë¶€+ìˆ  ì—°ì‡„ë“¤ ê°€ìš´ë°ì„œ ì¶”ë¦° ëª©+ìˆ  ì—°ì‡„ ëª©ë¡ ë²¡í„°.
+# "¤©, À», ¸¦/JKO"À»" "À»/JKO"·Î ÅëÀÏÇÏ±â.
+whole.3gram.n.a.v.8 <- str_replace_all(whole.3gram.n.a.v.7, "¸¦/JKO", "À»/JKO")
+whole.3gram.n.a.v.8 <- str_replace_all(whole.3gram.n.a.v.8, "¤©/JKO", "À»/JKO")
+# ¸ñ+ºÎ+¼ú ¿¬¼âµé °¡¿îµ¥¼­ Ãß¸° ¸ñ+¼ú ¿¬¼â ¸ñ·Ï º¤ÅÍ.
 whole.3gram.n.a.v.8 
 
-# ë‘ ë‹¨ì–´ ì—°ì‡„ì™€ ì„¸ ë‹¨ì–´ ì—°ì‡„ ëª©ë¡ ë²¡í„°ë¥¼ í•©ì³ ìµœì¢… ëª©+ìˆ  ì—°ì‡„ ëª©ë¡ ë²¡í„° ì™„ì„±í•˜ê¸°.
+# µÎ ´Ü¾î ¿¬¼â¿Í ¼¼ ´Ü¾î ¿¬¼â ¸ñ·Ï º¤ÅÍ¸¦ ÇÕÃÄ ÃÖÁ¾ ¸ñ+¼ú ¿¬¼â ¸ñ·Ï º¤ÅÍ ¿Ï¼ºÇÏ±â.
 whole.nv <- append(whole.2gram.n.v.root.2, whole.3gram.n.a.v.8) 
-# ì—°ì–´êµ¬ì„±ì´ ë  ìˆ˜ ì—†ëŠ” ê³ ìœ ëª…ì‚¬(NNP)/ìˆ˜ì‚¬(NNB)/ì˜ì¡´ëª…ì‚¬(NR)/ëŒ€ëª…ì‚¬(NP) + ì„œìˆ ì–´ êµ¬ì„± ë“±ì„ ì œì™¸í•œ ì¼ë°˜ëª…ì‚¬(NNG) + ë™ì‚¬(VV) êµ¬ì„±ë§Œ ì¶”ì¶œí•˜ê¸°.
-whole.nv0 <- grep("NNG+.*ì„", whole.nv, value = T) 
-# ë¶„ì„ì— ë¶ˆí•„ìš”í•œ "/"(ìŠ¬ëž˜ì‹œ) ì—†ì• ê¸°.
+# ¿¬¾î±¸¼ºÀÌ µÉ ¼ö ¾ø´Â °íÀ¯¸í»ç(NNP)/¼ö»ç(NNB)/ÀÇÁ¸¸í»ç(NR)/´ë¸í»ç(NP) + ¼­¼ú¾î ±¸¼º µîÀ» Á¦¿ÜÇÑ ÀÏ¹Ý¸í»ç(NNG) + µ¿»ç(VV) ±¸¼º¸¸ ÃßÃâÇÏ±â.
+whole.nv0 <- grep("NNG+.*À»", whole.nv, value = T) 
+# ºÐ¼®¿¡ ºÒÇÊ¿äÇÑ "/"(½½·¡½Ã) ¾ø¾Ö±â.
 whole.nv1 <- str_replace_all(whole.nv0, "[]$*+.?[^{|(\\#%&~_/<=>'!,:;`\")}@-]", "") 
-# ìž…ë ¥ì˜ íŽ¸ì˜ë¥¼ ìœ„í•´ ë²¡í„°ëª…ì„ ì§§ì€ ê²ƒìœ¼ë¡œ ë°”ê¾¸ê¸°.
+# ÀÔ·ÂÀÇ ÆíÀÇ¸¦ À§ÇØ º¤ÅÍ¸íÀ» ÂªÀº °ÍÀ¸·Î ¹Ù²Ù±â.
 x <- whole.nv1 
-# ëª©ì ì–´(word1), ì„œìˆ ì–´(word2), ëª©+ìˆ  ì—°ì‡„(word1+word2)ê°€ í•˜ë‚˜ì˜ í–‰ì„ ì´ë£¨ëŠ” ë°ì´í„°í”„ë ˆìž„ ë§Œë“¤ê¸°.
+# ¸ñÀû¾î(word1), ¼­¼ú¾î(word2), ¸ñ+¼ú ¿¬¼â(word1+word2)°¡ ÇÏ³ªÀÇ ÇàÀ» ÀÌ·ç´Â µ¥ÀÌÅÍÇÁ·¹ÀÓ ¸¸µé±â.
 whole.nv2 <- data.frame(cbind(do.call('rbind', strsplit(x, " ")), x)) 
-# ì—´ ì œëª©ì„ "word1", "word2", "bigram"ìœ¼ë¡œ ë°”ê¾¸ê¸°.
+# ¿­ Á¦¸ñÀ» "word1", "word2", "bigram"À¸·Î ¹Ù²Ù±â.
 colnames(whole.nv2) <- c("word1", "word2", "bigram")
 
-# 3. ê°€ê³µëœ ë§ë­‰ì¹˜ ìžë£Œì— ë¶„ì„ì„ ìœ„í•œ ê°ì¢… ì–‘ì  ë³€ìˆ˜ ì¶”ê°€í•˜ê¸°
+# 3. °¡°øµÈ ¸»¹¶Ä¡ ÀÚ·á¿¡ ºÐ¼®À» À§ÇÑ °¢Á¾ ¾çÀû º¯¼ö Ãß°¡ÇÏ±â
 
-## (1) ê°€ê³µëœ ë§ë­‰ì¹˜ ìžë£Œ í† ëŒ€ë¡œ ë¹ˆë„ í•­ëª© ì¶”ê°€í•˜ê¸°
+## (1) °¡°øµÈ ¸»¹¶Ä¡ ÀÚ·á Åä´ë·Î ºóµµ Ç×¸ñ Ãß°¡ÇÏ±â
 
-# ë°ì´í„°í”„ë ˆìž„ ìžë£Œë¥¼ ì¢€ë” ê°„íŽ¸í•˜ê²Œ ê°€ê³µí•  ìˆ˜ ìžˆë„ë¡ ë„ì™€ì£¼ëŠ” íŒ¨í‚¤ì§€ì¸ data.table íŒ¨í‚¤ì§€ ë¶ˆëŸ¬ì˜¤ê¸°.
+# µ¥ÀÌÅÍÇÁ·¹ÀÓ ÀÚ·á¸¦ Á»´õ °£ÆíÇÏ°Ô °¡°øÇÒ ¼ö ÀÖµµ·Ï µµ¿ÍÁÖ´Â ÆÐÅ°ÁöÀÎ data.table ÆÐÅ°Áö ºÒ·¯¿À±â.
 library(data.table) 
-# words & 2-gram ìžë£Œ whole.nv3ë¥¼ ë°ì´í„°í…Œì´ë¸” í˜•ì‹ìœ¼ë¡œ ë³€í™˜í•˜ê¸°.
+# words & 2-gram ÀÚ·á whole.nv3¸¦ µ¥ÀÌÅÍÅ×ÀÌºí Çü½ÄÀ¸·Î º¯È¯ÇÏ±â.
 whole.nv2.dt <- data.table(whole.nv2)
-# ëª©ì ì–´(word1), ì„œìˆ ì–´(word2), ëª©+ìˆ  ì—°ì‡„(bigram), ëª©ì ì–´(word1) ë¹ˆë„, ì„œìˆ ì–´(word2) ë¹ˆë„, ëª©+ìˆ  ì—°ì‡„(bigram) ë¹ˆë„ ì—´ë¡œ êµ¬ì„±ëœ ë°ì´í„°í”„ë ˆìž„ ì™„ì„±í•˜ê¸°.
+# ¸ñÀû¾î(word1), ¼­¼ú¾î(word2), ¸ñ+¼ú ¿¬¼â(bigram), ¸ñÀû¾î(word1) ºóµµ, ¼­¼ú¾î(word2) ºóµµ, ¸ñ+¼ú ¿¬¼â(bigram) ºóµµ ¿­·Î ±¸¼ºµÈ µ¥ÀÌÅÍÇÁ·¹ÀÓ ¿Ï¼ºÇÏ±â.
 a <- whole.nv2.dt[, freq.bi := .N, by=bigram] 
 b <- whole.nv2.dt[, freq.w1 := .N, by=word1]
 c <- whole.nv2.dt[, freq.w2 := .N, by=word2]
 d <- data.frame(c)
 e <- d[, c(1, 2, 3, 5, 6, 4)] 
-# bigram ì—´ ì œëª© "freq"ë¥¼" "freq.bi"ë¡œ ìˆ˜ì •í•˜ê¸°.
+# bigram ¿­ Á¦¸ñ "freq"¸¦" "freq.bi"·Î ¼öÁ¤ÇÏ±â.
 colnames(e)[6] <- "freq.bi"
-# ë¶„ì„ì˜ íŽ¸ì˜ë¥¼ ìœ„í•´ ë°ì´í„°í”„ë ˆìž„ ì´ë¦„ì„ whole.nv.dfë¡œ ë³€ê²½í•˜ê¸°.
+# ºÐ¼®ÀÇ ÆíÀÇ¸¦ À§ÇØ µ¥ÀÌÅÍÇÁ·¹ÀÓ ÀÌ¸§À» whole.nv.df·Î º¯°æÇÏ±â.
 whole.nv.df <- e 
 
-# ì¤‘ë³µë˜ëŠ” í–‰ ì œê±°í•˜ê¸°.
+# Áßº¹µÇ´Â Çà Á¦°ÅÇÏ±â.
 whole.nv.df.uni <- unique(whole.nv.df)
-# ì¤‘ë³µìžë£Œ ì œê±° ì „ ë°ì´í„° í–‰ ìˆ˜(N = 19652).
+# Áßº¹ÀÚ·á Á¦°Å Àü µ¥ÀÌÅÍ Çà ¼ö(N = 19652).
 nrow(whole.nv.df)
-# ì¤‘ë³µìžë£Œ ì œê±° í›„ ë°ì´í„° í–‰ ìˆ˜(N = 9342).
+# Áßº¹ÀÚ·á Á¦°Å ÈÄ µ¥ÀÌÅÍ Çà ¼ö(N = 9342).
 nrow(whole.nv.df.uni) 
-# ìž…ë ¥ì˜ íŽ¸ì˜ë¥¼ ìœ„í•´ ë°ì´í„°í”„ë ˆìž„ ì´ë¦„ ìˆ˜ì •í•˜ê¸°.
+# ÀÔ·ÂÀÇ ÆíÀÇ¸¦ À§ÇØ µ¥ÀÌÅÍÇÁ·¹ÀÓ ÀÌ¸§ ¼öÁ¤ÇÏ±â.
 whole.uni <- whole.nv.df.uni 
 
-# ê³µê¸°ë¹ˆë„ê°€ 2íšŒ ì´ìƒì¸ ìžë£Œë§Œ ë‚¨ê¸°ê³ , ë‚˜ë¨¸ì§€ëŠ” NA(not avaible)ë¡œ ì²˜ë¦¬í•˜ê¸°.
+# °ø±âºóµµ°¡ 2È¸ ÀÌ»óÀÎ ÀÚ·á¸¸ ³²±â°í, ³ª¸ÓÁö´Â NA(not avaible)·Î Ã³¸®ÇÏ±â.
 test1 <- ifelse(whole.uni$freq.bi > 1, whole.uni$freq.bi, NA) 
 whole.uni.test1 <- cbind(whole.uni, test1)
-# NAê°€ ìžˆëŠ” í–‰(ê³µê¸°ë¹ˆë„ 2íšŒ ë¯¸ë§Œì¸ ëª©+ìˆ  ì—°ì‡„) ì œê±°í•˜ê¸°.
+# NA°¡ ÀÖ´Â Çà(°ø±âºóµµ 2È¸ ¹Ì¸¸ÀÎ ¸ñ+¼ú ¿¬¼â) Á¦°ÅÇÏ±â.
 whole.uni.one <- na.omit(whole.uni.test1) 
-# í–‰ ìˆ˜(ë‘ ë‹¨ì–´ ì—°ì‡„ì˜ ìˆ˜) í™•ì¸(N = 2340).
+# Çà ¼ö(µÎ ´Ü¾î ¿¬¼âÀÇ ¼ö) È®ÀÎ(N = 2340).
 nrow(whole.uni.one)
-# bigramì—´ê³¼ ì¤‘ë³µë˜ëŠ” test1ì—´ ì§€ìš°ê¸°.
+# bigram¿­°ú Áßº¹µÇ´Â test1¿­ Áö¿ì±â.
 whole.one <- whole.uni.one[, 1:6] 
 
-# o11ì—´(íŠ¹ì • ëª©+ìˆ  ì—°ì‡„ ë¹ˆë„) ìƒì„±í•˜ê¸°.
+# o11¿­(Æ¯Á¤ ¸ñ+¼ú ¿¬¼â ºóµµ) »ý¼ºÇÏ±â.
 o11 <- whole.one[, 6] 
-# o12ì—´(w1 - o11 ë¹ˆë„) ìƒì„±í•˜ê¸°.
+# o12¿­(w1 - o11 ºóµµ) »ý¼ºÇÏ±â.
 o12 <- whole.one[, 4] - whole.one[, 6] 
-# o21ì—´(w2 - o11 ë¹ˆë„) ìƒì„±í•˜ê¸°.
+# o21¿­(w2 - o11 ºóµµ) »ý¼ºÇÏ±â.
 o21 <- whole.one[, 5] - whole.one[, 6] 
-# o22ì—´(ì „ì²´ ëª©+ìˆ  êµ¬ì¡° ì¶œí˜„í˜•[token] - w1 - w2 + o11 ë¹ˆë„) ìƒì„±í•˜ê¸°.
+# o22¿­(ÀüÃ¼ ¸ñ+¼ú ±¸Á¶ ÃâÇöÇü[token] - w1 - w2 + o11 ºóµµ) »ý¼ºÇÏ±â.
 o22 <- nrow(whole.nv.df) - whole.one[, 4] - whole.one[, 5] + whole.one[, 6] 
-# o11, o12, o21, o22 ì—´ë“¤ í•˜ë‚˜ë¡œ í•©ì¹˜ê¸°.
+# o11, o12, o21, o22 ¿­µé ÇÏ³ª·Î ÇÕÄ¡±â.
 whole.one.ct <- cbind(whole.one, o11, o12, o21, o22)
-# R1, R2, C1, C2, N ì—´ ìƒì„±í•˜ê¸°.
+# R1, R2, C1, C2, N ¿­ »ý¼ºÇÏ±â.
 whole.one.ct.add <- transform(whole.one.ct, r1=o11+o12, r2=o21+o22, c1=o11+o21, c2=o12+o22, n=o11+o12+o21+o22)
 
-# E11, E12, E21, E22 ì—´ ìƒì„±í•˜ê¸°.
+# E11, E12, E21, E22 ¿­ »ý¼ºÇÏ±â.
 whole.one.ct.add1 <- transform(whole.one.ct.add, e11=(r1*c1)/n, e12=(r1*c2)/n, e21=(r2*c1)/n, e22=(r2*c2)/n)
-# ì£¼ì˜: ëª¨ë“  ì—´ì˜ íŠ¹ì„±ì„ numericìœ¼ë¡œ ë°”ê¾¸ê¸°(í° ê°’ì˜ integerë¥¼ ê°€ì§€ê³  ê³„ì‚°í•  ê²½ìš° integer overflow í˜„ìƒì´ ì¼ì–´ë‚¨).
+# ÁÖÀÇ: ¸ðµç ¿­ÀÇ Æ¯¼ºÀ» numericÀ¸·Î ¹Ù²Ù±â(Å« °ªÀÇ integer¸¦ °¡Áö°í °è»êÇÒ °æ¿ì integer overflow Çö»óÀÌ ÀÏ¾î³²).
 as.numeric(whole.one.ct.add1[, 4])
 as.numeric(whole.one.ct.add1[, 5])
 as.numeric(whole.one.ct.add1[, 6])
@@ -170,27 +170,27 @@ as.numeric(whole.one.ct.add1[, 17])
 as.numeric(whole.one.ct.add1[, 18])
 as.numeric(whole.one.ct.add1[, 19])
 
-## (2) AMë³„ ì¸¡ì •ì¹˜ í•­ëª© ì¶”ê°€í•˜ê¸°
+## (2) AMº° ÃøÁ¤Ä¡ Ç×¸ñ Ãß°¡ÇÏ±â
 
-### 1) ì¹´ì´ì œê³± ê°’ ê³„ì‚° ë° ì¸¡ì •ì¹˜ ì—´ ìƒì„±í•˜ê¸°
+### 1) Ä«ÀÌÁ¦°ö °ª °è»ê ¹× ÃøÁ¤Ä¡ ¿­ »ý¼ºÇÏ±â
 
-# R1*R2*C1*C2 ê°’ì´ ì»¤ì„œ integer overflow ë©”ì‹œì§€ê°€ ëœ° ìˆ˜ ìžˆìœ¼ë¯€ë¡œ, R1*R2ì™€ C1*C2ë¥¼ ë‚˜ëˆ„ì–´ ê³„ì‚°í•  ê²ƒ.
+# R1*R2*C1*C2 °ªÀÌ Ä¿¼­ integer overflow ¸Þ½ÃÁö°¡ ¶ã ¼ö ÀÖÀ¸¹Ç·Î, R1*R2¿Í C1*C2¸¦ ³ª´©¾î °è»êÇÒ °Í.
 whole.one.ct.add.chi <- transform(whole.one.ct.add1, chisq = n * 
                                     (abs(o11*o22-o12*o21) - n/2)^2 / 
-                                    (r1*r2)) # r1*r2ë¥¼ ë¨¼ì € ë‚˜ëˆ ì¤Œ.
-whole.one.ct.add.chisquare <- transform(whole.one.ct.add.chi, chisquare = chisq / (c1*c2)) # C1*C2ë¥¼ ë‚˜ì¤‘ì— ë‚˜ëˆ ì¤Œ.
-# R1*R2ë¥¼ ë¶„ëª¨ë¡œ ì‚¬ìš©í•œ chisq ì—´ì„ ì§€ìš°ê³ , ì§„ì§œ ì¹´ì´ì œê³± ê³µì‹ìœ¼ë¡œ êµ¬í•œ ì¹´ì´ì œê³± ê°’ ì—´ë§Œ ë‚¨ê¸°ê¸°.
+                                    (r1*r2)) # r1*r2¸¦ ¸ÕÀú ³ª´²ÁÜ.
+whole.one.ct.add.chisquare <- transform(whole.one.ct.add.chi, chisquare = chisq / (c1*c2)) # C1*C2¸¦ ³ªÁß¿¡ ³ª´²ÁÜ.
+# R1*R2¸¦ ºÐ¸ð·Î »ç¿ëÇÑ chisq ¿­À» Áö¿ì°í, ÁøÂ¥ Ä«ÀÌÁ¦°ö °ø½ÄÀ¸·Î ±¸ÇÑ Ä«ÀÌÁ¦°ö °ª ¿­¸¸ ³²±â±â.
 whole.one.ct.add.chisq <- whole.one.ct.add.chisquare[names(whole.one.ct.add.chisquare) !="chisq"]
-# ë¶„ì„ì˜ íŽ¸ì˜ë¥¼ ìœ„í•´ ì—´ ì œëª©ì„ chisqë¡œ ë°”ê¾¸ê¸°.
+# ºÐ¼®ÀÇ ÆíÀÇ¸¦ À§ÇØ ¿­ Á¦¸ñÀ» chisq·Î ¹Ù²Ù±â.
 colnames(whole.one.ct.add.chisq)[20] <- "chisq"
 
-# ë³¸ê²©ì  ë¶„ì„ì— ì•žì„œ E11, E12, E21, E22ì˜ ê¸°ëŒ€ë¹ˆë„ë¥¼ ì§ì ‘ í™•ì¸í•˜ê¸°.
+# º»°ÝÀû ºÐ¼®¿¡ ¾Õ¼­ E11, E12, E21, E22ÀÇ ±â´ëºóµµ¸¦ Á÷Á¢ È®ÀÎÇÏ±â.
 sum(whole.one.ct.add.chisq$e11 < 5) / 2340 # 0.9465812
 sum(whole.one.ct.add.chisq$e12 < 5) / 2340 # 0.4235043
 sum(whole.one.ct.add.chisq$e21 < 5) / 2340 # 0.06794872
 sum(whole.one.ct.add.chisq$e22 < 5) / 2340 # 0
 
-### 2) ë¡œê·¸ ìš°ë„ë¹„ ê³„ì‚° ë° ì¸¡ì •ì¹˜ ì—´ ìƒì„±í•˜ê¸°
+### 2) ·Î±× ¿ìµµºñ °è»ê ¹× ÃøÁ¤Ä¡ ¿­ »ý¼ºÇÏ±â
 
 whole.one.ct.add.log <- transform(whole.one.ct.add.chisq,
                                   logl = 2 * (
@@ -198,20 +198,20 @@ whole.one.ct.add.log <- transform(whole.one.ct.add.chisq,
                                       ifelse(o12>0, o12*log(o12/e12), 0) +
                                       ifelse(o21>0, o21*log(o21/e21), 0) +
                                       ifelse(o22>0, o22*log(o22/e22), 0)
-                                  )) # log 0ì€ ê³„ì‚°ë¶ˆê°€ìž„. ë”°ë¼ì„œ ê´€ì°°ë¹ˆë„ê°€ 0ì¸ ê²½ìš°, ë¡œê·¸ ìš°ë„ë¹„ ê°’ì„ 0ìœ¼ë¡œ ì²˜ë¦¬.
+                                  )) # log 0Àº °è»êºÒ°¡ÀÓ. µû¶ó¼­ °üÂûºóµµ°¡ 0ÀÎ °æ¿ì, ·Î±× ¿ìµµºñ °ªÀ» 0À¸·Î Ã³¸®.
 
-### 3) t-ê°’ ê³„ì‚° ë° ì¸¡ì •ì¹˜ ì—´ ìƒì„±í•˜ê¸°
+### 3) t-°ª °è»ê ¹× ÃøÁ¤Ä¡ ¿­ »ý¼ºÇÏ±â
 
 whole.one.ct.add.ttest <- transform(whole.one.ct.add.log, ttest = (o11-e11) / sqrt(o11))
 
-### 4) ìƒí˜¸ì •ë³´ ê³„ì‚° ë° ì¸¡ì •ì¹˜ ì—´ ìƒì„±í•˜ê¸°
+### 4) »óÈ£Á¤º¸ °è»ê ¹× ÃøÁ¤Ä¡ ¿­ »ý¼ºÇÏ±â
 
 whole.one.ct.add.mi <- transform(whole.one.ct.add.ttest, MI = log2(o11/e11))
 
-## (3) ì „ë¬¸ê°€ íŒì • ê²°ê³¼ í•­ëª© ì¶”ê°€í•˜ê¸°
+## (3) Àü¹®°¡ ÆÇÁ¤ °á°ú Ç×¸ñ Ãß°¡ÇÏ±â
 
-# ì „ë¬¸ê°€ì˜ ì—°ì–´ê´€ê³„ íŒì • ê²°ê³¼ê°€ ë‹´ê¸´ íŒŒì¼ Rë¡œ ë¶ˆëŸ¬ë“¤ì´ê¸°.
+# Àü¹®°¡ÀÇ ¿¬¾î°ü°è ÆÇÁ¤ °á°ú°¡ ´ã±ä ÆÄÀÏ R·Î ºÒ·¯µéÀÌ±â.
 whole.one.human <- read.csv(file="https://raw.github.com/cognitivepsychology/cognitive_psychology/master/whole.one.human.csv")
-# 2340ê°œì˜ TRUE ë˜ëŠ” FALSEë¡œ êµ¬ì„±ëœ "human"ì´ë¼ëŠ” ì œëª©ì˜ ì „ë¬¸ê°€ íŒì • ê²°ê³¼ ì—´ì„ ê¸°ì¡´ ë¹ˆë„ìžë£Œ ë°ì´í„°í”„ë ˆìž„ì— ì¶”ê°€í•˜ê¸°.
+# 2340°³ÀÇ TRUE ¶Ç´Â FALSE·Î ±¸¼ºµÈ "human"ÀÌ¶ó´Â Á¦¸ñÀÇ Àü¹®°¡ ÆÇÁ¤ °á°ú ¿­À» ±âÁ¸ ºóµµÀÚ·á µ¥ÀÌÅÍÇÁ·¹ÀÓ¿¡ Ãß°¡ÇÏ±â.
 human <- whole.one.human$human.eval 
 whole.one.am.human <- transform(whole.one.ct.add.mi, human = human)
