@@ -5,11 +5,13 @@
 ## (1) 말뭉치 원자료 파일 내려받기
 # 압축된 말뭉치 원자료 파일의 url 주소 축약하기.
 raw <- "https://raw.github.com/cognitivepsychology/cognitive_psychology/master/RawData/RawData.zip"
-# 압축된 말뭉치 원자료 파일 내려받기.
-download.file(raw, "raw.zip")
+# 압축된 말뭉치 원자료 파일 내려받기(url이 https로 시작하는 사이트에 저장된 자료는 download.file("url", "파일명")으로 내려받지 못할 수도 있음. 따라서 https 사이트 자료도 내려받을 수 있게 해주는 패키지 httr을 불러올 것.
+library(httr)
+response <- GET(raw,
+                write_disk("raw.zip"),
+                progress())
 # 압축된 말뭉치 원자료 파일을 RawData 폴더에 풀기.
 unzip("raw.zip", exdir="RawData")
-
 ## (2) 말뭉치 원자료 파일 가공하기
 
 # 모든 말뭉치 원자료 파일명에 대한 목록 작성하기.
