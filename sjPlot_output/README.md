@@ -1,0 +1,11 @@
+sjPlot 패키지를 통해 출력한 연어판별 정확도 및 연어 포함률 표 htm 파일
+====================
+- prec.table.htm: 모든 목+술 연쇄를 대상으로 한 5개 AM의 상위 *n*대 연어판별 정확도 표
+- prec.percent.table.htm: 모든 목+술 연쇄를 대상으로 한 5개 AM의 상위 *n*%대 연어판별 정확도 표
+- prec.no.ha.table.htm: 비(非)하다류 연쇄를 대상으로 한 5개 AM의 상위 *n*대 연어판별 정확도 표
+- prec.percent.no.ha.table.htm: 비(非)하다류 연쇄를 대상으로 한 5개 AM의 상위 *n*%대 연어판별 정확도 표 
+- recall.table.htm: 모든 목+술 연쇄를 대상으로 한 5개 AM의 상위 *n*대 연어 포함률 표 
+- recall.percent.table.htm: 모든 목+술 연쇄를 대상으로 한 5개 AM의 상위 *n*%대 연어 포함률 표
+- recall.no.ha.table.htm: 비(非)하다류 연쇄를 대상으로 한 5개 AM의 상위 *n*대 연어 포함률 표
+- recall.percent.no.ha.htm: 비(非)하다류 연쇄를 대상으로 한 5개 AM의 상위 *n*%대 연어 포함률 표
+
