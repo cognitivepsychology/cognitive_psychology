@@ -3,9 +3,9 @@
 
 1. 자료: 세종 현대 구어 형태 분석 말뭉치. RawData 폴더에 저장되어 있음(txt 파일 200개).
 2. 자료의 처리, 분석, 시각화에 이용된 소스 코드 파일
-  * collocation_study_step1: 1단계 말뭉치 원자료 선처리용 소스 코드 파일.
-  * collocation_study_step2: 2단계 말뭉치 자료 분석용 소스 코드 파일.
-  * collocation_study_step3: 1단계 말뭉치 자료 분석 결과 시각화용 소스 코드 파일.
+  * collocation_study_step1.R: 1단계 말뭉치 원자료 선처리용 소스 코드 파일.
+  * collocation_study_step2.R: 2단계 말뭉치 자료 분석용 소스 코드 파일.
+  * collocation_study_step3.R: 1단계 말뭉치 자료 분석 결과 시각화용 소스 코드 파일.
 3. 자료의 처리, 분석, 시각화에 관한 안내문
   * rmarkdown_step1.Rmd: 1단계 말뭉치 원자료 선처리 절차 안내문.
   * rmarkdown_step2.Rmd: 2단계 말뭉치 자료 분석 절차 안내문.
