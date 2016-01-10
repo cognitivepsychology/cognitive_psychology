@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Cognitive Psychology" />
+
+
+<title>한국어 구어 말뭉치를 대상으로 한 연어구성 추출 방법 비교: 3단계_말뭉치 자료 분석 결과 시각화</title>
+
+<script src="rmarkdown_step3_files/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmarkdown_step3_files/bootstrap-3.3.1/css/journal.min.css" rel="stylesheet" />
+<script src="rmarkdown_step3_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="rmarkdown_step3_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="rmarkdown_step3_files/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #0000ff; }
+code > span.ch { color: #008080; }
+code > span.st { color: #008080; }
+code > span.co { color: #008000; }
+code > span.ot { color: #ff4000; }
+code > span.al { color: #ff0000; }
+code > span.er { font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div id="header">
+<h1 class="title">한국어 구어 말뭉치를 대상으로 한 연어구성 추출 방법 비교: 3단계_말뭉치 자료 분석 결과 시각화</h1>
+<h4 class="author"><em>Cognitive Psychology</em></h4>
+<h4 class="date"><em>2016년 1월 4일</em></h4>
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#----------">1. 모든 목+술 연쇄 자료 바탕으로 연어판별 정확도와 연어 포함률 그림 그리기</a><ul>
+<li><a href="#--------">(1) 모든 목+술 연쇄 자료 바탕으로 연어판별 정확도 그림 그리기</a><ul>
+<li><a href="#-am--n--------">1) 5개 AM의 상위 <em>n</em>대별 연어판별 정확도와 연어 포함률을 각각 하나의 열로 통합하기</a></li>
+<li><a href="#--------r--">2) 한글 서체 지정 및 한글 깨짐 방지를 위한 R 환경 설정하기</a></li>
+<li><a href="#-n-----ggplot2--">3) 상위 <em>n</em>퍼센트 연어판별 정확도 그림을 위한 ggplot2 코드 작성하기</a></li>
+<li><a href="#-n----">4) 상위 <em>n</em>퍼센트 연어판별 정확도 그림 저장하기</a></li>
+</ul></li>
+<li><a href="#--------">(2) 모든 목+술 연쇄 자료 바탕으로 연어 포함률 그림 그리기</a><ul>
+<li><a href="#-n-----ggplot2--">1) 상위 <em>n</em>퍼센트 연어 포함률 그림을 위한 ggplot2 코드 작성하기</a></li>
+<li><a href="#-n----">2) 상위 <em>n</em>퍼센트 연어 포함률 그림 저장하기</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#---------">2. 비(非)하다류 연쇄 자료 바탕으로 연어판별 정확도와 연어 포함률 그림 그리기</a><ul>
+<li><a href="#--------">(1) 모든 비(非)하다류 연쇄 자료 바탕으로 연어판별 정확도 그림 그리기</a><ul>
+<li><a href="#-am--n---------1">1) 5개 AM의 상위 <em>n</em>대별 연어판별 정확도와 연어 포함률을 각각 하나의 열로 통합하기</a></li>
+<li><a href="#-n-----ggplot2---1">2) 상위 <em>n</em>퍼센트 연어판별 정확도 그림을 위한 ggplot2 코드 작성하기</a></li>
+<li><a href="#-n-----1">3) 상위 <em>n</em>퍼센트 연어판별 정확도 그림 저장하기</a></li>
+</ul></li>
+<li><a href="#-500--------">(2) 상위 500대 비(非)하다류 연쇄 자료 바탕으로 연어판별 정확도 그림 그리기</a><ul>
+<li><a href="#-n-----ggplot2--">1) 상위 <em>n</em>대 연어판별 정확도 그림을 위한 ggplot2 코드 작성하기</a></li>
+<li><a href="#-n-----2">2) 상위 <em>n</em>퍼센트 연어판별 정확도 그림 저장하기</a></li>
+</ul></li>
+<li><a href="#--------">(3) 모든 비(非)하다류 연쇄 자료 바탕으로 연어 포함률 그림 그리기</a><ul>
+<li><a href="#-n-----ggplot2---1">1) 상위 <em>n</em>퍼센트 연어 포함률 그림을 위한 ggplot2 코드 작성하기</a></li>
+<li><a href="#-n-----1">2) 상위 <em>n</em>퍼센트 연어 포함률 그림 저장하기</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+
+<p>본 연구의 절차는 크게 세 단계로 구분되는데, 1단계는 말뭉치 원자료 선처리, 2단계는 말뭉치 자료 분석 그리고 3단계는 말뭉치 자료 분석 결과의 시각화를 다룬다. 본 안내문은 그 가운데 마지막 3단계, 즉 다섯 가지 어휘간 결합도 측정 방법(lexical association measures, 이하 AM)의 연어판별 정확도와 연어 포함률을 그림의 형태로 시각화하는 일련의 과정을 소개한다.</p>
+<div id="----------" class="section level1">
+<h1>1. 모든 목+술 연쇄 자료 바탕으로 연어판별 정확도와 연어 포함률 그림 그리기</h1>
+<p>이제 5개 AM의 상위 <em>n</em>퍼센트별 연어판별 정확도와 연어 포함률을 그림으로 나타낼 차례다. 이를 위해 앞서 살펴본 1, 2단계 작업용 소스 파일을 불러들여, 연어판별 정확도와 연어 포함률 시각화를 위한 기본적인 R 환경을 마련한다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
+<span class="kw">source_url</span>(<span class="st">&#39;https://raw.github.com/cognitivepsychology/cognitive_psychology/master/collocation_study_step2.R&#39;</span>)
+<span class="co"># 소스 파일을 직접 내려받고 싶다면 다음을 실행할 것</span>
+<span class="kw">download.file</span>(<span class="st">&#39;https://raw.github.com/cognitivepsychology/cognitive_psychology/master/collocation_study_step2.R&#39;</span>)</code></pre>
+<p>본 연구에서는 연어판별 정확도와 연어 포함률을 그림으로 나타내기 위해서 데이터프레임 형태의 자료나 통계분석 결과를 각종 그림의 형태로 시각화 해주는 패키지 ggplot2<span class="citation">(Wickham &amp; Chang, 2014)</span>를 사용한다. ggplot2는 미려한 그래픽과 간단한 코드 설정으로 R에 내장된 기본 그래픽 도구보다 훨씬 널리 사용되고 있다. 그러나 ggplot2의 효율성을 극대화하려면, ggplot2가 선호하는 형태로 자료를 변형해야 한다. ggplot2의 경우, 하나의 그림에 들어가는 관측치들이 하나의 열로 구성되어 있어야 코드 입력이 간단해진다. 이에 따라 5개의 독립된 열로 구성된 각 AM의 연어판별 정확도 또는 연어 포함률을 하나의 열로 합치기 위해 간편하게 자료의 형태를 바꿔주는 패키지 reshape2<span class="citation">(Wickham, 2014)</span>를 불러온다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(reshape2)</code></pre>
+<div id="--------" class="section level2">
+<h2>(1) 모든 목+술 연쇄 자료 바탕으로 연어판별 정확도 그림 그리기</h2>
+<p>모든 목+술 연쇄 자료를 바탕으로 연어판별 정확도 그림을 그리기에 앞서, 먼저 ggplot2가 요구하는 형태로 자료를 변형한다. 이를 위해 5개 AM의 상위 <em>n</em>대별 연어판별 정확도와 연어 포함률을 각각 하나의 열로 합친다.</p>
+<div id="-am--n--------" class="section level3">
+<h3>1) 5개 AM의 상위 <em>n</em>대별 연어판별 정확도와 연어 포함률을 각각 하나의 열로 통합하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r">whole.human.pr.melt.prec &lt;-<span class="st"> </span><span class="kw">melt</span>(whole.human.prec.rec.nbest, <span class="dt">measure.vars=</span><span class="kw">c</span>(<span class="st">&quot;prec.freq&quot;</span>, <span class="st">&quot;prec.MI&quot;</span>, <span class="st">&quot;prec.chisq&quot;</span>, <span class="st">&quot;prec.ttest&quot;</span>, <span class="st">&quot;prec.ll&quot;</span>))
+<span class="co"># 5개 AM 이름이 통합된 &quot;variable&quot; 열 제목을 &quot;prec.AM&quot;으로 바꾸기.</span>
+<span class="kw">colnames</span>(whole.human.pr.melt.prec)[<span class="dv">8</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;prec.AM&quot;</span>) 
+<span class="co"># 5개 AM의 정확도가 통합된 &quot;value&quot; 열 제목을 &quot;prec&quot;으로 바꾸기.</span>
+<span class="kw">colnames</span>(whole.human.pr.melt.prec)[<span class="dv">9</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;prec&quot;</span>) 
+whole.human.pr.melt.rec &lt;-<span class="st"> </span><span class="kw">melt</span>(whole.human.prec.rec.nbest, <span class="dt">measure.vars=</span><span class="kw">c</span>(<span class="st">&quot;rec.freq&quot;</span>, <span class="st">&quot;rec.MI&quot;</span>, <span class="st">&quot;rec.chisq&quot;</span>, <span class="st">&quot;rec.ttest&quot;</span>, <span class="st">&quot;rec.ll&quot;</span>))
+<span class="co"># 5개 AM의 이름이 통합된 &quot;variable&quot; 열 제목을 &quot;rec.AM&quot;으로 바꾸기.</span>
+<span class="kw">colnames</span>(whole.human.pr.melt.rec)[<span class="dv">8</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rec.AM&quot;</span>) 
+<span class="co"># 5개 AM의 정확도가 통합된 &quot;value&quot; 열 제목을 &quot;rec&quot;으로 바꾸기.</span>
+<span class="kw">colnames</span>(whole.human.pr.melt.rec)[<span class="dv">9</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rec&quot;</span>) 
+whole.human.pr.melt &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">cbind</span>(whole.human.pr.melt.prec[, <span class="dv">6</span>:<span class="dv">9</span>], whole.human.pr.melt.rec[, <span class="dv">8</span>:<span class="dv">9</span>]))</code></pre>
+</div>
+<div id="--------r--" class="section level3">
+<h3>2) 한글 서체 지정 및 한글 깨짐 방지를 위한 R 환경 설정하기</h3>
+<p>이제 ggplot2 패키지를 불러와 본격적으로 연어판별 정확도 그림을 그릴 차례다. R과 ggplot2는 한국어를 기본적으로 지원해주지는 않는다. 따라서 한국어를 그림에 삽입하여 정상적으로 출력하려면, R 환경을 수정해주어야 한다. 여기서는 한글 서체인 나눔고딕 서체를 사용하기 위해 해당 서체를 R 폰트 시스템에 연동시키기로 한다. 자신의 컴퓨터에 설치된 서체의 목록은 R 코드 입력창에 fonts()를 쳐보면 확인할 수 있다. 나눔고딕 서체가 설치되어 있지 않은 경우, 컴퓨터에 설치된 다른 한글 서체 중 어느 것이든 사용하면 된다. 참고로, 나눔고딕 서체는 누구나 무료로 사용할 수 있는 오픈 폰트로, <a href="http://cc.naver.com/cc?a=nng*t.win&amp;r=&amp;i=&amp;bw=1903&amp;px=885&amp;py=1098&amp;sx=885&amp;sy=690&amp;m=1&amp;nsc=hangeul.all&amp;u=http%3A%2F%2Fcdn.naver.com%2Fnaver%2FNanumFont%2Fsetup%2FNanumFontSetup_TTF_GOTHIC_hangeulcamp.exe">여기</a>에서 윈도우용 자동설치 버전을 내려받을 수 있다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ggplot2 패키지 불러오기.</span>
+<span class="kw">library</span>(ggplot2) 
+<span class="co"># 나눔고딕 폰트를 R 폰트 시스템에 연동시키기. </span>
+<span class="kw">windowsFonts</span>(<span class="dt">NanumGothic =</span> <span class="kw">windowsFont</span>(<span class="st">&quot;나눔 고딕&quot;</span>)) 
+<span class="co"># R에서 한글 입력 시 깨지는 현상 방지하기.</span>
+<span class="kw">Sys.setlocale</span>(<span class="st">&quot;LC_COLLATE&quot;</span>, <span class="st">&quot;ko_KR.UTF-8&quot;</span>) </code></pre>
+</div>
+<div id="-n-----ggplot2--" class="section level3">
+<h3>3) 상위 <em>n</em>퍼센트 연어판별 정확도 그림을 위한 ggplot2 코드 작성하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 모든 목+술 연쇄 중 진짜 연어의 비율 계산하기. 결과: 0.4034188.</span>
+TPall &lt;-<span class="st"> </span><span class="kw">sum</span>(whole.one.am.human$human) /<span class="st"> </span><span class="kw">nrow</span>(whole.one.am.human) 
+p.prec.per &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>whole.human.pr.melt, <span class="kw">aes</span>(<span class="dt">x=</span>n.percent, <span class="dt">y=</span>prec, <span class="dt">linetype=</span>prec.AM, <span class="dt">color=</span>prec.AM)) +<span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">0.5</span>)
+p.prec.per &lt;-<span class="st"> </span>p.prec.per +<span class="st"> </span><span class="kw">scale_colour_brewer</span>(<span class="dt">palette=</span><span class="st">&quot;Set1&quot;</span>, <span class="dt">name=</span><span class="st">&quot;측정방법&quot;</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;공기빈도&quot;</span>, <span class="st">&quot;상호정보&quot;</span>, <span class="st">&quot;카이제곱 검정&quot;</span>, <span class="st">&quot;t-검정&quot;</span>, <span class="st">&quot;로그 우도비&quot;</span>))
+p.prec.per &lt;-<span class="st"> </span>p.prec.per +<span class="st"> </span><span class="kw">scale_linetype_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>, <span class="st">&quot;dotted&quot;</span>, <span class="st">&quot;dotdash&quot;</span>, <span class="st">&quot;longdash&quot;</span>), <span class="dt">name=</span><span class="st">&quot;측정방법&quot;</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;공기빈도&quot;</span>, <span class="st">&quot;상호정보&quot;</span>, <span class="st">&quot;카이제곱 검정&quot;</span>, <span class="st">&quot;t-검정&quot;</span>, <span class="st">&quot;로그 우도비&quot;</span>))
+p.prec.per &lt;-<span class="st"> </span>p.prec.per +<span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)) 
+p.prec.per &lt;-<span class="st"> </span>p.prec.per +<span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)) 
+<span class="co"># 상위 10% 목+술 연쇄 목록 지점 표시.</span>
+p.prec.per &lt;-<span class="st"> </span>p.prec.per +<span class="st"> </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span>TPall), <span class="dt">size=</span><span class="fl">0.5</span>) +<span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept=</span><span class="dv">10</span>), <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">size=</span><span class="fl">0.5</span>)
+p.prec.per &lt;-<span class="st"> </span>p.prec.per +<span class="st"> </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;상위 n% 목+술 연쇄 목록&quot;</span>, <span class="dt">y=</span><span class="st">&quot;연어판별 정확도(%)&quot;</span>)
+p.prec.per &lt;-<span class="st"> </span>p.prec.per +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">title=</span><span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>),
+                                 <span class="dt">axis.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">13</span>),
+                                 <span class="dt">legend.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>), 
+                                 <span class="dt">legend.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>),
+                                 <span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">83</span>, .<span class="dv">8</span>),
+                                 <span class="dt">axis.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>),
+                                 <span class="dt">legend.background=</span><span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),
+                                 <span class="dt">legend.key=</span><span class="kw">element_rect</span>(<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>),
+                                 <span class="dt">legend.direction=</span><span class="st">&quot;vertical&quot;</span>,
+                                 <span class="dt">legend.position=</span><span class="st">&quot;right&quot;</span>)</code></pre>
+</div>
+<div id="-n----" class="section level3">
+<h3>4) 상위 <em>n</em>퍼센트 연어판별 정확도 그림 저장하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># png 파일로 저장하기.</span>
+<span class="kw">png</span>(<span class="dt">width =</span> <span class="dv">1100</span>, <span class="dt">height =</span> <span class="dv">1100</span>, <span class="dt">filename =</span> <span class="st">&quot;p.prec.per.png&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;cairo&quot;</span>, 
+    <span class="dt">antialias =</span> <span class="st">&quot;subpixel&quot;</span>, <span class="dt">family =</span> <span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">res =</span> <span class="dv">220</span>)
+p.prec.per 
+<span class="kw">dev.off</span>()
+<span class="co"># pdf 파일로 저장하기.</span>
+<span class="kw">cairo_pdf</span>(<span class="dt">filename =</span> <span class="st">&quot;p.prec.per.pdf&quot;</span>, <span class="dt">family=</span><span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">width=</span><span class="dv">7</span>, <span class="dt">height=</span><span class="dv">7</span>, <span class="dt">antialias =</span> <span class="st">&quot;subpixel&quot;</span>)
+p.prec.per  
+<span class="kw">dev.off</span>()</code></pre>
+<p><a href="https://raw.githubusercontent.com/cognitivepsychology/cognitive_psychology/master/ggplot2_output/p.prec.per.png"><그림 1> 모든 목+술 연쇄를 대상으로 한 5개 AM의 연어판별 정확도 곡선(링크 클릭)</a></p>
+</div>
+</div>
+<div id="--------" class="section level2">
+<h2>(2) 모든 목+술 연쇄 자료 바탕으로 연어 포함률 그림 그리기</h2>
+<div id="-n-----ggplot2--" class="section level3">
+<h3>1) 상위 <em>n</em>퍼센트 연어 포함률 그림을 위한 ggplot2 코드 작성하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r">p.rec.per &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>whole.human.pr.melt, <span class="kw">aes</span>(<span class="dt">x=</span>n.percent, <span class="dt">y=</span>rec, <span class="dt">linetype=</span>rec.AM, <span class="dt">color=</span>rec.AM)) +<span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">0.5</span>)
+p.rec.per &lt;-<span class="st"> </span>p.rec.per +<span class="st"> </span><span class="kw">scale_colour_brewer</span>(<span class="dt">palette=</span><span class="st">&quot;Set1&quot;</span>, <span class="dt">name=</span><span class="st">&quot;측정방법&quot;</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;공기빈도&quot;</span>, <span class="st">&quot;상호정보&quot;</span>, <span class="st">&quot;카이제곱 검정&quot;</span>, <span class="st">&quot;t-검정&quot;</span>, <span class="st">&quot;로그 우도비&quot;</span>))
+p.rec.per &lt;-<span class="st"> </span>p.rec.per +<span class="st"> </span><span class="kw">scale_linetype_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>, <span class="st">&quot;dotted&quot;</span>, <span class="st">&quot;dotdash&quot;</span>, <span class="st">&quot;longdash&quot;</span>), <span class="dt">name=</span><span class="st">&quot;측정방법&quot;</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;공기빈도&quot;</span>, <span class="st">&quot;상호정보&quot;</span>, <span class="st">&quot;카이제곱 검정&quot;</span>, <span class="st">&quot;t-검정&quot;</span>, <span class="st">&quot;로그 우도비&quot;</span>))
+p.rec.per &lt;-<span class="st"> </span>p.rec.per +<span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)) 
+p.rec.per &lt;-<span class="st"> </span>p.rec.per +<span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)) 
+p.rec.per &lt;-<span class="st"> </span>p.rec.per +<span class="st"> </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;상위 n% 목+술 연쇄 목록&quot;</span>, <span class="dt">y=</span><span class="st">&quot;연어 포함률(%)&quot;</span>)
+p.rec.per &lt;-<span class="st"> </span>p.rec.per +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">title=</span><span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>),
+                               <span class="dt">axis.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">13</span>),
+                               <span class="dt">legend.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>), 
+                               <span class="dt">legend.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>),
+                               <span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">17</span>, .<span class="dv">8</span>),
+                               <span class="dt">axis.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>),
+                               <span class="dt">legend.background=</span><span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),
+                               <span class="dt">legend.key=</span><span class="kw">element_rect</span>(<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>),
+                               <span class="dt">legend.direction=</span><span class="st">&quot;vertical&quot;</span>,
+                               <span class="dt">legend.position=</span><span class="st">&quot;right&quot;</span>)</code></pre>
+</div>
+<div id="-n----" class="section level3">
+<h3>2) 상위 <em>n</em>퍼센트 연어 포함률 그림 저장하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># png 파일로 저장하기.</span>
+<span class="kw">png</span>(<span class="dt">width =</span> <span class="dv">1100</span>, <span class="dt">height =</span> <span class="dv">1100</span>, <span class="dt">filename =</span> <span class="st">&quot;p.rec.per.png&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;cairo&quot;</span>, 
+    <span class="dt">antialias =</span> <span class="st">&quot;subpixel&quot;</span>, <span class="dt">family =</span> <span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">res =</span> <span class="dv">220</span>)
+p.rec.per  
+<span class="kw">dev.off</span>()
+<span class="co"># pdf 파일로 저장하기.</span>
+<span class="kw">cairo_pdf</span>(<span class="dt">filename =</span> <span class="st">&quot;p.rec.per.pdf&quot;</span>, <span class="dt">family=</span><span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">width=</span><span class="dv">7</span>, <span class="dt">height=</span><span class="dv">7</span>, <span class="dt">antialias =</span> <span class="st">&quot;subpixel&quot;</span>)
+p.rec.per  
+<span class="kw">dev.off</span>()</code></pre>
+<p><a href="https://raw.githubusercontent.com/cognitivepsychology/cognitive_psychology/master/ggplot2_output/p.rec.per.png"><그림 2> 모든 목+술 연쇄를 대상으로 한 5개 AM의 연어 포함률 곡선(링크 클릭)</a></p>
+</div>
+</div>
+</div>
+<div id="---------" class="section level1">
+<h1>2. 비(非)하다류 연쇄 자료 바탕으로 연어판별 정확도와 연어 포함률 그림 그리기</h1>
+<div id="--------" class="section level2">
+<h2>(1) 모든 비(非)하다류 연쇄 자료 바탕으로 연어판별 정확도 그림 그리기</h2>
+<div id="-am--n---------1" class="section level3">
+<h3>1) 5개 AM의 상위 <em>n</em>대별 연어판별 정확도와 연어 포함률을 각각 하나의 열로 통합하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r">whole.human.pr.melt.prec.no.ha &lt;-<span class="st"> </span><span class="kw">melt</span>(whole.human.prec.rec.nbest.no.ha, <span class="dt">measure.vars=</span><span class="kw">c</span>(<span class="st">&quot;prec.freq.no.ha&quot;</span>, <span class="st">&quot;prec.MI.no.ha&quot;</span>, <span class="st">&quot;prec.chisq.no.ha&quot;</span>, <span class="st">&quot;prec.ttest.no.ha&quot;</span>, <span class="st">&quot;prec.ll.no.ha&quot;</span>))
+<span class="co"># 5개 AM 이름이 통합된 &quot;variable&quot; 열 제목을 &quot;prec.AM&quot;으로 바꾸기.</span>
+<span class="kw">colnames</span>(whole.human.pr.melt.prec.no.ha)[<span class="dv">8</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;prec.AM&quot;</span>)
+<span class="co"># 5개 AM의 정확도가 통합된 &quot;value&quot; 열 제목을 &quot;prec&quot;으로 바꾸기.</span>
+<span class="kw">colnames</span>(whole.human.pr.melt.prec.no.ha)[<span class="dv">9</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;prec&quot;</span>)
+whole.human.pr.melt.rec.no.ha &lt;-<span class="st"> </span><span class="kw">melt</span>(whole.human.prec.rec.nbest.no.ha, <span class="dt">measure.vars=</span><span class="kw">c</span>(<span class="st">&quot;rec.freq.no.ha&quot;</span>, <span class="st">&quot;rec.MI.no.ha&quot;</span>, <span class="st">&quot;rec.chisq.no.ha&quot;</span>, <span class="st">&quot;rec.ttest.no.ha&quot;</span>, <span class="st">&quot;rec.ll.no.ha&quot;</span>))
+<span class="co"># 5개 AM의 이름이 통합된 &quot;variable&quot; 열 제목을 &quot;rec.AM&quot;으로 바꾸기.</span>
+<span class="kw">colnames</span>(whole.human.pr.melt.rec.no.ha)[<span class="dv">8</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rec.AM&quot;</span>)
+<span class="co"># 5개 AM의 정확도가 통합된 &quot;value&quot; 열 제목을 &quot;rec&quot;으로 바꾸기.</span>
+<span class="kw">colnames</span>(whole.human.pr.melt.rec.no.ha)[<span class="dv">9</span>] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;rec&quot;</span>)
+whole.human.pr.melt.no.ha &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="kw">cbind</span>(whole.human.pr.melt.prec.no.ha[, <span class="dv">6</span>:<span class="dv">9</span>], whole.human.pr.melt.rec.no.ha[, <span class="dv">8</span>:<span class="dv">9</span>]))</code></pre>
+</div>
+<div id="-n-----ggplot2---1" class="section level3">
+<h3>2) 상위 <em>n</em>퍼센트 연어판별 정확도 그림을 위한 ggplot2 코드 작성하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 비(非)하다류 연쇄 중 진짜 연어의 비율 계산하기. 결과: 0.2307692.</span>
+TP.no.ha &lt;-<span class="st"> </span><span class="kw">sum</span>(whole.one.no.ha$human) /<span class="st"> </span><span class="kw">nrow</span>(whole.one.no.ha) 
+p.prec.nh.per &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>whole.human.pr.melt.no.ha, <span class="kw">aes</span>(<span class="dt">x=</span>n.percent.no.ha, <span class="dt">y=</span>prec, <span class="dt">linetype=</span>prec.AM, <span class="dt">color=</span>prec.AM)) +<span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">0.5</span>)
+p.prec.nh.per &lt;-<span class="st"> </span>p.prec.nh.per +<span class="st"> </span><span class="kw">scale_colour_brewer</span>(<span class="dt">palette=</span><span class="st">&quot;Set1&quot;</span>, <span class="dt">name=</span><span class="st">&quot;측정방법&quot;</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;공기빈도&quot;</span>, <span class="st">&quot;상호정보&quot;</span>, <span class="st">&quot;카이제곱 검정&quot;</span>, <span class="st">&quot;t-검정&quot;</span>, <span class="st">&quot;로그 우도비&quot;</span>))
+p.prec.nh.per &lt;-<span class="st"> </span>p.prec.nh.per +<span class="st"> </span><span class="kw">scale_linetype_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>, <span class="st">&quot;dotted&quot;</span>, <span class="st">&quot;dotdash&quot;</span>, <span class="st">&quot;longdash&quot;</span>), <span class="dt">name=</span><span class="st">&quot;측정방법&quot;</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;공기빈도&quot;</span>, <span class="st">&quot;상호정보&quot;</span>, <span class="st">&quot;카이제곱 검정&quot;</span>, <span class="st">&quot;t-검정&quot;</span>, <span class="st">&quot;로그 우도비&quot;</span>))
+p.prec.nh.per &lt;-<span class="st"> </span>p.prec.nh.per +<span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)) 
+p.prec.nh.per &lt;-<span class="st"> </span>p.prec.nh.per +<span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)) 
+<span class="co"># 상위 10% 목+술 연쇄 목록 지점 표시하기.</span>
+p.prec.nh.per &lt;-<span class="st"> </span>p.prec.nh.per +<span class="st"> </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span>TP.no.ha), <span class="dt">size=</span><span class="fl">0.5</span>) +<span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept=</span><span class="dv">10</span>), <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">size=</span><span class="fl">0.5</span>)
+p.prec.nh.per &lt;-<span class="st"> </span>p.prec.nh.per +<span class="st"> </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;상위 n% 목+술 연쇄 목록&quot;</span>, <span class="dt">y=</span><span class="st">&quot;연어판별 정확도(%)&quot;</span>)
+p.prec.nh.per &lt;-<span class="st"> </span>p.prec.nh.per +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">title=</span><span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>),
+                                       <span class="dt">axis.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">13</span>),
+                                       <span class="dt">legend.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>), 
+                                       <span class="dt">legend.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>),
+                                       <span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">83</span>, .<span class="dv">8</span>),
+                                       <span class="dt">axis.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>),
+                                       <span class="dt">legend.background=</span><span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),
+                                       <span class="dt">legend.key=</span><span class="kw">element_rect</span>(<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>),
+                                       <span class="dt">legend.direction=</span><span class="st">&quot;vertical&quot;</span>,
+                                       <span class="dt">legend.position=</span><span class="st">&quot;right&quot;</span>)</code></pre>
+</div>
+<div id="-n-----1" class="section level3">
+<h3>3) 상위 <em>n</em>퍼센트 연어판별 정확도 그림 저장하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># png 파일로 저장하기.</span>
+<span class="kw">png</span>(<span class="dt">width =</span> <span class="dv">1100</span>, <span class="dt">height =</span> <span class="dv">1100</span>, <span class="dt">filename =</span> <span class="st">&quot;p.prec.nh.per.png&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;cairo&quot;</span>, 
+    <span class="dt">antialias =</span> <span class="st">&quot;subpixel&quot;</span>, <span class="dt">family =</span> <span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">res =</span> <span class="dv">220</span>)
+p.prec.nh.per
+<span class="kw">dev.off</span>()
+<span class="co"># pdf 파일로 저장하기.</span>
+<span class="kw">cairo_pdf</span>(<span class="dt">filename =</span> <span class="st">&quot;p.prec.nh.per.pdf&quot;</span>, <span class="dt">family=</span><span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">width=</span><span class="dv">7</span>, <span class="dt">height=</span><span class="dv">7</span>, <span class="dt">antialias =</span> <span class="st">&quot;subpixel&quot;</span>)
+p.prec.nh.per
+<span class="kw">dev.off</span>()</code></pre>
+<p><a href="https://raw.githubusercontent.com/cognitivepsychology/cognitive_psychology/master/ggplot2_output/p.prec.nh.per.png"><그림 3> 비(非)하다류 연쇄를 대상으로 한 5개 AM의 연어판별 정확도 곡선(링크 클릭)</a></p>
+</div>
+</div>
+<div id="-500--------" class="section level2">
+<h2>(2) 상위 500대 비(非)하다류 연쇄 자료 바탕으로 연어판별 정확도 그림 그리기</h2>
+<p>연어판별 정확도의 변화가 상대적으로 심한 상위 30퍼센트(<em>N</em> ≒ 500) 비(非)하다류 연쇄를 좀더 면밀히 살펴보기 위해, 이들 연쇄만 따로 떼어 연어판별 정확도 곡선을 다시 그려보기로 한다.</p>
+<div id="-n-----ggplot2--" class="section level3">
+<h3>1) 상위 <em>n</em>대 연어판별 정확도 그림을 위한 ggplot2 코드 작성하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 비(非)하다류 연쇄 중 진짜 연어의 비율 계산하기. 결과: 0.2307692.</span>
+TP.no.ha &lt;-<span class="st"> </span><span class="kw">sum</span>(whole.one.no.ha$human) /<span class="st"> </span><span class="kw">nrow</span>(whole.one.no.ha) 
+p.prec.nh<span class="fl">.500</span> &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>whole.human.pr.melt.no.ha, <span class="kw">aes</span>(<span class="dt">x=</span>n.best.no.ha, <span class="dt">y=</span>prec, <span class="dt">linetype=</span>prec.AM, <span class="dt">color=</span>prec.AM)) +<span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">0.5</span>)
+p.prec.nh<span class="fl">.500</span> &lt;-<span class="st"> </span>p.prec.nh<span class="fl">.500</span> +<span class="st"> </span><span class="kw">scale_colour_brewer</span>(<span class="dt">palette=</span><span class="st">&quot;Set1&quot;</span>, <span class="dt">name=</span><span class="st">&quot;측정방법&quot;</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;공기빈도&quot;</span>, <span class="st">&quot;상호정보&quot;</span>, <span class="st">&quot;카이제곱 검정&quot;</span>, <span class="st">&quot;t-검정&quot;</span>, <span class="st">&quot;로그 우도비&quot;</span>))
+p.prec.nh<span class="fl">.500</span> &lt;-<span class="st"> </span>p.prec.nh<span class="fl">.500</span> +<span class="st"> </span><span class="kw">scale_linetype_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>, <span class="st">&quot;dotted&quot;</span>, <span class="st">&quot;dotdash&quot;</span>, <span class="st">&quot;longdash&quot;</span>), <span class="dt">name=</span><span class="st">&quot;측정방법&quot;</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;공기빈도&quot;</span>, <span class="st">&quot;상호정보&quot;</span>, <span class="st">&quot;카이제곱 검정&quot;</span>, <span class="st">&quot;t-검정&quot;</span>, <span class="st">&quot;로그 우도비&quot;</span>))
+p.prec.nh<span class="fl">.500</span> &lt;-<span class="st"> </span>p.prec.nh<span class="fl">.500</span> +<span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">500</span>), <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">150</span>,<span class="dv">200</span>,<span class="dv">250</span>,<span class="dv">300</span>,<span class="dv">350</span>,<span class="dv">400</span>,<span class="dv">450</span>,<span class="dv">500</span>)) 
+p.prec.nh<span class="fl">.500</span> &lt;-<span class="st"> </span>p.prec.nh<span class="fl">.500</span> +<span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)) 
+<span class="co"># 상위 10% 목+술 연쇄 목록 지점 표시하기. </span>
+ten.point &lt;-<span class="st"> </span><span class="kw">nrow</span>(whole.one.no.ha) /<span class="st"> </span><span class="dv">10</span>
+p.prec.nh<span class="fl">.500</span> &lt;-<span class="st"> </span>p.prec.nh<span class="fl">.500</span> +<span class="st"> </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept=</span>TP.no.ha), <span class="dt">size=</span><span class="fl">0.5</span>) +<span class="st"> </span><span class="kw">geom_vline</span>(<span class="kw">aes</span>(<span class="dt">xintercept=</span>ten.point), <span class="dt">linetype=</span><span class="st">&quot;dashed&quot;</span>, <span class="dt">size=</span><span class="fl">0.5</span>)
+p.prec.nh<span class="fl">.500</span> &lt;-<span class="st"> </span>p.prec.nh<span class="fl">.500</span> +<span class="st"> </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;상위 n개 목+술 연쇄 목록&quot;</span>, <span class="dt">y=</span><span class="st">&quot;연어판별 정확도(%)&quot;</span>)
+p.prec.nh<span class="fl">.500</span> &lt;-<span class="st"> </span>p.prec.nh<span class="fl">.500</span> +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">title=</span><span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>),
+                                       <span class="dt">axis.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">13</span>),
+                                       <span class="dt">legend.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>), 
+                                       <span class="dt">legend.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>),
+                                       <span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">83</span>, .<span class="dv">8</span>),
+                                       <span class="dt">axis.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>),
+                                       <span class="dt">legend.background=</span><span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),
+                                       <span class="dt">legend.key=</span><span class="kw">element_rect</span>(<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>),
+                                       <span class="dt">legend.direction=</span><span class="st">&quot;vertical&quot;</span>,
+                                       <span class="dt">legend.position=</span><span class="st">&quot;right&quot;</span>)</code></pre>
+</div>
+<div id="-n-----2" class="section level3">
+<h3>2) 상위 <em>n</em>퍼센트 연어판별 정확도 그림 저장하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># png 파일로 저장하기.</span>
+<span class="kw">png</span>(<span class="dt">width =</span> <span class="dv">1100</span>, <span class="dt">height =</span> <span class="dv">1100</span>, <span class="dt">filename =</span> <span class="st">&quot;p.prec.nh.500.png&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;cairo&quot;</span>, 
+    <span class="dt">antialias =</span> <span class="st">&quot;subpixel&quot;</span>, <span class="dt">family =</span> <span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">res =</span> <span class="dv">220</span>)
+p.prec.nh<span class="fl">.500</span>
+<span class="kw">dev.off</span>()
+<span class="co"># pdf 파일로 저장하기.</span>
+<span class="kw">cairo_pdf</span>(<span class="dt">filename =</span> <span class="st">&quot;p.prec.nh.500.pdf&quot;</span>, <span class="dt">family=</span><span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">width=</span><span class="dv">7</span>, <span class="dt">height=</span><span class="dv">7</span>, <span class="dt">antialias =</span> <span class="st">&quot;subpixel&quot;</span>)
+p.prec.nh<span class="fl">.500</span>
+<span class="kw">dev.off</span>()</code></pre>
+<p><a href="https://raw.githubusercontent.com/cognitivepsychology/cognitive_psychology/master/ggplot2_output/p.prec.nh.500.png"><그림 4> 상위 500개 비(非)하다류 연쇄를 대상으로 한 5개 AM의 연어판별 정확도 곡선(링크 클릭)</a></p>
+</div>
+</div>
+<div id="--------" class="section level2">
+<h2>(3) 모든 비(非)하다류 연쇄 자료 바탕으로 연어 포함률 그림 그리기</h2>
+<div id="-n-----ggplot2---1" class="section level3">
+<h3>1) 상위 <em>n</em>퍼센트 연어 포함률 그림을 위한 ggplot2 코드 작성하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r">p.rec.nh.per &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>whole.human.pr.melt.no.ha, <span class="kw">aes</span>(<span class="dt">x=</span>n.percent.no.ha, <span class="dt">y=</span>rec, <span class="dt">linetype=</span>rec.AM, <span class="dt">color=</span>rec.AM)) +<span class="st"> </span><span class="kw">geom_line</span>(<span class="dt">size=</span><span class="fl">0.5</span>)
+p.rec.nh.per &lt;-<span class="st"> </span>p.rec.nh.per +<span class="st"> </span><span class="kw">scale_colour_brewer</span>(<span class="dt">palette=</span><span class="st">&quot;Set1&quot;</span>, <span class="dt">name=</span><span class="st">&quot;측정방법&quot;</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;공기빈도&quot;</span>, <span class="st">&quot;상호정보&quot;</span>, <span class="st">&quot;카이제곱 검정&quot;</span>, <span class="st">&quot;t-검정&quot;</span>, <span class="st">&quot;로그 우도비&quot;</span>))
+p.rec.nh.per &lt;-<span class="st"> </span>p.rec.nh.per +<span class="st"> </span><span class="kw">scale_linetype_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;solid&quot;</span>, <span class="st">&quot;dashed&quot;</span>, <span class="st">&quot;dotted&quot;</span>, <span class="st">&quot;dotdash&quot;</span>, <span class="st">&quot;longdash&quot;</span>), <span class="dt">name=</span><span class="st">&quot;측정방법&quot;</span>,<span class="dt">labels=</span><span class="kw">c</span>(<span class="st">&quot;공기빈도&quot;</span>, <span class="st">&quot;상호정보&quot;</span>, <span class="st">&quot;카이제곱 검정&quot;</span>, <span class="st">&quot;t-검정&quot;</span>, <span class="st">&quot;로그 우도비&quot;</span>))
+p.rec.nh.per &lt;-<span class="st"> </span>p.rec.nh.per +<span class="st"> </span><span class="kw">scale_x_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)) 
+p.rec.nh.per &lt;-<span class="st"> </span>p.rec.nh.per +<span class="st"> </span><span class="kw">scale_y_continuous</span>(<span class="dt">limits=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)) 
+p.rec.nh.per &lt;-<span class="st"> </span>p.rec.nh.per +<span class="st"> </span><span class="kw">labs</span>(<span class="dt">x=</span><span class="st">&quot;상위 n% 목+술 연쇄 목록&quot;</span>, <span class="dt">y=</span><span class="st">&quot;연어 포함률(%)&quot;</span>)
+p.rec.nh.per &lt;-<span class="st"> </span>p.rec.nh.per +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">title=</span><span class="kw">element_text</span>(<span class="dt">family =</span> <span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">color=</span><span class="st">&quot;black&quot;</span>),
+                                     <span class="dt">axis.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">13</span>),
+                                     <span class="dt">legend.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>), 
+                                     <span class="dt">legend.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>),
+                                     <span class="dt">legend.position =</span> <span class="kw">c</span>(.<span class="dv">17</span>, .<span class="dv">8</span>),
+                                     <span class="dt">axis.text=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">10</span>),
+                                     <span class="dt">legend.background=</span><span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),
+                                     <span class="dt">legend.key=</span><span class="kw">element_rect</span>(<span class="dt">colour=</span><span class="st">&quot;black&quot;</span>),
+                                     <span class="dt">legend.direction=</span><span class="st">&quot;vertical&quot;</span>,
+                                     <span class="dt">legend.position=</span><span class="st">&quot;right&quot;</span>)</code></pre>
+</div>
+<div id="-n-----1" class="section level3">
+<h3>2) 상위 <em>n</em>퍼센트 연어 포함률 그림 저장하기</h3>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># png 파일로 저장하기.</span>
+<span class="kw">png</span>(<span class="dt">width =</span> <span class="dv">1100</span>, <span class="dt">height =</span> <span class="dv">1100</span>, <span class="dt">filename =</span> <span class="st">&quot;p.rec.nh.per.png&quot;</span>, <span class="dt">type =</span> <span class="st">&quot;cairo&quot;</span>, 
+    <span class="dt">antialias =</span> <span class="st">&quot;subpixel&quot;</span>, <span class="dt">family =</span> <span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">res =</span> <span class="dv">220</span>)
+p.rec.nh.per  
+<span class="kw">dev.off</span>()
+<span class="co"># pdf 파일로 저장하기.</span>
+<span class="kw">cairo_pdf</span>(<span class="dt">filename =</span> <span class="st">&quot;p.rec.nh.per.pdf&quot;</span>, <span class="dt">family=</span><span class="st">&quot;NanumGothic&quot;</span>, <span class="dt">width=</span><span class="dv">7</span>, <span class="dt">height=</span><span class="dv">7</span>, <span class="dt">antialias =</span> <span class="st">&quot;subpixel&quot;</span>)
+p.rec.nh.per
+<span class="kw">dev.off</span>()</code></pre>
+<p><a href="https://raw.githubusercontent.com/cognitivepsychology/cognitive_psychology/master/ggplot2_output/p.rec.nh.per.png"><그림 5> 비(非)하다류 연쇄를 대상으로 한 5개 AM의 연어 포함률 곡선(링크 클릭)</a></p>
+</div>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p><strong><인터넷 자료></strong></p>
+<div class="references">
+<p>Wickham, H. (2014). <em>reshape2: Flexibly reshape data: A reboot of the reshape package.</em> Retrieved from <a href="http://CRAN.R-project.org/package=reshape2">http://CRAN.R-project.org/package=reshape2</a></p>
+<p>Wickham, H., &amp; Chang, W. (2014). <em>ggplot2: An implementation of the grammar of graphics</em>. Retrieved from <a href="http://CRAN.R-project.org/package=ggplot2">http://CRAN.R-project.org/package=ggplot2</a></p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>1, 2단계에 이은 본 3단계 말뭉치 자료 분석 결과 시각화 작업에 새롭게 사용된 R 패키지 목록은 다음과 같다: ggplot2<span class="citation">(Wickham &amp; Chang, 2014)</span>, reshape2<span class="citation">(Wickham, 2014)</span>.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
