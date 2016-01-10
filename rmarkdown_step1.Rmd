@@ -6,7 +6,6 @@ output:
   html_document:
     css: style.css
     highlight: haddock
-    self_contained: no
     theme: journal
     toc: yes
 csl: apa.csl
