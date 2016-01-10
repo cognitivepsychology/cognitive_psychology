@@ -10,8 +10,8 @@
 
 ##### 3. 자료의 처리, 분석, 시각화에 관한 안내문
   * **[rmarkdown_step1.html](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step1.html):** 1단계 말뭉치 원자료 선처리 절차 안내문. 본 안내문으로 가려면 해당 파일 링크를 클릭할 것.
-  * **[rmarkdown_step2.html](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step2.html):** 2단계 말뭉치 자료 분석 절차 안내문.
-  * **[rmarkdown_step3.html](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step3.html):** 3단계 말뭉치 자료 분석 결과 시각화 절차 안내문.
+  * **[rmarkdown_step2.html](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step2.html):** 2단계 말뭉치 자료 분석 절차 안내문. 본 안내문으로 가려면 해당 파일 링크를 클릭할 것.
+  * **[rmarkdown_step3.html](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step3.html):** 3단계 말뭉치 자료 분석 결과 시각화 절차 안내문. 본 안내문으로 가려면 해당 파일 링크를 클릭할 것.
 
 ##### 4. 최종 결과물
   * **sjPlot_output 폴더:** sjPlot 패키지를 통해 출력한 연어판별 정확도와 연어 포함률 표 htm 파일 8개. 상세한 설명은 해당 폴더의 README.md를 참조할 것.
