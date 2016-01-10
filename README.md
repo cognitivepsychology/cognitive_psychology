@@ -3,13 +3,13 @@
 
 1. 자료: 세종 현대 구어 형태 분석 말뭉치. RawData 폴더에 저장되어 있음(txt 파일 200개).
 2. 자료의 처리, 분석, 시각화에 이용된 소스 코드 파일
-..* collocation_study_step1: 1단계 말뭉치 원자료 선처리용 소스 코드 파일.
-..* collocation_study_step2: 2단계 말뭉치 자료 분석용 소스 코드 파일.
-..* collocation_study_step3: 1단계 말뭉치 자료 분석 결과 시각화용 소스 코드 파일.
+  * collocation_study_step1: 1단계 말뭉치 원자료 선처리용 소스 코드 파일.
+  * collocation_study_step2: 2단계 말뭉치 자료 분석용 소스 코드 파일.
+  * collocation_study_step3: 1단계 말뭉치 자료 분석 결과 시각화용 소스 코드 파일.
 3. 자료의 처리, 분석, 시각화에 관한 안내문
-..* rmarkdown_step1.Rmd: 1단계 말뭉치 원자료 선처리 절차 안내문.
-..* rmarkdown_step2.Rmd: 2단계 말뭉치 자료 분석 절차 안내문.
-..* rmarkdown_step3.Rmd: 3단계 말뭉치 자료 분석 결과 시각화 절차 안내문.
+  * rmarkdown_step1.Rmd: 1단계 말뭉치 원자료 선처리 절차 안내문.
+  * rmarkdown_step2.Rmd: 2단계 말뭉치 자료 분석 절차 안내문.
+  * rmarkdown_step3.Rmd: 3단계 말뭉치 자료 분석 결과 시각화 절차 안내문.
 4. 최종 결과물
-..* sjPlot_output 폴더: sjPlot 패키지를 통해 출력한 연어판별 정확도와 연어 포함률 표 htm 파일 8개. 상세한 설명은 해당 폴더의 README.md를 참조할 것.
-..* ggplot2_output 폴더: ggplot2 패키지를 통해 출력한 연어판별 정확도와 연어 포함률 그림 파일 10개. 상세한 설명은 해당 폴더의 README.md를 참조할 것.
+  * sjPlot_output 폴더: sjPlot 패키지를 통해 출력한 연어판별 정확도와 연어 포함률 표 htm 파일 8개. 상세한 설명은 해당 폴더의 README.md를 참조할 것.
+  * ggplot2_output 폴더: ggplot2 패키지를 통해 출력한 연어판별 정확도와 연어 포함률 그림 파일 10개. 상세한 설명은 해당 폴더의 README.md를 참조할 것.
