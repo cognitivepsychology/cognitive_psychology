@@ -115,7 +115,7 @@ img {
 </ul>
 </div>
 
-<p>본 연구의 절차는 크게 세 단계로 구분되는데, 1단계는 말뭉치 원자료 선처리, 2단계는 말뭉치 자료 분석 그리고 3단계는 말뭉치 자료 분석 결과의 시각화를 다룬다. 본 안내문은 그 가운데 2단계, 가공된 말뭉치 자료를 바탕으로 다섯 가지 어휘간 결합도 측정 방법(lexical association measures, 이하 AM)의 연어판별 정확도와 연어 포함률을 산출하는 일련의 과정을 소개한다.</p>
+<p>본 연구의 절차는 크게 세 단계로 구분되는데, 1단계는 말뭉치 원자료 선처리, 2단계는 말뭉치 자료 분석 그리고 3단계는 말뭉치 자료 분석 결과의 시각화를 다룬다. 본 안내문은 그 가운데 2단계, 가공된 말뭉치 자료를 바탕으로 다섯 가지 어휘간 결합도 측정 방법(lexical association measures, 이하 AM)의 연어판별 정확도와 연어 포함률을 산출하는 일련의 과정을 소개한다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
 <div id="----" class="section level1">
 <h1>1. 연어판별 정확도와 연어 포함률 소개</h1>
 <p>본 연구의 목적은 한국어 구어 말뭉치에 나타난 목적어+서술어 연쇄를 대상으로 공기빈도, 상호정보, 카이제곱 검정, <em>t</em>-검정, 로그 우도비를 사용하여 연어구성을 추출할 경우, 각 AM의 연어판별 정확도(precision)와 연어 포함률(recall)은 어떤 양상을 나타내는지를 알아보는 것이다. 본 연구에서는 다섯 가지 AM이 얼마나 효과적으로 연어관계를 포착해내는지를 평가하기 위해 연어판별 정확도와 연어 포함률이라는 두 가지 전략을 채택했다. 연어판별 정확도란 특정 AM을 사용하여 얻은 수치 순으로 정렬한 연어구성 후보 상위 <em>n</em>대 목록 중에서 진짜 연어구성 — 전문가에 의해 연어구성으로 판정된 어휘연쇄 — 이 차지하는 비율을 가리킨다. 측정치 상위권 목록의 정확도가 높을수록 해당 측정방법이 주어진 어휘연쇄들의 연어관계를 정확히 포착해낼 가능성이 높음을 의미한다. 연어판별 정확도(<em>p</em>)의 계산 공식은 다음과 같다(공식에서 ε는 특정 어휘간 결합도 측정 방법을 통해 추출된 연어구성 후보의 수를, τ는 전문가에 의해 연어구성으로 판정된 어휘연쇄의 수를, 그리고 ∩는 양쪽에 동시에 속한다는 뜻의 교집합 기호를 나타낸다). <span class="math">\[p = \frac{|\epsilon \bigcap \tau|}{\epsilon}\]</span> 반면에 연어 포함률이란 특정 AM을 통해 얻은 수치 순으로 정렬한 연어구성 후보 상위 n대 목록 안에 전체 진짜 연어구성 중 몇 퍼센트가 포함되어 있는가를 일컫는다. 연어 포함률을 알면, 구간 정확도(local precision), 즉 연어구성 후보 상위 <em>n</em>대 지점에서 <em>n</em> + α개 지점 사이의 연어구성 밀도를 알 수 있다. 측정치 상위권 목록의 포함률이 높을수록 해당 측정방법이 주어진 어휘연쇄들의 연어관계를 정확히 그리고 효율적으로 포착해내고 있음을 나타낸다. 따라서 연어 포함률은 특정 AM의 효율성을 극대화하려면 상위 <em>n</em>대 목록을 어디까지로 설정해야 할 것인지를 판단하는 데 좋은 참고자료가 된다. 연어 포함률(<em>r</em>)의 계산 공식은 다음과 같다. <span class="math">\[r = \frac{|\epsilon \bigcap \tau|}{\tau}\]</span></p>
@@ -247,7 +247,7 @@ prec.percent.table &lt;-<span class="st"> </span><span class="kw">do.call</span>
 </div>
 <div id="-am---n-------" class="section level3">
 <h3>5) 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표에 평균 연어판별 정확도 추가하기</h3>
-<p>모든 목+술 연쇄 연어구성 후보를 바탕으로 한 5개 AM의 평균 연어판별 정확도(average precision)을 확인한다. 연어 포함률 .5 - .95<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>일 때에 해당하는 각 AM의 평균 연어판별 정확도를 산출, 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표에 추가한다.</p>
+<p>모든 목+술 연쇄 연어구성 후보를 바탕으로 한 5개 AM의 평균 연어판별 정확도(average precision)을 확인한다. 연어 포함률 .5 - .95<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>일 때에 해당하는 각 AM의 평균 연어판별 정확도를 산출, 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표에 추가한다.</p>
 <div id="a.-5-am-----" class="section level4">
 <h4>A. 5개 AM의 연어판별 정확도를 하나의 데이터프레임으로 정리하기</h4>
 <div id=".-5-am---" class="section level5">
@@ -336,7 +336,7 @@ prec.table &lt;-<span class="st"> </span><span class="kw">rbind</span>(prec.tabl
 </div>
 <div id="-am------" class="section level3">
 <h3>6) 5개 AM 통합 연어판별 정확도 표 문서로 출력하기</h3>
-<p>R은 자료를 처리하고 분석하는 것뿐만 아니라, 분석결과를 표나 그림의 형태로 시각화하는 데도 매우 유용하다. 데이터프레임을 R 뷰어나 html 문서에 표의 형태로 출력해주는 패키지 sjPlot을 활용하여 R상에서 연어판별 정확도(평균 연어판별 정확도 포함) 분석 결과 표를 문서로 출력해보자.<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a></p>
+<p>R은 자료를 처리하고 분석하는 것뿐만 아니라, 분석결과를 표나 그림의 형태로 시각화하는 데도 매우 유용하다. 데이터프레임을 R 뷰어나 html 문서에 표의 형태로 출력해주는 패키지 sjPlot을 활용하여 R상에서 연어판별 정확도(평균 연어판별 정확도 포함) 분석 결과 표를 문서로 출력해보자.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 데이터프레임을 R 뷰어나 html 문서에 표의 형태로 출력해주는 패키지 sjPlot 불러오기.</span>
 <span class="kw">library</span>(sjPlot)
 <span class="co"># 모든 목+술 연쇄에 대한 5개 AM의 상위 n대별 연어판별 정확도 표(문서용) 작성하기. 이때 &quot;title =&quot; 논항을 통해 표 제목도 R상에서 추가할 수 있으나, 한글 입력 시 깨짐 현상 발생. 표 제목은 문서상에서 추가할 것.</span>
@@ -1472,8 +1472,9 @@ recall.percent.no.ha.table &lt;-<span class="st"> </span><span class="kw">do.cal
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>연어 포함률 0-5퍼센트 및 95-100퍼센트 구간의 연어판별 정확도는 다소 불안정한 탓에 신뢰도가 낮다. 따라서 본 연구에서는 이를 제외한 연어 포함률 5-95퍼센트 구간의 연어구성 후보를 대상으로 산출한 평균 연어판별 정확도만을 보고하기로 한다(Pecina, 2010).<a href="#fnref1">↩</a></p></li>
-<li id="fn2"><p>1단계에 이은 본 2단계 말뭉치 자료 분석 작업에 새롭게 사용된 R 패키지 목록은 다음과 같다: devtools<span class="citation">(Wickham &amp; Chang, 2014)</span>, sjPlot<span class="citation">(Ludecke, 2015)</span>.<a href="#fnref2">↩</a></p></li>
+<li id="fn1"><p>연어판별 정확도와 연어 포함률 계산 및 표 작성을 위한 R 코드는 Marco Baroni와 Stefan Evert의 온라인 강좌 <a href="http://www.stefan-evert.de/SIGIL/sigil_R/">Statistical Analysis of Corpus Data with R</a>을 많은 부분 참조했다.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>연어 포함률 0-5퍼센트 및 95-100퍼센트 구간의 연어판별 정확도는 다소 불안정한 탓에 신뢰도가 낮다. 따라서 본 연구에서는 이를 제외한 연어 포함률 5-95퍼센트 구간의 연어구성 후보를 대상으로 산출한 평균 연어판별 정확도만을 보고하기로 한다(Pecina, 2010).<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>1단계에 이은 본 2단계 말뭉치 자료 분석 작업에 새롭게 사용된 R 패키지 목록은 다음과 같다: devtools<span class="citation">(Wickham &amp; Chang, 2014)</span>, sjPlot<span class="citation">(Ludecke, 2015)</span>.<a href="#fnref3">↩</a></p></li>
 </ol>
 </div>
 
