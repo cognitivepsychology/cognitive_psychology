@@ -384,7 +384,7 @@ whole.one.ct.add.chisq &lt;-<span class="st"> </span>whole.one.ct.add.chisquare[
 </div>
 <div id="----" class="section level2">
 <h2>(3) 전문가 판정 결과 항목 추가하기</h2>
-<p>국어 전문가 두 명이 빈도 2회 이상 목+술 연쇄 2340개에 대해 직접 연어구성 여부를 판정한 결과를 “연어가 맞음 = TRUE”, “연어가 아님 = FALSE”로 정리하여 불린(boolean) 벡터로 정리해두었다. 이 전문가 판정 결과와 다섯 가지 어휘 결합도 측정 방법의 측정치를 비교함으로써 이들 측정방법의 연어검증 효율성을 평가하게 된다. 어휘 결합도 측정 방법들의 연어검증 효율성을 비교, 평가하는 데 사용되는 전략에 대해서는 “한국어 구어 말뭉치를 대상으로 한 연어구성 추출 방법 비교: 2단계_말뭉치 자료 분석” 문서를 참조하기 바란다.</p>
+<p>국어 전문가 두 명이 빈도 2회 이상 목+술 연쇄 2340개에 대해 연어관계 성립 여부를 직접 판정한 결과를 불린(boolean) 벡터, 즉 “연어가 맞음 = TRUE” 그리고 “연어가 아님 = FALSE”로 정리해두었다. 이 전문가 판정 결과와 다섯 가지 어휘 결합도 측정 방법의 측정치를 비교함으로써 이들 측정방법의 연어검증 효율성을 평가하게 된다. 어휘 결합도 측정 방법들의 연어검증 효율성을 비교, 평가하는 데 사용된 두 가지 전략(연어판정 정확도 검증, 연어 포함률 검증)에 대해서는 “한국어 구어 말뭉치를 대상으로 한 연어구성 추출 방법 비교: 2단계_말뭉치 자료 분석” 문서를 참조하기 바란다.</p>
 <pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 전문가의 연어관계 판정 결과가 담긴 파일 R로 불러들이기.</span>
 whole.one.human &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="dt">file=</span><span class="st">&quot;https://raw.github.com/cognitivepsychology/cognitive_psychology/master/whole.one.human.csv&quot;</span>)
 <span class="co"># 2340개의 TRUE 또는 FALSE로 구성된 &quot;human&quot;이라는 제목의 전문가 판정 결과 열을 기존 빈도자료 데이터프레임에 추가하기.</span>
