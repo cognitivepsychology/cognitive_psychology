@@ -1,10 +1,5 @@
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css)
 
-/* Whole document: */
-body{
-  font-family: '나눔고딕';
-  font-size: 12pt;
-}
 /* Headers */
 h1,h2,h3,h4,h5,h6{
   font-family: '나눔고딕';
