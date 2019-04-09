@@ -1,18 +1,18 @@
-ÇÑ±¹¾î ±¸¾î ¸»¹¶Ä¡¸¦ ´ë»óÀ¸·Î ÇÑ ¿¬¾î±¸¼º ÃßÃâ ¹æ¹ý ºñ±³: ÀçÇö°¡´É ¿¬±¸
+ï»¿í•œêµ­ì–´ êµ¬ì–´ ë§ë­‰ì¹˜ë¥¼ ëŒ€ìƒìœ¼ë¡œ í•œ ì—°ì–´êµ¬ì„± ì¶”ì¶œ ë°©ë²• ë¹„êµ: ìž¬í˜„ê°€ëŠ¥ ì—°êµ¬
 ====================
 
-##### 1. ÀÚ·á: ¼¼Á¾ Çö´ë ±¸¾î ÇüÅÂ ºÐ¼® ¸»¹¶Ä¡. RawData Æú´õ¿¡ ÀúÀåµÇ¾î ÀÖÀ½(txt ÆÄÀÏ 200°³).
+##### 1. ìžë£Œ: ì„¸ì¢… í˜„ëŒ€ êµ¬ì–´ í˜•íƒœ ë¶„ì„ ë§ë­‰ì¹˜. RawData í´ë”ì— ì €ìž¥ë˜ì–´ ìžˆìŒ(txt íŒŒì¼ 200ê°œ).
 
-##### 2. ÀÚ·áÀÇ Ã³¸®, ºÐ¼®, ½Ã°¢È­¿¡ ÀÌ¿ëµÈ ¼Ò½º ÄÚµå ÆÄÀÏ
-  * **collocation_study_step1.R:** 1´Ü°è ¸»¹¶Ä¡ ¿øÀÚ·á ¼±Ã³¸®¿ë ¼Ò½º ÄÚµå ÆÄÀÏ.
-  * **collocation_study_step2.R:** 2´Ü°è ¸»¹¶Ä¡ ÀÚ·á ºÐ¼®¿ë ¼Ò½º ÄÚµå ÆÄÀÏ.
-  * **collocation_study_step3.R:** 3´Ü°è ¸»¹¶Ä¡ ÀÚ·á ºÐ¼® °á°ú ½Ã°¢È­¿ë ¼Ò½º ÄÚµå ÆÄÀÏ.
+##### 2. ìžë£Œì˜ ì²˜ë¦¬, ë¶„ì„, ì‹œê°í™”ì— ì´ìš©ëœ ì†ŒìŠ¤ ì½”ë“œ íŒŒì¼
+  * **collocation_study_step1.R:** 1ë‹¨ê³„ ë§ë­‰ì¹˜ ì›ìžë£Œ ì„ ì²˜ë¦¬ìš© ì†ŒìŠ¤ ì½”ë“œ íŒŒì¼.
+  * **collocation_study_step2.R:** 2ë‹¨ê³„ ë§ë­‰ì¹˜ ìžë£Œ ë¶„ì„ìš© ì†ŒìŠ¤ ì½”ë“œ íŒŒì¼.
+  * **collocation_study_step3.R:** 3ë‹¨ê³„ ë§ë­‰ì¹˜ ìžë£Œ ë¶„ì„ ê²°ê³¼ ì‹œê°í™”ìš© ì†ŒìŠ¤ ì½”ë“œ íŒŒì¼.
 
-##### 3. ÀÚ·áÀÇ Ã³¸®, ºÐ¼®, ½Ã°¢È­¿¡ °üÇÑ ¾È³»¹®
-  * **[rmarkdown_step1.html](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step1.html):** 1´Ü°è ¸»¹¶Ä¡ ¿øÀÚ·á ¼±Ã³¸® ÀýÂ÷ ¾È³»¹®. º» ¾È³»¹®À¸·Î °¡·Á¸é ÇØ´ç ÆÄÀÏ ¸µÅ©¸¦ Å¬¸¯ÇÒ °Í.
-  * **[rmarkdown_step2.html](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step2.html):** 2´Ü°è ¸»¹¶Ä¡ ÀÚ·á ºÐ¼® ÀýÂ÷ ¾È³»¹®. º» ¾È³»¹®À¸·Î °¡·Á¸é ÇØ´ç ÆÄÀÏ ¸µÅ©¸¦ Å¬¸¯ÇÒ °Í.
-  * **[rmarkdown_step3.html](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step3.html):** 3´Ü°è ¸»¹¶Ä¡ ÀÚ·á ºÐ¼® °á°ú ½Ã°¢È­ ÀýÂ÷ ¾È³»¹®. º» ¾È³»¹®À¸·Î °¡·Á¸é ÇØ´ç ÆÄÀÏ ¸µÅ©¸¦ Å¬¸¯ÇÒ °Í.
+##### 3. ìžë£Œì˜ ì²˜ë¦¬, ë¶„ì„, ì‹œê°í™”ì— ê´€í•œ ì•ˆë‚´ë¬¸
+  * **[rmarkdown_step1.html](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step1.html):** 1ë‹¨ê³„ ë§ë­‰ì¹˜ ì›ìžë£Œ ì„ ì²˜ë¦¬ ì ˆì°¨ ì•ˆë‚´ë¬¸. ë³¸ ì•ˆë‚´ë¬¸ìœ¼ë¡œ ê°€ë ¤ë©´ í•´ë‹¹ íŒŒì¼ ë§í¬ë¥¼ í´ë¦­í•  ê²ƒ.
+  * **[rmarkdown_step2.html](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step2.html):** 2ë‹¨ê³„ ë§ë­‰ì¹˜ ìžë£Œ ë¶„ì„ ì ˆì°¨ ì•ˆë‚´ë¬¸. ë³¸ ì•ˆë‚´ë¬¸ìœ¼ë¡œ ê°€ë ¤ë©´ í•´ë‹¹ íŒŒì¼ ë§í¬ë¥¼ í´ë¦­í•  ê²ƒ.
+  * **[rmarkdown_step3.html](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step3.html):** 3ë‹¨ê³„ ë§ë­‰ì¹˜ ìžë£Œ ë¶„ì„ ê²°ê³¼ ì‹œê°í™” ì ˆì°¨ ì•ˆë‚´ë¬¸. ë³¸ ì•ˆë‚´ë¬¸ìœ¼ë¡œ ê°€ë ¤ë©´ í•´ë‹¹ íŒŒì¼ ë§í¬ë¥¼ í´ë¦­í•  ê²ƒ.
 
-##### 4. ÃÖÁ¾ °á°ú¹°
-  * **sjPlot_output Æú´õ:** sjPlot ÆÐÅ°Áö¸¦ ÅëÇØ Ãâ·ÂÇÑ ¿¬¾îÆÇº° Á¤È®µµ¿Í ¿¬¾î Æ÷ÇÔ·ü Ç¥ htm ÆÄÀÏ 8°³. »ó¼¼ÇÑ ¼³¸íÀº ÇØ´ç Æú´õÀÇ README.md¸¦ ÂüÁ¶ÇÒ °Í.
-  * **ggplot2_output Æú´õ:** ggplot2 ÆÐÅ°Áö¸¦ ÅëÇØ Ãâ·ÂÇÑ ¿¬¾îÆÇº° Á¤È®µµ¿Í ¿¬¾î Æ÷ÇÔ·ü ±×¸² ÆÄÀÏ 10°³. »ó¼¼ÇÑ ¼³¸íÀº ÇØ´ç Æú´õÀÇ README.md¸¦ ÂüÁ¶ÇÒ °Í.
+##### 4. ìµœì¢… ê²°ê³¼ë¬¼
+  * **sjPlot_output í´ë”:** sjPlot íŒ¨í‚¤ì§€ë¥¼ í†µí•´ ì¶œë ¥í•œ ì—°ì–´íŒë³„ ì •í™•ë„ì™€ ì—°ì–´ í¬í•¨ë¥  í‘œ htm íŒŒì¼ 8ê°œ. ìƒì„¸í•œ ì„¤ëª…ì€ í•´ë‹¹ í´ë”ì˜ README.mdë¥¼ ì°¸ì¡°í•  ê²ƒ.
+  * **ggplot2_output í´ë”:** ggplot2 íŒ¨í‚¤ì§€ë¥¼ í†µí•´ ì¶œë ¥í•œ ì—°ì–´íŒë³„ ì •í™•ë„ì™€ ì—°ì–´ í¬í•¨ë¥  ê·¸ë¦¼ íŒŒì¼ 10ê°œ. ìƒì„¸í•œ ì„¤ëª…ì€ í•´ë‹¹ í´ë”ì˜ README.mdë¥¼ ì°¸ì¡°í•  ê²ƒ.
