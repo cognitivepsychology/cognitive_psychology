@@ -1,12 +1,12 @@
-sjPlot ÆĞÅ°Áö¸¦ ÅëÇØ Ãâ·ÂÇÑ ¿¬¾îÆÇº° Á¤È®µµ ¹× ¿¬¾î Æ÷ÇÔ·ü Ç¥ htm ÆÄÀÏ
+sjPlot íŒ¨í‚¤ì§€ë¥¼ í†µí•´ ì¶œë ¥í•œ ì—°ì–´íŒë³„ ì •í™•ë„ ë° ì—°ì–´ í¬í•¨ë¥  í‘œ htm íŒŒì¼
 ====================
-- **[prec.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/prec.table.htm):** ¸ğµç ¸ñ+¼ú ¿¬¼â¸¦ ´ë»óÀ¸·Î ÇÑ 5°³ AMÀÇ »óÀ§ *n*´ë ¿¬¾îÆÇº° Á¤È®µµ Ç¥
-- **[prec.percent.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/prec.percent.table.htm):** ¸ğµç ¸ñ+¼ú ¿¬¼â¸¦ ´ë»óÀ¸·Î ÇÑ 5°³ AMÀÇ »óÀ§ *n*%´ë ¿¬¾îÆÇº° Á¤È®µµ Ç¥
-- **[prec.no.ha.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/prec.no.ha.table.htm):** ºñ(Şª)ÇÏ´Ù·ù ¿¬¼â¸¦ ´ë»óÀ¸·Î ÇÑ 5°³ AMÀÇ »óÀ§ *n*´ë ¿¬¾îÆÇº° Á¤È®µµ Ç¥
-- **[prec.percent.no.ha.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/prec.percent.no.ha.table.htm):** ºñ(Şª)ÇÏ´Ù·ù ¿¬¼â¸¦ ´ë»óÀ¸·Î ÇÑ 5°³ AMÀÇ »óÀ§ *n*%´ë ¿¬¾îÆÇº° Á¤È®µµ Ç¥ 
-- **[recall.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/recall.table.htm):** ¸ğµç ¸ñ+¼ú ¿¬¼â¸¦ ´ë»óÀ¸·Î ÇÑ 5°³ AMÀÇ »óÀ§ *n*´ë ¿¬¾î Æ÷ÇÔ·ü Ç¥ 
-- **[recall.percent.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/recall.percent.table.htm):** ¸ğµç ¸ñ+¼ú ¿¬¼â¸¦ ´ë»óÀ¸·Î ÇÑ 5°³ AMÀÇ »óÀ§ *n*%´ë ¿¬¾î Æ÷ÇÔ·ü Ç¥
-- **[recall.no.ha.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/recall.no.ha.table.htm):** ºñ(Şª)ÇÏ´Ù·ù ¿¬¼â¸¦ ´ë»óÀ¸·Î ÇÑ 5°³ AMÀÇ »óÀ§ *n*´ë ¿¬¾î Æ÷ÇÔ·ü Ç¥
-- **[recall.percent.no.ha.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/recall.percent.no.ha.table.htm):** ºñ(Şª)ÇÏ´Ù·ù ¿¬¼â¸¦ ´ë»óÀ¸·Î ÇÑ 5°³ AMÀÇ »óÀ§ *n*%´ë ¿¬¾î Æ÷ÇÔ·ü Ç¥
+- **[prec.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/prec.table.htm):** ëª¨ë“  ëª©+ìˆ  ì—°ì‡„ë¥¼ ëŒ€ìƒìœ¼ë¡œ í•œ 5ê°œ AMì˜ ìƒìœ„ *n*ëŒ€ ì—°ì–´íŒë³„ ì •í™•ë„ í‘œ
+- **[prec.percent.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/prec.percent.table.htm):** ëª¨ë“  ëª©+ìˆ  ì—°ì‡„ë¥¼ ëŒ€ìƒìœ¼ë¡œ í•œ 5ê°œ AMì˜ ìƒìœ„ *n*%ëŒ€ ì—°ì–´íŒë³„ ì •í™•ë„ í‘œ
+- **[prec.no.ha.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/prec.no.ha.table.htm):** ë¹„(é)í•˜ë‹¤ë¥˜ ì—°ì‡„ë¥¼ ëŒ€ìƒìœ¼ë¡œ í•œ 5ê°œ AMì˜ ìƒìœ„ *n*ëŒ€ ì—°ì–´íŒë³„ ì •í™•ë„ í‘œ
+- **[prec.percent.no.ha.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/prec.percent.no.ha.table.htm):** ë¹„(é)í•˜ë‹¤ë¥˜ ì—°ì‡„ë¥¼ ëŒ€ìƒìœ¼ë¡œ í•œ 5ê°œ AMì˜ ìƒìœ„ *n*%ëŒ€ ì—°ì–´íŒë³„ ì •í™•ë„ í‘œ 
+- **[recall.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/recall.table.htm):** ëª¨ë“  ëª©+ìˆ  ì—°ì‡„ë¥¼ ëŒ€ìƒìœ¼ë¡œ í•œ 5ê°œ AMì˜ ìƒìœ„ *n*ëŒ€ ì—°ì–´ í¬í•¨ë¥  í‘œ 
+- **[recall.percent.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/recall.percent.table.htm):** ëª¨ë“  ëª©+ìˆ  ì—°ì‡„ë¥¼ ëŒ€ìƒìœ¼ë¡œ í•œ 5ê°œ AMì˜ ìƒìœ„ *n*%ëŒ€ ì—°ì–´ í¬í•¨ë¥  í‘œ
+- **[recall.no.ha.table.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/recall.no.ha.table.htm):** ë¹„(é)í•˜ë‹¤ë¥˜ ì—°ì‡„ë¥¼ ëŒ€ìƒìœ¼ë¡œ í•œ 5ê°œ AMì˜ ìƒìœ„ *n*ëŒ€ ì—°ì–´ í¬í•¨ë¥  í‘œ
+- **[recall.percent.no.ha.htm](https://rawgit.com/cognitivepsychology/cognitive_psychology/master/sjPlot_output/recall.percent.no.ha.table.htm):** ë¹„(é)í•˜ë‹¤ë¥˜ ì—°ì‡„ë¥¼ ëŒ€ìƒìœ¼ë¡œ í•œ 5ê°œ AMì˜ ìƒìœ„ *n*%ëŒ€ ì—°ì–´ í¬í•¨ë¥  í‘œ
 
-**ÁÖ:** Ãâ·ÂµÈ Ç¥¸¦ À¥ºê¶ó¿ìÀú»ó¿¡¼­ È®ÀÎÇÏ·Á¸é »ó±â ÆÄÀÏ¸í ¸µÅ©¸¦ Å¬¸¯ÇÒ °Í.
+**ì£¼:** ì¶œë ¥ëœ í‘œë¥¼ ì›¹ë¸Œë¼ìš°ì €ìƒì—ì„œ í™•ì¸í•˜ë ¤ë©´ ìƒê¸° íŒŒì¼ëª… ë§í¬ë¥¼ í´ë¦­í•  ê²ƒ.
