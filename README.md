@@ -23,8 +23,9 @@
 ##### (4) 세종 말뭉치-준거 말뭉치 간 음절 출현형 빈도 비교
 * **[syllable_study_appen4.html](http://cognitivepsychology.github.io/cognitive_psychology/syllable_study_appen4.html):** 한국어 음절 정보 4: 세종 말뭉치 및 물결 21 말뭉치 전체 품사 어절 음절 출현형 빈도. 해당 자료를 열람하려면 링크를 클릭할 것.
 
-
-
+ 
+   
+  
 ﻿한국어 구어 말뭉치를 대상으로 한 연어구성 추출 방법 비교: 재현가능 연구
 ====================
 
