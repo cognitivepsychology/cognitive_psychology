@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="author" content="Cognitive Psychology" />
+
+
+<title>한국어 구어 말뭉치를 대상으로 한 연어구성 추출 방법 비교: 2단계_말뭉치 자료 분석</title>
+
+<script src="rmarkdown_step2_files/jquery-1.11.0/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="rmarkdown_step2_files/bootstrap-3.3.1/css/journal.min.css" rel="stylesheet" />
+<script src="rmarkdown_step2_files/bootstrap-3.3.1/js/bootstrap.min.js"></script>
+<script src="rmarkdown_step2_files/bootstrap-3.3.1/shim/html5shiv.min.js"></script>
+<script src="rmarkdown_step2_files/bootstrap-3.3.1/shim/respond.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #0000ff; }
+code > span.ch { color: #008080; }
+code > span.st { color: #008080; }
+code > span.co { color: #008000; }
+code > span.ot { color: #ff4000; }
+code > span.al { color: #ff0000; }
+code > span.er { font-weight: bold; }
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+<div id="header">
+<h1 class="title">한국어 구어 말뭉치를 대상으로 한 연어구성 추출 방법 비교: 2단계_말뭉치 자료 분석</h1>
+<h4 class="author"><em>Cognitive Psychology</em></h4>
+<h4 class="date"><em>2016년 1월 4일</em></h4>
+</div>
+
+<div id="TOC">
+<ul>
+<li><a href="#----">1. 연어판별 정확도와 연어 포함률 소개</a></li>
+<li><a href="#-">2. 연구자료 소개</a></li>
+<li><a href="#-----">3. 연어판별 정확도 계산 및 표 작성하기</a><ul>
+<li><a href="#---------">(1) 모든 목+술 연쇄 대상으로 연어판별 정확도 계산 및 표 작성하기</a><ul>
+<li><a href="#-am--n------">1) 5개 AM별 상위 <em>n</em>대 연어판별 정확도 계산 및 표 작성하기</a></li>
+<li><a href="#-am--n------">2) 5개 AM별 상위 <em>n</em>퍼센트 연어판별 정확도 계산 및 표 작성하기</a></li>
+<li><a href="#-am---n----">3) 5개 AM 통합 상위 <em>n</em>대 연어판별 정확도 표 작성하기</a></li>
+<li><a href="#-am---n----">4) 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표 작성하기</a></li>
+<li><a href="#-am---n-------">5) 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표에 평균 연어판별 정확도 추가하기</a></li>
+<li><a href="#-am------">6) 5개 AM 통합 연어판별 정확도 표 문서로 출력하기</a></li>
+<li><a href="#-1600-----">7) 상위 1600대 이상 목+술 연쇄 대상 후속분석</a></li>
+</ul></li>
+<li><a href="#--------">(2) 비(非)하다류 연쇄 대상으로 연어판별 정확도 계산 및 표 작성하기</a><ul>
+<li><a href="#------">1) 전체 목+술 연쇄 목록에서 하다류 연쇄 제외하기</a></li>
+<li><a href="#-am--n-------1">2) 5개 AM별 상위 <em>n</em>대 연어판별 정확도 계산 및 표 작성하기</a></li>
+<li><a href="#-am--n-------1">3) 5개 AM별 상위 <em>n</em>퍼센트 연어판별 정확도 계산 및 표 작성하기</a></li>
+<li><a href="#-am---n-----1">4) 5개 AM 통합 상위 <em>n</em>대 연어판별 정확도 표 작성하기</a></li>
+<li><a href="#-am---n-----1">5) 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표 작성하기</a></li>
+<li><a href="#-am---n--------1">6) 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표에 평균 연어판별 정확도 추가하기</a></li>
+<li><a href="#-am-----">7) 5개 AM 통합 연어판별 정확도 표 출력하기</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#-----">4. 연어 포함률 계산 및 표 작성하기</a><ul>
+<li><a href="#---------">(1) 모든 목+술 연쇄 대상으로 연어 포함률 계산 및 표 작성하기</a><ul>
+<li><a href="#-am--n------">1) 5개 AM별 상위 <em>n</em>대 연어 포함률 계산 및 표 작성하기</a></li>
+<li><a href="#-am--n------">2) 5개 AM별 상위 <em>n</em>퍼센트 연어 포함률 계산 및 표 작성하기</a></li>
+<li><a href="#-am---n----">3) 5개 AM 통합 상위 <em>n</em>대 연어 포함률 표 작성하기</a></li>
+<li><a href="#-am---n----">4) 5개 AM 통합 상위 <em>n</em>퍼센트 연어 포함률 표 작성하기</a></li>
+<li><a href="#-am-----">6) 5개 AM 통합 연어 포함률 표 출력하기</a></li>
+</ul></li>
+<li><a href="#--------">(2) 비(非)하다류 연쇄 대상으로 연어 포함률 계산 및 표 작성하기</a><ul>
+<li><a href="#-am---n-----1">1) 5개 AM 통합 상위 <em>n</em>대 연어 포함률 표 작성하기</a></li>
+<li><a href="#-am---n-----1">2) 5개 AM 통합 상위 <em>n</em>퍼센트 연어 포함률 표 작성하기</a></li>
+<li><a href="#-am------1">3) 5개 AM 통합 연어 포함률 표 출력하기</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
+
+<p>본 연구의 절차는 크게 세 단계로 구분되는데, 1단계는 말뭉치 원자료 선처리, 2단계는 말뭉치 자료 분석 그리고 3단계는 말뭉치 자료 분석 결과의 시각화를 다룬다. 본 안내문은 그 가운데 2단계, 가공된 말뭉치 자료를 바탕으로 다섯 가지 어휘간 결합도 측정 방법(lexical association measures, 이하 AM)의 연어판별 정확도와 연어 포함률을 산출하는 일련의 과정을 소개한다.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<div id="----" class="section level1">
+<h1>1. 연어판별 정확도와 연어 포함률 소개</h1>
+<p>본 연구의 목적은 한국어 구어 말뭉치에 나타난 목적어+서술어 연쇄를 대상으로 공기빈도, 상호정보, 카이제곱 검정, <em>t</em>-검정, 로그 우도비를 사용하여 연어구성을 추출할 경우, 각 AM의 연어판별 정확도(precision)와 연어 포함률(recall)은 어떤 양상을 나타내는지를 알아보는 것이다. 본 연구에서는 다섯 가지 AM이 얼마나 효과적으로 연어관계를 포착해내는지를 평가하기 위해 연어판별 정확도와 연어 포함률이라는 두 가지 전략을 채택했다. 연어판별 정확도란 특정 AM을 사용하여 얻은 수치 순으로 정렬한 연어구성 후보 상위 <em>n</em>대 목록 중에서 진짜 연어구성 — 전문가에 의해 연어구성으로 판정된 어휘연쇄 — 이 차지하는 비율을 가리킨다. 측정치 상위권 목록의 정확도가 높을수록 해당 측정방법이 주어진 어휘연쇄들의 연어관계를 정확히 포착해낼 가능성이 높음을 의미한다. 연어판별 정확도(<em>p</em>)의 계산 공식은 다음과 같다(공식에서 ε는 특정 어휘간 결합도 측정 방법을 통해 추출된 연어구성 후보의 수를, τ는 전문가에 의해 연어구성으로 판정된 어휘연쇄의 수를, 그리고 ∩는 양쪽에 동시에 속한다는 뜻의 교집합 기호를 나타낸다). <span class="math">\[p = \frac{|\epsilon \bigcap \tau|}{\epsilon}\]</span> 반면에 연어 포함률이란 특정 AM을 통해 얻은 수치 순으로 정렬한 연어구성 후보 상위 n대 목록 안에 전체 진짜 연어구성 중 몇 퍼센트가 포함되어 있는가를 일컫는다. 연어 포함률을 알면, 구간 정확도(local precision), 즉 연어구성 후보 상위 <em>n</em>대 지점에서 <em>n</em> + α개 지점 사이의 연어구성 밀도를 알 수 있다. 측정치 상위권 목록의 포함률이 높을수록 해당 측정방법이 주어진 어휘연쇄들의 연어관계를 정확히 그리고 효율적으로 포착해내고 있음을 나타낸다. 따라서 연어 포함률은 특정 AM의 효율성을 극대화하려면 상위 <em>n</em>대 목록을 어디까지로 설정해야 할 것인지를 판단하는 데 좋은 참고자료가 된다. 연어 포함률(<em>r</em>)의 계산 공식은 다음과 같다. <span class="math">\[r = \frac{|\epsilon \bigcap \tau|}{\tau}\]</span></p>
+</div>
+<div id="-" class="section level1">
+<h1>2. 연구자료 소개</h1>
+<p>본 연구에서는 한국어 구어 연어구성 추출을 위해 세종 현대 구어 형태 분석 말뭉치(국립국어원, 2007)를 사용했다. 이때 연어의 이론적 정의 — 특정 통사구조를 지닌 두 개의 어휘소가 제한적으로 공기하는 관계(신효필, 2007; 임근석, 2006) — 를 토대로, 일상적 구어맥락에서 가장 널리 쓰이는 통사구조 중 하나인 목+술 연쇄에 초점을 맞추고자 한다. 아래의 <표 1>은 연어구성 추출에 사용된 말뭉치와 목+술 연쇄 자료의 기술통계이다. 본 연구에 사용된 세종 현대 구어 형태 분석 말뭉치의 문장 수는 총 216,718개이며, 어절 수는 총 1,008,669개다. 목+술 연쇄 중에서도 연어관계가 성립할 수 있는 보통명사+동사의 결합(총 9342유형)만을 골라 뽑아냈으며, 분석의 효율성을 위해 이 가운데 최소 2회 이상 말뭉치에 출현한 것(총 2340유형)만을 최종 연어구성 후보로 선정했다. 단, 기술적 한계로 인해, 목적격 조사(-ㄹ/을/를) 표지와 명시적으로 결합된 보통명사와 동사의 조합 ― 목적격 조사구 ― 만을 연어구성 후보로 삼았다. 최종 연어구성 후보 가운데 전문가에 의해 진짜 연어구성으로 판정받은 것은 총 944개로, 전체 후보 중 40퍼센트 가량을 차지했다. 연어구성 후보 추출을 위한 구체적인 자료 선처리 절차에 관해서는 본 연구자의 <a href="https://rawgit.com/cognitivepsychology/cognitive_psychology/master/rmarkdown_step1.html">1단계 안내문</a>을 참조하라. 연어구성 추출에 사용된 말뭉치 및 어휘연쇄 자료 기술통계는 다음과 같다.</p>
+<table>
+<caption><표 1> 연어구성 추출에 사용된 말뭉치 및 어휘연쇄 자료 기술통계</caption>
+<thead>
+<tr class="header">
+<th align="left">주요 항목</th>
+<th align="left">수치</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">문장</td>
+<td align="left">216,718</td>
+</tr>
+<tr class="even">
+<td align="left">목적어(보통명사)</td>
+<td align="left">252,387</td>
+</tr>
+<tr class="odd">
+<td align="left">서술어(동사)</td>
+<td align="left">150,481</td>
+</tr>
+<tr class="even">
+<td align="left">어절</td>
+<td align="left">1,008,669</td>
+</tr>
+<tr class="odd">
+<td align="left">목+술 연쇄 출현형</td>
+<td align="left">19,652</td>
+</tr>
+<tr class="even">
+<td align="left">목+술 연쇄 유형</td>
+<td align="left">9,342</td>
+</tr>
+<tr class="odd">
+<td align="left">빈도 2회 이상 목+술 연쇄 유형</td>
+<td align="left">2,340</td>
+</tr>
+<tr class="even">
+<td align="left">연어구성 후보</td>
+<td align="left">2,340</td>
+</tr>
+<tr class="odd">
+<td align="left">진짜 연어구성</td>
+<td align="left">944</td>
+</tr>
+<tr class="even">
+<td align="left">기본 정확도(%)</td>
+<td align="left">40.34</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="-----" class="section level1">
+<h1>3. 연어판별 정확도 계산 및 표 작성하기</h1>
+<div id="---------" class="section level2">
+<h2>(1) 모든 목+술 연쇄 대상으로 연어판별 정확도 계산 및 표 작성하기</h2>
+<div id="-am--n------" class="section level3">
+<h3>1) 5개 AM별 상위 <em>n</em>대 연어판별 정확도 계산 및 표 작성하기</h3>
+<p>본 연구에서는 보통명사와 동사로 이루어진 목+술 연쇄 중 빈도 2회 이상의 결합을 연어구성 후보로 간주하고, 모든 연어구성 후보(<em>N</em> = 2340)를 바탕으로 다섯 AM의 연어판별 정확도를 산출한다. 이제 본격적으로 다섯 AM의 측정치를 바탕으로 상위 <em>n</em>대(<em>n</em>-best) 또는 <em>n</em>퍼센트별 연어판별 정확도를 계산한 뒤 이를 표로 나타낼 차례다. 먼저 앞서 살펴본 1단계 작업용 소스 파일을 불러들여, 연어판별 정확도와 연어 포함률 분석을 위한 기본적인 R 환경을 마련한다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
+<span class="kw">source_url</span>(<span class="st">&#39;https://raw.github.com/cognitivepsychology/cognitive_psychology/master/collocation_study_step1.R&#39;</span>)
+<span class="co"># 소스 파일을 직접 내려받고 싶다면 다음을 실행할 것</span>
+<span class="kw">download.file</span>(<span class="st">&#39;https://raw.github.com/cognitivepsychology/cognitive_psychology/master/collocation_study_step1.R&#39;</span>)</code></pre>
+<p>1단계용 소스 파일을 불러들였으면, 상위 <em>n</em>대 연어판별 정확도를 계산하고 이를 표로 정리한다. 이를 위해 상위 <em>n</em>대 목+술 연쇄에 대한 특정 AM의 연어판별 정확도를 산출해주는 function을 작성한다. 해당 function의 논항(arguments)으로는 데이터프레임 형식으로 정리된 자료, AM 그리고 상위 <em>n</em>대 숫자가 사용된다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">show.prec &lt;-<span class="st"> </span>function(mydata, AM, n.best) {
+  <span class="kw">stopifnot</span>(AM %in%<span class="st"> </span><span class="kw">colnames</span>(mydata)) <span class="co"># 개별 AM을 열 제목으로 갖는 자료만 계산 대상이 됨!</span>
+  sort.idx &lt;-<span class="st"> </span><span class="kw">order</span>(mydata[[AM]], <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+  prec &lt;-<span class="st"> </span><span class="kw">cumsum</span>(mydata$human[sort.idx]) /<span class="st"> </span>(<span class="dv">1</span>:<span class="kw">nrow</span>(mydata))
+  result &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dv">100</span> *<span class="st"> </span>prec[n.best]) <span class="co"># 정확도를 퍼센트로 나타내줌.</span>
+  result &lt;-<span class="st"> </span><span class="kw">round</span>(result, <span class="dv">2</span>) <span class="co"># 정확도를 소수점 이하 둘째 자리까지만 보고함.</span>
+  <span class="kw">rownames</span>(result) &lt;-<span class="st"> </span>n.best <span class="co"># 행 제목은 n.best로.</span>
+  <span class="kw">colnames</span>(result) &lt;-<span class="st"> </span>AM <span class="co"># 열 제목은 개별 AM의 이름으로.</span>
+  result <span class="co"># 상위 n대의 목+술 연쇄에 대한 특정 AM의 연어판별 정확도를 보고해줌.</span>
+}</code></pre>
+<p>상위 50,100,200,500,1000,2000개의 목+술 연쇄에 대한 5개 AM의 연어판별 정확도를 확인한다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show.prec</span>(whole.one.am.human, <span class="st">&quot;chisq&quot;</span>, <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">2000</span>))
+<span class="kw">show.prec</span>(whole.one.am.human, <span class="st">&quot;o11&quot;</span>, <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">2000</span>))
+<span class="kw">show.prec</span>(whole.one.am.human, <span class="st">&quot;logl&quot;</span>, <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">2000</span>))
+<span class="kw">show.prec</span>(whole.one.am.human, <span class="st">&quot;ttest&quot;</span>, <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">2000</span>))
+<span class="kw">show.prec</span>(whole.one.am.human, <span class="st">&quot;MI&quot;</span>, <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">2000</span>))</code></pre>
+</div>
+<div id="-am--n------" class="section level3">
+<h3>2) 5개 AM별 상위 <em>n</em>퍼센트 연어판별 정확도 계산 및 표 작성하기</h3>
+<p>다음으로, 5개 AM의 상위 <em>n</em>퍼센트 연어판별 정확도를 계산하고 이를 표로 정리한다. 이를 위해 상위 <em>n</em>퍼센트 목+술 연쇄에 대한 특정 AM의 연어판별 정확도를 산출해주는 function을 작성한다. 해당 function의 논항(arguments)으로는 데이터프레임 형식으로 정리된 자료, AM 그리고 상위 <em>n</em>퍼센트 숫자가 사용된다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># AM별 상위 n % 연어판별 정확도 표 만들기.</span>
+show.prec.percent &lt;-<span class="st"> </span>function(mydata, AM, n.percent) {
+  <span class="kw">stopifnot</span>(AM %in%<span class="st"> </span><span class="kw">colnames</span>(mydata)) <span class="co"># 개별 AM을 열 제목으로 갖는 자료만 계산 대상이 됨!</span>
+  sort.idx &lt;-<span class="st"> </span><span class="kw">order</span>(mydata[[AM]], <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+  prec &lt;-<span class="st"> </span><span class="kw">cumsum</span>(mydata$human[sort.idx]) /<span class="st"> </span>(<span class="dv">1</span>:<span class="kw">nrow</span>(mydata))
+  result &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dv">100</span> *<span class="st"> </span>prec[<span class="kw">nrow</span>(mydata)*n.percent/<span class="dv">100</span>]) <span class="co"># 정확도를 퍼센트로 나타내줌. </span>
+  result &lt;-<span class="st"> </span><span class="kw">round</span>(result, <span class="dv">2</span>)
+  <span class="kw">rownames</span>(result) &lt;-<span class="st"> </span>n.percent <span class="co"># 행 제목은 n.percent로.</span>
+  <span class="kw">colnames</span>(result) &lt;-<span class="st"> </span>AM <span class="co"># 열 제목은 개별 AM의 이름으로.</span>
+  result <span class="co"># 상위 n% 목+술 연쇄에 대한 특정 AM의 연어판별 정확도를 보고해줌.</span>
+}</code></pre>
+<p>상위 1,5,10,20,30,40,50,60,70,80,90,100 퍼센트의 목+술 연쇄에 대한 5개 AM의 연어판별 정확도를 확인한다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show.prec.percent</span>(whole.one.am.human, <span class="st">&quot;chisq&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)) 
+<span class="kw">show.prec.percent</span>(whole.one.am.human, <span class="st">&quot;o11&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)) 
+<span class="kw">show.prec.percent</span>(whole.one.am.human, <span class="st">&quot;logl&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)) 
+<span class="kw">show.prec.percent</span>(whole.one.am.human, <span class="st">&quot;ttest&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)) 
+<span class="kw">show.prec.percent</span>(whole.one.am.human, <span class="st">&quot;MI&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)) </code></pre>
+</div>
+<div id="-am---n----" class="section level3">
+<h3>3) 5개 AM 통합 상위 <em>n</em>대 연어판별 정확도 표 작성하기</h3>
+<p>먼저 상위 <em>n</em>대 목+술 연쇄에 대한 5개 AM의 연어판별 정확도를 하나의 표로 나타낸다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">n.list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">1500</span>,<span class="dv">2000</span>,<span class="dv">2340</span>)
+prec.list &lt;-<span class="st"> </span><span class="kw">lapply</span>(
+  <span class="kw">c</span>(<span class="st">&quot;o11&quot;</span>, <span class="st">&quot;MI&quot;</span>, <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;ttest&quot;</span>, <span class="st">&quot;logl&quot;</span>),
+  function (AM) <span class="kw">show.prec</span>(whole.one.am.human, AM, n.list)
+)
+prec.table &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, prec.list)</code></pre>
+</div>
+<div id="-am---n----" class="section level3">
+<h3>4) 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표 작성하기</h3>
+<p>이어서 상위 <em>n</em>퍼센트 목+술 연쇄에 대한 5개 AM의 연어판별 정확도를 하나의 표로 나타낸다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p.list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)
+prec.percent.list &lt;-<span class="st"> </span><span class="kw">lapply</span>(
+  <span class="kw">c</span>(<span class="st">&quot;o11&quot;</span>, <span class="st">&quot;MI&quot;</span>, <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;ttest&quot;</span>, <span class="st">&quot;logl&quot;</span>),
+  function (AM) <span class="kw">show.prec.percent</span>(whole.one.am.human, AM, p.list)
+)
+prec.percent.table &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, prec.percent.list)</code></pre>
+</div>
+<div id="-am---n-------" class="section level3">
+<h3>5) 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표에 평균 연어판별 정확도 추가하기</h3>
+<p>모든 목+술 연쇄 연어구성 후보를 바탕으로 한 5개 AM의 평균 연어판별 정확도(average precision)을 확인한다. 연어 포함률 .5 - .95<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>일 때에 해당하는 각 AM의 평균 연어판별 정확도를 산출, 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표에 추가한다.</p>
+<div id="a.-5-am-----" class="section level4">
+<h4>A. 5개 AM의 연어판별 정확도를 하나의 데이터프레임으로 정리하기</h4>
+<div id=".-5-am---" class="section level5">
+<h5>가. 5개 AM 측정치를 내림차순으로 나열하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r">idx.logl &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$logl, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.chisq &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$chisq, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.ttest &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$ttest, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.mi &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$MI, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.freq &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$o11, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)</code></pre>
+</div>
+<div id=".-5-am---" class="section level5">
+<h5>나. 5개 AM의 연어판별 정확도 계산하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r">n.vals &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="kw">nrow</span>(whole.one.am.human)
+prec.ll &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.am.human$human[idx.logl]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span>n.vals, <span class="dv">2</span>)
+prec.chisq &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.am.human$human[idx.chisq]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span>n.vals, <span class="dv">2</span>)
+prec.ttest &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.am.human$human[idx.ttest]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span>n.vals, <span class="dv">2</span>)
+prec.MI &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.am.human$human[idx.mi]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span>n.vals, <span class="dv">2</span>)
+prec.freq &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.am.human$human[idx.freq]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span>n.vals, <span class="dv">2</span>)</code></pre>
+</div>
+<div id=".--5-am-----" class="section level5">
+<h5>다. 계산된 5개 AM의 정확도 벡터를 하나의 데이터프레임으로 통합하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r">whole.human.prec &lt;-<span class="st"> </span><span class="kw">cbind</span>(prec.ll, prec.chisq, prec.ttest, prec.MI, prec.freq)
+whole.human.prec &lt;-<span class="st"> </span><span class="kw">data.frame</span>(whole.human.prec)</code></pre>
+</div>
+</div>
+<div id="b.-5-am----" class="section level4">
+<h4>B. 5개 AM의 포함률을 정확도 데이터프레임에 추가하기</h4>
+<div id=".-5-am----1" class="section level5">
+<h5>가. 5개 AM 측정치를 내림차순으로 나열하기</h5>
+<p>이때 정확도 계산 시 사용한 코드를 그대로 가져와 재사용하거나 생략할 수 있다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">idx.logl &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$logl, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.chisq &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$chisq, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.ttest &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$ttest, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.mi &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$MI, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.freq &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$o11, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)</code></pre>
+</div>
+<div id=".-5-am---" class="section level5">
+<h5>나. 5개 AM의 연어 포함률 계산하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r">rec.ll &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.am.human$human[idx.logl]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">sum</span>(whole.one.am.human$human), <span class="dv">2</span>)
+rec.chisq &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.am.human$human[idx.chisq]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">sum</span>(whole.one.am.human$human), <span class="dv">2</span>)
+rec.ttest &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.am.human$human[idx.ttest]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">sum</span>(whole.one.am.human$human), <span class="dv">2</span>)
+rec.MI &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.am.human$human[idx.mi]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">sum</span>(whole.one.am.human$human), <span class="dv">2</span>)
+rec.freq &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.am.human$human[idx.freq]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">sum</span>(whole.one.am.human$human), <span class="dv">2</span>)
+whole.human.rec &lt;-<span class="st"> </span><span class="kw">cbind</span>(rec.ll, rec.chisq, rec.ttest, rec.MI, rec.freq)
+whole.human.rec &lt;-<span class="st"> </span><span class="kw">data.frame</span>(whole.human.rec)
+<span class="co"># 정확도와 포함률 자료 합치기.</span>
+whole.human.prec.rec &lt;-<span class="st"> </span><span class="kw">cbind</span>(whole.human.prec, whole.human.rec)
+<span class="co"># 합쳐진 자료를 데이터프레임 형식으로 변환하기.</span>
+whole.human.prec.rec &lt;-<span class="st"> </span><span class="kw">data.frame</span>(whole.human.prec.rec)</code></pre>
+</div>
+<div id=".-x----" class="section level5">
+<h5>다. x축을 구성할 자료 열 만들기</h5>
+<p>먼저 x축을 구성할 “상위 <em>n</em>대 목록” 열을 만든다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">n.best &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="kw">nrow</span>(whole.human.prec.rec)
+whole.human.prec.rec.nbest &lt;-<span class="st"> </span><span class="kw">transform</span>(whole.human.prec.rec, <span class="dt">n.best=</span>n.best)</code></pre>
+<p>이어서 x축을 구성할 “상위 <em>%</em>대 목록” 열을 만든다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">n.percent &lt;-<span class="st"> </span>n.best *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">nrow</span>(whole.human.prec.rec.nbest)
+n.percent &lt;-<span class="st"> </span><span class="kw">round</span>(n.percent, <span class="dv">2</span>)
+whole.human.prec.rec.nbest &lt;-<span class="st"> </span><span class="kw">transform</span>(whole.human.prec.rec.nbest, <span class="dt">n.percent=</span>n.percent)</code></pre>
+</div>
+<div id=".-5-am----" class="section level5">
+<h5>라. 5개 AM별 평균 연어판별 정확도 산출하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 연어 포함률 0.5-0.95일 때에 해당하는 공기빈도의 평균 연어판별 정확도.</span>
+ave.prec.freq<span class="fl">.5.95</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(whole.human.prec.rec.nbest$prec.freq[whole.human.prec.rec.nbest$rec.freq &gt;=<span class="st"> </span><span class="dv">5</span> &amp;<span class="st"> </span>whole.human.prec.rec.nbest$rec.freq &lt;=<span class="st"> </span><span class="dv">95</span>]) 
+<span class="co"># 연어 포함률 0.5-0.95일 때에 해당하는 로그 우도비의 평균 연어판별 정확도.</span>
+ave.prec.ll<span class="fl">.5.95</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(whole.human.prec.rec.nbest$prec.ll[whole.human.prec.rec.nbest$rec.ll &gt;=<span class="st"> </span><span class="dv">5</span> &amp;<span class="st"> </span>whole.human.prec.rec.nbest$rec.ll &lt;=<span class="st"> </span><span class="dv">95</span>]) 
+<span class="co"># 연어 포함률 0.5-0.95일 때에 해당하는 카이제곱 검정의 평균 연어판별 정확도.</span>
+ave.prec.chisq<span class="fl">.5.95</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(whole.human.prec.rec.nbest$prec.chisq[whole.human.prec.rec.nbest$rec.chisq &gt;=<span class="st"> </span><span class="dv">5</span> &amp;<span class="st"> </span>whole.human.prec.rec.nbest$rec.chisq &lt;=<span class="st"> </span><span class="dv">95</span>]) 
+<span class="co"># 연어 포함률 0.5-0.95일 때에 해당하는 t-검정 평균 연어판별 정확도.</span>
+ave.prec.ttest<span class="fl">.5.95</span> &lt;-<span class="st">  </span><span class="kw">mean</span>(whole.human.prec.rec.nbest$prec.ttest[whole.human.prec.rec.nbest$rec.ttest &gt;=<span class="st"> </span><span class="dv">5</span> &amp;<span class="st"> </span>whole.human.prec.rec.nbest$rec.ttest &lt;=<span class="st"> </span><span class="dv">95</span>])
+<span class="co"># 연어 포함률 0.5-0.95일 때에 해당하는 상호정보의 평균 연어판별 정확도.</span>
+ave.prec.MI<span class="fl">.5.95</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(whole.human.prec.rec.nbest$prec.MI[whole.human.prec.rec.nbest$rec.MI &gt;=<span class="st"> </span><span class="dv">5</span> &amp;<span class="st"> </span>whole.human.prec.rec.nbest$rec.MI &lt;=<span class="st"> </span><span class="dv">95</span>])</code></pre>
+</div>
+<div id=".-5-am---------" class="section level5">
+<h5>마. 5개 AM 통합 연어판별 정확도 표에 평균 연어판별 정확도 행 추가하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 5개 AM의 평균 연어판별 정확도 행을 위한 벡터 만들기.</span>
+ave.AM.vector &lt;-<span class="st"> </span><span class="kw">c</span>(ave.prec.freq<span class="fl">.5.95</span>, ave.prec.MI<span class="fl">.5.95</span>, ave.prec.chisq<span class="fl">.5.95</span>, ave.prec.ttest<span class="fl">.5.95</span>, ave.prec.ll<span class="fl">.5.95</span>)
+<span class="co"># 5개 AM의 평균 연어판별 정확도 행 벡터를 5개 AM 통합 연어판별 정확도 표 마지막 행으로 추가하기.</span>
+prec.percent.table &lt;-<span class="st"> </span><span class="kw">rbind</span>(prec.percent.table, ave.AM.vector)
+prec.table &lt;-<span class="st"> </span><span class="kw">rbind</span>(prec.table, ave.AM.vector)
+<span class="co"># 평균 연어판별 정확도 행 제목을 &quot;평균&quot;으로 변경하기.</span>
+<span class="kw">rownames</span>(prec.percent.table) &lt;-<span class="st"> </span><span class="kw">c</span>(p.list, <span class="st">&quot;평균&quot;</span>) 
+<span class="kw">rownames</span>(prec.table) &lt;-<span class="st"> </span><span class="kw">c</span>(n.list, <span class="st">&quot;평균&quot;</span>) </code></pre>
+</div>
+</div>
+</div>
+<div id="-am------" class="section level3">
+<h3>6) 5개 AM 통합 연어판별 정확도 표 문서로 출력하기</h3>
+<p>R은 자료를 처리하고 분석하는 것뿐만 아니라, 분석결과를 표나 그림의 형태로 시각화하는 데도 매우 유용하다. 데이터프레임을 R 뷰어나 html 문서에 표의 형태로 출력해주는 패키지 sjPlot을 활용하여 R상에서 연어판별 정확도(평균 연어판별 정확도 포함) 분석 결과 표를 문서로 출력해보자.<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 데이터프레임을 R 뷰어나 html 문서에 표의 형태로 출력해주는 패키지 sjPlot 불러오기.</span>
+<span class="kw">library</span>(sjPlot)
+<span class="co"># 모든 목+술 연쇄에 대한 5개 AM의 상위 n대별 연어판별 정확도 표(문서용) 작성하기. 이때 &quot;title =&quot; 논항을 통해 표 제목도 R상에서 추가할 수 있으나, 한글 입력 시 깨짐 현상 발생. 표 제목은 문서상에서 추가할 것.</span>
+<span class="kw">sjt.df</span>(prec.table, <span class="dt">describe =</span> F) 
+<span class="co"># 모든 목+술 연쇄에 대한 5개 AM의 상위 n%별 연어판별 정확도 표(문서용) 작성하기.</span>
+<span class="kw">sjt.df</span>(prec.percent.table, <span class="dt">describe =</span> F)</code></pre>
+<div id="----5-am--n--" class="section level6">
+<h6><표 2> 모든 목+술 연쇄에 대한 5개 AM의 상위 <em>n</em>대별 연어판별 정확도</h6>
+<table>
+<thead>
+<tr class="header">
+<th align="left">상위 <em>n</em>대</th>
+<th align="left">빈도</th>
+<th align="left">상호정보</th>
+<th align="left">카이제곱 검정</th>
+<th align="left"><em>t</em>-검정</th>
+<th align="left">로그 우도비</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">50</td>
+<td align="left">90.00</td>
+<td align="left">20.00</td>
+<td align="left">42.00</td>
+<td align="left">66.00</td>
+<td align="left">60.00</td>
+</tr>
+<tr class="even">
+<td align="left">100</td>
+<td align="left">78.00</td>
+<td align="left">26.00</td>
+<td align="left">39.00</td>
+<td align="left">61.00</td>
+<td align="left">56.00</td>
+</tr>
+<tr class="odd">
+<td align="left">200</td>
+<td align="left">72.00</td>
+<td align="left">32.00</td>
+<td align="left">37.50</td>
+<td align="left">58.00</td>
+<td align="left">50.00</td>
+</tr>
+<tr class="even">
+<td align="left">500</td>
+<td align="left">64.00</td>
+<td align="left">30.40</td>
+<td align="left">33.20</td>
+<td align="left">47.20</td>
+<td align="left">41.60</td>
+</tr>
+<tr class="odd">
+<td align="left">1000</td>
+<td align="left">55.50</td>
+<td align="left">27.70</td>
+<td align="left">30.00</td>
+<td align="left">41.80</td>
+<td align="left">35.30</td>
+</tr>
+<tr class="even">
+<td align="left">1500</td>
+<td align="left">46.47</td>
+<td align="left">24.87</td>
+<td align="left">29.00</td>
+<td align="left">34.27</td>
+<td align="left">33.00</td>
+</tr>
+<tr class="odd">
+<td align="left">2000</td>
+<td align="left">42.50</td>
+<td align="left">35.75</td>
+<td align="left">36.00</td>
+<td align="left">36.45</td>
+<td align="left">38.20</td>
+</tr>
+<tr class="even">
+<td align="left">2340</td>
+<td align="left">40.34</td>
+<td align="left">40.34</td>
+<td align="left">40.34</td>
+<td align="left">40.34</td>
+<td align="left">40.34</td>
+</tr>
+<tr class="odd">
+<td align="left">평균</td>
+<td align="left">54.80</td>
+<td align="left">29.64</td>
+<td align="left">32.59</td>
+<td align="left">41.68</td>
+<td align="left">38.32</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="----5-am--n---1" class="section level6">
+<h6><표 3> 모든 목+술 연쇄에 대한 5개 AM의 상위 <em>n</em>%대별 연어판별 정확도</h6>
+<table>
+<thead>
+<tr class="header">
+<th align="left">상위 <em>n%</em>대</th>
+<th align="left">빈도</th>
+<th align="left">상호정보</th>
+<th align="left">카이제곱 검정</th>
+<th align="left"><em>t</em>-검정</th>
+<th align="left">로그 우도비</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">95.65</td>
+<td align="left">21.74</td>
+<td align="left">34.78</td>
+<td align="left">78.26</td>
+<td align="left">73.91</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">73.50</td>
+<td align="left">27.35</td>
+<td align="left">40.17</td>
+<td align="left">61.54</td>
+<td align="left">56.41</td>
+</tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">72.22</td>
+<td align="left">32.05</td>
+<td align="left">35.47</td>
+<td align="left">55.98</td>
+<td align="left">48.72</td>
+</tr>
+<tr class="even">
+<td align="left">20</td>
+<td align="left">65.17</td>
+<td align="left">30.13</td>
+<td align="left">33.12</td>
+<td align="left">47.86</td>
+<td align="left">41.88</td>
+</tr>
+<tr class="odd">
+<td align="left">30</td>
+<td align="left">59.54</td>
+<td align="left">29.49</td>
+<td align="left">32.34</td>
+<td align="left">44.59</td>
+<td align="left">39.46</td>
+</tr>
+<tr class="even">
+<td align="left">40</td>
+<td align="left">55.98</td>
+<td align="left">27.88</td>
+<td align="left">30.02</td>
+<td align="left">42.41</td>
+<td align="left">36.32</td>
+</tr>
+<tr class="odd">
+<td align="left">50</td>
+<td align="left">52.05</td>
+<td align="left">27.35</td>
+<td align="left">29.83</td>
+<td align="left">39.06</td>
+<td align="left">34.44</td>
+</tr>
+<tr class="even">
+<td align="left">60</td>
+<td align="left">47.51</td>
+<td align="left">25.28</td>
+<td align="left">29.13</td>
+<td align="left">35.40</td>
+<td align="left">32.48</td>
+</tr>
+<tr class="odd">
+<td align="left">70</td>
+<td align="left">45.12</td>
+<td align="left">23.93</td>
+<td align="left">30.28</td>
+<td align="left">32.48</td>
+<td align="left">33.64</td>
+</tr>
+<tr class="even">
+<td align="left">80</td>
+<td align="left">43.64</td>
+<td align="left">32.32</td>
+<td align="left">34.03</td>
+<td align="left">34.19</td>
+<td align="left">35.10</td>
+</tr>
+<tr class="odd">
+<td align="left">90</td>
+<td align="left">41.79</td>
+<td align="left">38.08</td>
+<td align="left">38.46</td>
+<td align="left">38.89</td>
+<td align="left">39.13</td>
+</tr>
+<tr class="even">
+<td align="left">100</td>
+<td align="left">40.34</td>
+<td align="left">40.34</td>
+<td align="left">40.34</td>
+<td align="left">40.34</td>
+<td align="left">40.34</td>
+</tr>
+<tr class="odd">
+<td align="left">평균</td>
+<td align="left">54.80</td>
+<td align="left">29.64</td>
+<td align="left">32.59</td>
+<td align="left">41.68</td>
+<td align="left">38.32</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="-1600-----" class="section level3">
+<h3>7) 상위 1600대 이상 목+술 연쇄 대상 후속분석</h3>
+<p>5개 AM의 연어판별 정확도 표에서 특이한 현상이 발견된다. 상위 10퍼센트를 넘어가면서 모든 AM의 정확도가 점점 낮아지다, 상위 70퍼센트(대체로 상위 1600개) 무렵을 기점으로 공기빈도를 제외한 나머지 네 측정방법의 정확도가 일제히 상승하는 모습을 나타낸 것이다. 따라서 이러한 현상이 왜 나타나는지를 파악하기 위해 각 AM별 상위 1600-2340대 연쇄에 대한 정확도와 해당 연쇄들의 특징을 살펴볼 필요가 있다. 이에 따라 각 AM별로 상위 70-100퍼센트(상위 1600번째- 2340번째) 연쇄만 따로 떼어 후속분석을 실시한다. 이를 위해 먼저 해당 측정치 구간의 목+술 연쇄에 대한 측정방법별 연어판별 정확도를 확인한 다음, 이들 목+술 연쇄의 언어적 특성을 주의 깊게 살펴본다.</p>
+<div id="a.-am--1600----" class="section level4">
+<h4>A. AM별 상위 1600대 이상 목+술 연쇄 추출하기</h4>
+<div id=".---1600----" class="section level5">
+<h5>가. 상호정보 상위 1600대 이상 목+술 연쇄 추출하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 상호정보를 내림차순으로 나열하기.</span>
+idx.MI &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$MI, <span class="dt">decreasing=</span><span class="ot">TRUE</span>) 
+<span class="co"># 상호정보를 기준으로 데이터프레임 내림차순 정렬하기.</span>
+whole.one.am.human.MI &lt;-<span class="st"> </span>whole.one.am.human[idx.MI, ] 
+<span class="co"># 상호정보 상위 1600-2340대 연쇄 목록 추출하기.</span>
+inspect.mi &lt;-<span class="st"> </span>whole.one.am.human.MI[<span class="dv">1600</span>:<span class="dv">2340</span>, ]
+<span class="co"># 상호정보 상위 1600-2340대 연쇄 목록을 csv 형식으로 저장하기. csv 파일은 엑셀에서 열어볼 수 있음. 해당 목록을 엑셀로 불러와 살펴볼 경우, 훨씬 가독성을 높일 수 있음.</span>
+<span class="kw">write.csv</span>(inspect.mi, <span class="dt">file=</span><span class="st">&quot;inspect.mi.csv&quot;</span>) 
+inspect.mi[, <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">6</span>, <span class="dv">24</span>)]</code></pre>
+</div>
+<div id=".----1600----" class="section level5">
+<h5>나. 카이제곱 검정 상위 1600대 이상 목+술 연쇄 추출하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 카이제곱 값을 내림차순으로 나열하기.</span>
+idx.chisq &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$chisq, <span class="dt">decreasing=</span><span class="ot">TRUE</span>) 
+<span class="co"># 카이제곱 값을 기준으로 데이터프레임 내림차순 정렬하기.</span>
+whole.one.am.human.chisq &lt;-<span class="st"> </span>whole.one.am.human[idx.chisq, ]
+<span class="co"># 카이제곱 값 상위 1600-2340대 목+술 연쇄 목록 추출하기. </span>
+inspect.chisq &lt;-<span class="st"> </span>whole.one.am.human.chisq[<span class="dv">1600</span>:<span class="dv">2340</span>, ]
+<span class="co"># 카이제곱 값 상위 1600-2340대 목+술 연쇄 목록 csv 형식으로 저장하기.</span>
+<span class="kw">write.csv</span>(inspect.chisq, <span class="dt">file=</span><span class="st">&quot;inspect.chisq.csv&quot;</span>) 
+inspect.chisq[, <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">6</span>, <span class="dv">24</span>)]</code></pre>
+</div>
+<div id=".-t---1600----" class="section level5">
+<h5>다. <em>t</em>-검정 상위 1600대 이상 목+술 연쇄 추출하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># t-값을 내림차순으로 나열하기.</span>
+idx.ttest &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$ttest, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+<span class="co"># t-값을 기준으로 데이터프레임 내림차순 정렬하기.</span>
+whole.one.am.human.ttest &lt;-<span class="st"> </span>whole.one.am.human[idx.ttest, ]
+<span class="co"># t-값 상위 1600-2340대 목+술 연쇄 목록 추출하기.</span>
+inspect.ttest &lt;-<span class="st"> </span>whole.one.am.human.ttest[<span class="dv">1600</span>:<span class="dv">2340</span>, ]
+<span class="co"># t-값 상위 1600-2340대 목+술 연쇄 목록 csv 형식으로 저장하기.</span>
+<span class="kw">write.csv</span>(inspect.ttest, <span class="dt">file=</span><span class="st">&quot;inspect.ttest.csv&quot;</span>)
+inspect.ttest[, <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">6</span>, <span class="dv">24</span>)]</code></pre>
+</div>
+<div id=".----1600----" class="section level5">
+<h5>라. 로그 우도비 상위 1600대 이상 목+술 연쇄 추출하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 로그 우도비를 내림차순으로 나열하기.</span>
+idx.logl &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$logl, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+<span class="co"># 로그 우도비를 기준으로 데이터프레임 내림차순 정렬하기.</span>
+whole.one.am.human.logl &lt;-<span class="st"> </span>whole.one.am.human[idx.logl, ] 
+<span class="co"># 로그 우도비 상위 1600-2340대 목+술 연쇄 목록 추출하기.</span>
+inspect.logl &lt;-<span class="st"> </span>whole.one.am.human.logl[<span class="dv">1600</span>:<span class="dv">2340</span>, ]
+<span class="co"># 로그 우도비 상위 1600-2340대 목+술 연쇄 목록 csv 형식으로 저장하기.</span>
+<span class="kw">write.csv</span>(inspect.logl, <span class="dt">file=</span><span class="st">&quot;inspect.logl.csv&quot;</span>)
+inspect.logl[, <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">6</span>, <span class="dv">24</span>)]</code></pre>
+</div>
+<div id=".---1600----" class="section level5">
+<h5>마. 공기빈도 상위 1600대 이상 목+술 연쇄 추출하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 공기빈도를 내림차순으로 나열하기.</span>
+idx.o11 &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.am.human$o11, <span class="dt">decreasing=</span><span class="ot">TRUE</span>) 
+<span class="co"># 공기빈도를 기준으로 데이터프레임 내림차순 정렬하기.</span>
+whole.one.am.human.o11 &lt;-<span class="st"> </span>whole.one.am.human[idx.o11, ] 
+<span class="co"># 공기빈도 상위 1600-2340대 목+술 연쇄 목록 추출하기.</span>
+inspect.o11 &lt;-<span class="st"> </span>whole.one.am.human.o11[<span class="dv">1600</span>:<span class="dv">2340</span>, ]
+<span class="co"># 공기빈도 상위 1600-2340대 목+술 연쇄 목록 csv 형식으로 저장하기.</span>
+<span class="kw">write.csv</span>(inspect.o11, <span class="dt">file=</span><span class="st">&quot;inspect.o11.csv&quot;</span>) 
+inspect.o11[, <span class="kw">c</span>(<span class="dv">1</span>:<span class="dv">6</span>, <span class="dv">24</span>)]</code></pre>
+</div>
+</div>
+<div id="b.--1600------am----" class="section level4">
+<h4>B. 상위 1600대 이상 목+술 연쇄 목록에 대한 AM별 평균 연어판별 정확도 계산하기</h4>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sum</span>(inspect.mi$human)/<span class="kw">nrow</span>(inspect.mi) <span class="co"># 정확도: 0.7516869.</span>
+<span class="kw">sum</span>(inspect.chisq$human)/<span class="kw">nrow</span>(inspect.chisq) <span class="co"># 정확도: 0.6356275.</span>
+<span class="kw">sum</span>(inspect.ttest$human)/<span class="kw">nrow</span>(inspect.ttest) <span class="co"># 정확도: 0.5641026.</span>
+<span class="kw">sum</span>(inspect.logl$human)/<span class="kw">nrow</span>(inspect.logl) <span class="co"># 정확도: 0.5492578.</span>
+<span class="kw">sum</span>(inspect.o11$human)/<span class="kw">nrow</span>(inspect.o11) <span class="co"># 정확도: 0.294197.</span></code></pre>
+<p>위의 5개 측정방법의 평균 연어판별 정확도에서 보듯이, 상위 1600대 이상 목+술 연쇄 목록의 경우 측정치가 비교적 낮음(특히 상호정보)에도 불구하고 연어로 판정된 것들이 상당히 많음을 알 수 있다. 상위 1600대 이상 목+술 연쇄 목록 중 연어로 판정된 것들을 면밀히 살펴본 결과, 대부분이 “서술명사NNG”+“하VV” 결합(이하 하다류 연쇄)으로 밝혀졌다. 이들은 기술적으로는 연어로 간주되나, 교육적, 언어학적으로 큰 의미를 갖지 않는다. 그렇다면 상위 1600대 이상 목+술 연쇄 목록 중 하다류 연쇄가 몇 퍼센트가 되는지 알아보자.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(<span class="kw">grep</span>(<span class="st">&quot;NNG을JKO[ </span><span class="ch">\t\n</span><span class="st">]하VV&quot;</span>, inspect.mi$bigram, <span class="dt">value=</span>T)) /<span class="st"> </span><span class="kw">nrow</span>(inspect.mi) <span class="co"># 611/741 =  0.8245614</span>
+<span class="kw">length</span>(<span class="kw">grep</span>(<span class="st">&quot;NNG을JKO[ </span><span class="ch">\t\n</span><span class="st">]하VV&quot;</span>, inspect.chisq$bigram, <span class="dt">value=</span>T)) /<span class="st"> </span><span class="kw">nrow</span>(inspect.chisq) <span class="co"># 504/741 = 0.6801619</span>
+<span class="kw">length</span>(<span class="kw">grep</span>(<span class="st">&quot;NNG을JKO[ </span><span class="ch">\t\n</span><span class="st">]하VV&quot;</span>, inspect.ttest$bigram, <span class="dt">value=</span>T)) /<span class="st"> </span><span class="kw">nrow</span>(inspect.ttest) <span class="co"># 450/741 = 0.6072874</span>
+<span class="kw">length</span>(<span class="kw">grep</span>(<span class="st">&quot;NNG을JKO[ </span><span class="ch">\t\n</span><span class="st">]하VV&quot;</span>, inspect.logl$bigram, <span class="dt">value=</span>T)) /<span class="st"> </span><span class="kw">nrow</span>(inspect.logl) <span class="co"># 424/741 = 0.5721997</span>
+<span class="kw">length</span>(<span class="kw">grep</span>(<span class="st">&quot;NNG을JKO[ </span><span class="ch">\t\n</span><span class="st">]하VV&quot;</span>, inspect.o11$bigram, <span class="dt">value=</span>T)) /<span class="st"> </span><span class="kw">nrow</span>(inspect.o11) <span class="co"># 137/741 = 0.1848853</span></code></pre>
+<p>상위 1600대 이상 목+술 연쇄 목록 중 하다류 연쇄는 공기빈도를 제외한 네 가지 AM에서 모두 과반수를 넘는 것(57-82퍼센트)으로 확인되었다.</p>
+</div>
+</div>
+</div>
+<div id="--------" class="section level2">
+<h2>(2) 비(非)하다류 연쇄 대상으로 연어판별 정확도 계산 및 표 작성하기</h2>
+<div id="------" class="section level3">
+<h3>1) 전체 목+술 연쇄 목록에서 하다류 연쇄 제외하기</h3>
+<p>이렇듯 하위권 목+술 연쇄 목록에서 하다류 연쇄가 차지하는 높은 비율 탓에, 1600대 이상 목+술 연쇄에 대한 네 가지 AM의 연어판별 정확도가 비정상적으로 높아진 것으로 추론해볼 수 있다. 그렇다면 전체 목+술 연쇄 목록에서 하다류 연쇄를 제외할 경우, 각 측정방법의 연어판별 정확도는 어떻게 달라지는지 알아보자. 이를 위해 먼저 전체 목+술 연쇄 목록에서 하다류 연쇄를 제외한다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">whole.one.no.ha &lt;-<span class="st"> </span>whole.one.am.human[-<span class="kw">grep</span>(<span class="st">&quot;NNG을JKO[ </span><span class="ch">\t\n</span><span class="st">]하VV&quot;</span>, whole.one.am.human$bigram), ]
+<span class="kw">nrow</span>(whole.one.no.ha) <span class="co"># 비(非)하다류 연쇄의 수(N = 1729) 확인하기.</span></code></pre>
+</div>
+<div id="-am--n-------1" class="section level3">
+<h3>2) 5개 AM별 상위 <em>n</em>대 연어판별 정확도 계산 및 표 작성하기</h3>
+<p>상위 50,100,200,500,1000,2000대의 비(非)하다류 연쇄에 대한 5개 AM의 연어판별 정확도를 확인한다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show.prec</span>(whole.one.no.ha, <span class="st">&quot;chisq&quot;</span>, <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">1500</span>,<span class="dv">1729</span>))
+<span class="kw">show.prec</span>(whole.one.no.ha, <span class="st">&quot;o11&quot;</span>, <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">1500</span>,<span class="dv">1729</span>))
+<span class="kw">show.prec</span>(whole.one.no.ha, <span class="st">&quot;logl&quot;</span>, <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">1500</span>,<span class="dv">1729</span>))
+<span class="kw">show.prec</span>(whole.one.no.ha, <span class="st">&quot;ttest&quot;</span>, <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">1500</span>,<span class="dv">1729</span>))
+<span class="kw">show.prec</span>(whole.one.no.ha, <span class="st">&quot;MI&quot;</span>, <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">1500</span>,<span class="dv">1729</span>))</code></pre>
+</div>
+<div id="-am--n-------1" class="section level3">
+<h3>3) 5개 AM별 상위 <em>n</em>퍼센트 연어판별 정확도 계산 및 표 작성하기</h3>
+<p>상위 1,5,10,20,30,40,50,60,70,80,90,100퍼센트의 비(非)하다류 연쇄에 대한 5개 AM의 연어판별 정확도를 확인한다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show.prec.percent</span>(whole.one.no.ha, <span class="st">&quot;chisq&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)) 
+<span class="kw">show.prec.percent</span>(whole.one.no.ha, <span class="st">&quot;o11&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)) 
+<span class="kw">show.prec.percent</span>(whole.one.no.ha, <span class="st">&quot;logl&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)) 
+<span class="kw">show.prec.percent</span>(whole.one.no.ha, <span class="st">&quot;ttest&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>)) 
+<span class="kw">show.prec.percent</span>(whole.one.no.ha, <span class="st">&quot;MI&quot;</span>, <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>, <span class="dv">60</span>, <span class="dv">70</span>, <span class="dv">80</span>, <span class="dv">90</span>, <span class="dv">100</span>))</code></pre>
+</div>
+<div id="-am---n-----1" class="section level3">
+<h3>4) 5개 AM 통합 상위 <em>n</em>대 연어판별 정확도 표 작성하기</h3>
+<p>먼저 상위 <em>n</em>대 비(非)하다류 연쇄에 대한 5개 AM의 연어판별 정확도를 하나의 표로 나타낸다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">n.no.ha.list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">1500</span>,<span class="dv">1729</span>)
+prec.no.ha.list &lt;-<span class="st"> </span><span class="kw">lapply</span>(
+  <span class="kw">c</span>(<span class="st">&quot;o11&quot;</span>, <span class="st">&quot;MI&quot;</span>, <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;ttest&quot;</span>, <span class="st">&quot;logl&quot;</span>),
+  function (AM) <span class="kw">show.prec</span>(whole.one.no.ha, AM, n.no.ha.list)
+)
+prec.no.ha.table &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, prec.no.ha.list)</code></pre>
+</div>
+<div id="-am---n-----1" class="section level3">
+<h3>5) 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표 작성하기</h3>
+<p>이어서 상위 <em>n</em>퍼센트 비(非)하다류 연쇄에 대한 5개 AM의 연어판별 정확도를 하나의 표로 나타낸다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p.list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)
+prec.percent.no.ha.list &lt;-<span class="st"> </span><span class="kw">lapply</span>(
+  <span class="kw">c</span>(<span class="st">&quot;o11&quot;</span>, <span class="st">&quot;MI&quot;</span>, <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;ttest&quot;</span>, <span class="st">&quot;logl&quot;</span>),
+  function (AM) <span class="kw">show.prec.percent</span>(whole.one.no.ha, AM, p.list)
+)
+prec.percent.no.ha.table &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, prec.percent.no.ha.list)</code></pre>
+</div>
+<div id="-am---n--------1" class="section level3">
+<h3>6) 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표에 평균 연어판별 정확도 추가하기</h3>
+<p>비(非)하다류 연쇄를 바탕으로 한 5개 AM의 평균 연어판별 정확도을 확인한다. 연어 포함률 .5 - .95일 때에 해당하는 각 AM의 평균 연어판별 정확도를 산출, 5개 AM 통합 상위 <em>n</em>퍼센트 연어판별 정확도 표에 추가한다.</p>
+<div id="a.-5-am------1" class="section level4">
+<h4>A. 5개 AM의 연어판별 정확도를 하나의 데이터프레임으로 정리하기</h4>
+<div id=".-5-am----2" class="section level5">
+<h5>가. 5개 AM 측정치를 내림차순으로 나열하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r">idx.logl.no.ha &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.no.ha$logl, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.chisq.no.ha &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.no.ha$chisq, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.ttest.no.ha &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.no.ha$ttest, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.mi.no.ha &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.no.ha$MI, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.freq.no.ha &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.no.ha$o11, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)</code></pre>
+</div>
+<div id=".-5-am----1" class="section level5">
+<h5>나. 5개 AM의 연어판별 정확도 계산하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r">n.vals.no.ha &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="kw">nrow</span>(whole.one.no.ha)
+prec.ll.no.ha &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.no.ha$human[idx.logl.no.ha]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span>n.vals.no.ha, <span class="dv">2</span>)
+prec.chisq.no.ha &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.no.ha$human[idx.chisq.no.ha]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span>n.vals.no.ha, <span class="dv">2</span>)
+prec.ttest.no.ha &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.no.ha$human[idx.ttest.no.ha]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span>n.vals.no.ha, <span class="dv">2</span>)
+prec.MI.no.ha &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.no.ha$human[idx.mi.no.ha]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span>n.vals.no.ha, <span class="dv">2</span>)
+prec.freq.no.ha &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.no.ha$human[idx.freq.no.ha]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span>n.vals.no.ha, <span class="dv">2</span>)</code></pre>
+</div>
+<div id=".--5-am------1" class="section level5">
+<h5>다. 계산된 5개 AM의 정확도 벡터를 하나의 데이터프레임으로 통합하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r">whole.human.prec.no.ha &lt;-<span class="st"> </span><span class="kw">cbind</span>(prec.ll.no.ha, prec.chisq.no.ha, prec.ttest.no.ha, prec.MI.no.ha, prec.freq.no.ha)
+whole.human.prec.no.ha &lt;-<span class="st"> </span><span class="kw">data.frame</span>(whole.human.prec.no.ha)</code></pre>
+</div>
+</div>
+<div id="b.-5-am-----1" class="section level4">
+<h4>B. 5개 AM의 포함률을 정확도 데이터프레임에 추가하기</h4>
+<div id=".-5-am----3" class="section level5">
+<h5>가. 5개 AM 측정치를 내림차순으로 나열하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r">idx.logl.no.ha &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.no.ha$logl, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.chisq.no.ha &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.no.ha$chisq, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.ttest.no.ha &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.no.ha$ttest, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.mi.no.ha &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.no.ha$MI, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+idx.freq.no.ha &lt;-<span class="st"> </span><span class="kw">order</span>(whole.one.no.ha$o11, <span class="dt">decreasing=</span><span class="ot">TRUE</span>)</code></pre>
+</div>
+<div id=".-5-am----1" class="section level5">
+<h5>나. 5개 AM의 연어 포함률 계산하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r">rec.ll.no.ha &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.no.ha$human[idx.logl.no.ha]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">sum</span>(whole.one.no.ha$human), <span class="dv">2</span>)
+rec.chisq.no.ha &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.no.ha$human[idx.chisq.no.ha]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">sum</span>(whole.one.no.ha$human), <span class="dv">2</span>)
+rec.ttest.no.ha &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.no.ha$human[idx.ttest.no.ha]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">sum</span>(whole.one.no.ha$human), <span class="dv">2</span>)
+rec.MI.no.ha &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.no.ha$human[idx.mi.no.ha]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">sum</span>(whole.one.no.ha$human), <span class="dv">2</span>)
+rec.freq.no.ha &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">cumsum</span>(whole.one.no.ha$human[idx.freq.no.ha]) *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">sum</span>(whole.one.no.ha$human), <span class="dv">2</span>)
+whole.human.rec.no.ha &lt;-<span class="st"> </span><span class="kw">cbind</span>(rec.ll.no.ha, rec.chisq.no.ha, rec.ttest.no.ha, rec.MI.no.ha, rec.freq.no.ha)
+whole.human.rec.no.ha &lt;-<span class="st"> </span><span class="kw">data.frame</span>(whole.human.rec.no.ha)
+whole.human.prec.rec.no.ha &lt;-<span class="st"> </span><span class="kw">cbind</span>(whole.human.prec.no.ha, whole.human.rec.no.ha) <span class="co"># 정확도, 포함률 자료 합치기.</span>
+whole.human.prec.rec.no.ha &lt;-<span class="st"> </span><span class="kw">data.frame</span>(whole.human.prec.rec.no.ha) <span class="co"># 합쳐진 자료를 데이터 프레임 형식으로 변환하기.</span></code></pre>
+</div>
+<div id=".-x-----1" class="section level5">
+<h5>다. x축을 구성할 자료 열 만들기</h5>
+<p>먼저 x축을 구성할 “상위 <em>n</em>대 목록” 열을 만든다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">n.best.no.ha &lt;-<span class="st"> </span><span class="dv">1</span>:<span class="kw">nrow</span>(whole.human.prec.rec.no.ha)
+whole.human.prec.rec.nbest.no.ha &lt;-<span class="st"> </span><span class="kw">transform</span>(whole.human.prec.rec.no.ha, <span class="dt">n.best.no.ha=</span>n.best.no.ha)</code></pre>
+<p>이어서 x축을 구성할 “상위 <em>n</em>% 목록” 열을 만든다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">n.percent.no.ha &lt;-<span class="st"> </span>n.best.no.ha *<span class="st"> </span><span class="dv">100</span> /<span class="st"> </span><span class="kw">nrow</span>(whole.human.prec.rec.nbest.no.ha)
+n.percent.no.ha &lt;-<span class="st"> </span><span class="kw">round</span>(n.percent.no.ha, <span class="dv">2</span>)
+whole.human.prec.rec.nbest.no.ha &lt;-<span class="st"> </span><span class="kw">transform</span>(whole.human.prec.rec.nbest.no.ha, <span class="dt">n.percent.no.ha=</span>n.percent.no.ha)</code></pre>
+</div>
+<div id=".-5-am-----1" class="section level5">
+<h5>라. 5개 AM별 평균 연어판별 정확도 산출하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 연어 포함률 0.5-0.95일 때에 해당하는 공기빈도의 평균 연어판별 정확도.</span>
+ave.prec.freq.no.ha &lt;-<span class="st"> </span><span class="kw">mean</span>(whole.human.prec.rec.nbest.no.ha$prec.freq[whole.human.prec.rec.nbest.no.ha$rec.freq &gt;=<span class="st"> </span><span class="dv">5</span> &amp;<span class="st"> </span>whole.human.prec.rec.nbest.no.ha$rec.freq &lt;=<span class="st"> </span><span class="dv">95</span>]) 
+<span class="co"># 연어 포함률 0.5-0.95일 때에 해당하는 로그 우도비의 평균 연어판별 정확도.</span>
+ave.prec.ll.no.ha &lt;-<span class="st"> </span><span class="kw">mean</span>(whole.human.prec.rec.nbest.no.ha$prec.ll[whole.human.prec.rec.nbest.no.ha$rec.ll &gt;=<span class="st"> </span><span class="dv">5</span> &amp;<span class="st"> </span>whole.human.prec.rec.nbest.no.ha$rec.ll &lt;=<span class="st"> </span><span class="dv">95</span>]) 
+<span class="co"># 연어 포함률 0.5-0.95일 때에 해당하는 카이제곱 검정의 평균 연어판별 정확도.</span>
+ave.prec.chisq.no.ha &lt;-<span class="st"> </span><span class="kw">mean</span>(whole.human.prec.rec.nbest.no.ha$prec.chisq[whole.human.prec.rec.nbest.no.ha$rec.chisq &gt;=<span class="st"> </span><span class="dv">5</span> &amp;<span class="st"> </span>whole.human.prec.rec.nbest.no.ha$rec.chisq &lt;=<span class="st"> </span><span class="dv">95</span>]) 
+<span class="co"># 연어 포함률 0.5-0.95일 때에 해당하는 t-검정 평균 연어판별 정확도.</span>
+ave.prec.ttest.no.ha &lt;-<span class="st">  </span><span class="kw">mean</span>(whole.human.prec.rec.nbest.no.ha$prec.ttest[whole.human.prec.rec.nbest.no.ha$rec.ttest &gt;=<span class="st"> </span><span class="dv">5</span> &amp;<span class="st"> </span>whole.human.prec.rec.nbest.no.ha$rec.ttest &lt;=<span class="st"> </span><span class="dv">95</span>]) 
+<span class="co"># 연어 포함률 0.5-0.95일 때에 해당하는 상호정보의 평균 연어판별 정확도.</span>
+ave.prec.MI.no.ha &lt;-<span class="st"> </span><span class="kw">mean</span>(whole.human.prec.rec.nbest.no.ha$prec.MI[whole.human.prec.rec.nbest.no.ha$rec.MI &gt;=<span class="st"> </span><span class="dv">5</span> &amp;<span class="st"> </span>whole.human.prec.rec.nbest.no.ha$rec.MI &lt;=<span class="st"> </span><span class="dv">95</span>])</code></pre>
+</div>
+<div id=".-5-am----------1" class="section level5">
+<h5>마. 5개 AM 통합 연어판별 정확도 표에 평균 연어판별 정확도 행 추가하기</h5>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 5개 AM의 평균 연어판별 정확도 행을 위한 벡터 만들기.</span>
+ave.AM.no.ha.vector &lt;-<span class="st"> </span><span class="kw">c</span>(ave.prec.freq.no.ha, ave.prec.MI.no.ha, ave.prec.chisq.no.ha, ave.prec.ttest.no.ha, ave.prec.ll.no.ha) 
+<span class="co"># 소수점 두 자리까지만 표기됨.</span>
+ave.AM.no.ha.vector &lt;-<span class="st"> </span><span class="kw">round</span>(ave.AM.no.ha.vector, <span class="dv">2</span>)
+<span class="co"># 5개 AM의 평균 연어판별 정확도 행 벡터를 5개 AM 통합 연어판별 정확도 표 마지막 행으로 추가하기.</span>
+prec.percent.no.ha.table &lt;-<span class="st"> </span><span class="kw">rbind</span>(prec.percent.no.ha.table, ave.AM.no.ha.vector) 
+prec.no.ha.table &lt;-<span class="st"> </span><span class="kw">rbind</span>(prec.no.ha.table, ave.AM.no.ha.vector) 
+<span class="co"># 평균 연어판별 정확도 행 제목을 &quot;평균&quot;으로 변경하기.</span>
+<span class="kw">rownames</span>(prec.percent.no.ha.table) &lt;-<span class="st"> </span><span class="kw">c</span>(p.list, <span class="st">&quot;average&quot;</span>) 
+<span class="kw">rownames</span>(prec.no.ha.table) &lt;-<span class="st"> </span><span class="kw">c</span>(n.no.ha.list, <span class="st">&quot;average&quot;</span>) </code></pre>
+</div>
+</div>
+</div>
+<div id="-am-----" class="section level3">
+<h3>7) 5개 AM 통합 연어판별 정확도 표 출력하기</h3>
+<p>데이터프레임을 R 뷰어나 html 문서에 표의 형태로 출력해주는 패키지 sjPlot을 활용하여 R상에서 연어판별 정확도 분석 결과 표를 출력한다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 비(非)하다류 연쇄에 대한 5개 AM의 상위 n대별 연어판별 정확도 표(문서용) 출력하기.</span>
+<span class="kw">sjt.df</span>(prec.no.ha.table, <span class="dt">describe =</span> F) 
+<span class="co"># 비(非)하다류 연쇄에 대한 5개 AM의 상위 n%별 연어판별 정확도 표(문서용) 출력하기.</span>
+<span class="kw">sjt.df</span>(prec.percent.no.ha.table, <span class="dt">describe =</span> F) </code></pre>
+<div id="---5-am--n--" class="section level6">
+<h6><표 4> 비(非)하다류 연쇄에 대한 5개 AM의 상위 <em>n</em>대별 연어판별 정확도</h6>
+<table>
+<thead>
+<tr class="header">
+<th align="left">상위 <em>n</em>대</th>
+<th align="left">빈도</th>
+<th align="left">상호정보</th>
+<th align="left">카이제곱 검정</th>
+<th align="left"><em>t</em>-검정</th>
+<th align="left">로그 우도비</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">50</td>
+<td align="left">42.00</td>
+<td align="left">20.00</td>
+<td align="left">42.00</td>
+<td align="left">44.00</td>
+<td align="left">54.00</td>
+</tr>
+<tr class="even">
+<td align="left">100</td>
+<td align="left">43.00</td>
+<td align="left">26.00</td>
+<td align="left">39.00</td>
+<td align="left">46.00</td>
+<td align="left">50.00</td>
+</tr>
+<tr class="odd">
+<td align="left">200</td>
+<td align="left">36.00</td>
+<td align="left">32.00</td>
+<td align="left">37.50</td>
+<td align="left">39.50</td>
+<td align="left">43.00</td>
+</tr>
+<tr class="even">
+<td align="left">500</td>
+<td align="left">32.80</td>
+<td align="left">30.40</td>
+<td align="left">32.80</td>
+<td align="left">34.60</td>
+<td align="left">36.40</td>
+</tr>
+<tr class="odd">
+<td align="left">1000</td>
+<td align="left">26.00</td>
+<td align="left">27.70</td>
+<td align="left">29.40</td>
+<td align="left">29.60</td>
+<td align="left">29.40</td>
+</tr>
+<tr class="even">
+<td align="left">1500</td>
+<td align="left">23.93</td>
+<td align="left">24.87</td>
+<td align="left">24.87</td>
+<td align="left">24.87</td>
+<td align="left">24.73</td>
+</tr>
+<tr class="odd">
+<td align="left">1729</td>
+<td align="left">23.08</td>
+<td align="left">23.08</td>
+<td align="left">23.08</td>
+<td align="left">23.08</td>
+<td align="left">23.08</td>
+</tr>
+<tr class="even">
+<td align="left">평균</td>
+<td align="left">29.97</td>
+<td align="left">28.19</td>
+<td align="left">30.97</td>
+<td align="left">32.26</td>
+<td align="left">33.17</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="---5-am--n---1" class="section level6">
+<h6><표 5> 비(非)하다류 연쇄에 대한 5개 AM의 상위 <em>n</em>%대별 연어판별 정확도</h6>
+<table>
+<thead>
+<tr class="header">
+<th align="left">상위 <em>n</em>%대</th>
+<th align="left">빈도</th>
+<th align="left">상호정보</th>
+<th align="left">카이제곱 검정</th>
+<th align="left"><em>t</em>-검정</th>
+<th align="left">로그 우도비</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">70.59</td>
+<td align="left">23.53</td>
+<td align="left">29.41</td>
+<td align="left">64.71</td>
+<td align="left">70.59</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">39.53</td>
+<td align="left">23.26</td>
+<td align="left">39.53</td>
+<td align="left">47.67</td>
+<td align="left">48.84</td>
+</tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">39.53</td>
+<td align="left">27.91</td>
+<td align="left">37.21</td>
+<td align="left">40.12</td>
+<td align="left">41.86</td>
+</tr>
+<tr class="even">
+<td align="left">20</td>
+<td align="left">35.07</td>
+<td align="left">30.14</td>
+<td align="left">33.91</td>
+<td align="left">34.78</td>
+<td align="left">37.10</td>
+</tr>
+<tr class="odd">
+<td align="left">30</td>
+<td align="left">32.82</td>
+<td align="left">30.69</td>
+<td align="left">32.63</td>
+<td align="left">34.56</td>
+<td align="left">35.91</td>
+</tr>
+<tr class="even">
+<td align="left">40</td>
+<td align="left">30.97</td>
+<td align="left">29.67</td>
+<td align="left">32.13</td>
+<td align="left">31.84</td>
+<td align="left">34.30</td>
+</tr>
+<tr class="odd">
+<td align="left">50</td>
+<td align="left">27.31</td>
+<td align="left">27.89</td>
+<td align="left">30.44</td>
+<td align="left">30.90</td>
+<td align="left">31.48</td>
+</tr>
+<tr class="even">
+<td align="left">60</td>
+<td align="left">25.94</td>
+<td align="left">27.58</td>
+<td align="left">28.74</td>
+<td align="left">29.22</td>
+<td align="left">29.41</td>
+</tr>
+<tr class="odd">
+<td align="left">70</td>
+<td align="left">25.45</td>
+<td align="left">26.94</td>
+<td align="left">27.44</td>
+<td align="left">27.11</td>
+<td align="left">27.52</td>
+</tr>
+<tr class="even">
+<td align="left">80</td>
+<td align="left">24.95</td>
+<td align="left">25.52</td>
+<td align="left">25.89</td>
+<td align="left">26.25</td>
+<td align="left">25.74</td>
+</tr>
+<tr class="odd">
+<td align="left">90</td>
+<td align="left">23.91</td>
+<td align="left">24.42</td>
+<td align="left">24.36</td>
+<td align="left">24.49</td>
+<td align="left">24.36</td>
+</tr>
+<tr class="even">
+<td align="left">100</td>
+<td align="left">23.08</td>
+<td align="left">23.08</td>
+<td align="left">23.08</td>
+<td align="left">23.08</td>
+<td align="left">23.08</td>
+</tr>
+<tr class="odd">
+<td align="left">평균</td>
+<td align="left">29.97</td>
+<td align="left">28.19</td>
+<td align="left">30.97</td>
+<td align="left">32.26</td>
+<td align="left">33.17</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="-----" class="section level1">
+<h1>4. 연어 포함률 계산 및 표 작성하기</h1>
+<div id="---------" class="section level2">
+<h2>(1) 모든 목+술 연쇄 대상으로 연어 포함률 계산 및 표 작성하기</h2>
+<div id="-am--n------" class="section level3">
+<h3>1) 5개 AM별 상위 <em>n</em>대 연어 포함률 계산 및 표 작성하기</h3>
+<p>상위 <em>n</em>대 연어 포함률을 계산하고 이를 표로 정리한다. 이를 위해 상위 <em>n</em>대 목+술 연쇄에 대한 특정 AM의 연어 포함률을 산출해주는 function을 작성한다. 해당 function의 논항(arguments)으로는 데이터프레임 형식으로 정리된 자료, AM 그리고 상위 <em>n</em>대 숫자가 사용된다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">show.recall &lt;-<span class="st"> </span>function(mydata, AM, n.best) {
+  <span class="kw">stopifnot</span>(AM %in%<span class="st"> </span><span class="kw">colnames</span>(mydata)) <span class="co"># 개별 AM을 열 제목으로 갖는 자료만 계산 대상이 됨!</span>
+  sort.idx &lt;-<span class="st"> </span><span class="kw">order</span>(mydata[[AM]], <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+  recall &lt;-<span class="st"> </span><span class="kw">cumsum</span>(mydata$human[sort.idx]) /<span class="st"> </span><span class="kw">sum</span>(mydata$human)
+  result &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dv">100</span> *<span class="st"> </span>recall[n.best]) <span class="co"># 포함률을 퍼센트로 나타내줌.</span>
+  result &lt;-<span class="st"> </span><span class="kw">round</span>(result, <span class="dv">2</span>) <span class="co"># 포함률을 소수점 이하 둘째 자리까지만 보고함.</span>
+  <span class="kw">rownames</span>(result) &lt;-<span class="st"> </span>n.best <span class="co"># 행 이름은 n.best로.</span>
+  <span class="kw">colnames</span>(result) &lt;-<span class="st"> </span>AM <span class="co"># 열 이름은 개별 AM의 이름으로.</span>
+  result <span class="co"># 상위 n대의 목+술 연쇄에 대한 특정 AM의 연어 포함률을 결과로 보고해줌.</span>
+}</code></pre>
+</div>
+<div id="-am--n------" class="section level3">
+<h3>2) 5개 AM별 상위 <em>n</em>퍼센트 연어 포함률 계산 및 표 작성하기</h3>
+<p>다음으로, 다섯 AM의 상위 <em>n</em>퍼센트 연어 포함률을 계산하고 이를 표로 정리한다. 이를 위해 상위 <em>n</em>퍼센트 목+술 연쇄에 대한 특정 AM의 연어판별 정확도를 산출해주는 function을 작성한다. 해당 function의 논항으로는 데이터프레임 형식으로 정리된 자료, AM 그리고 상위 <em>n</em>퍼센트 숫자가 사용된다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">show.recall</span>(whole.one.am.human, <span class="st">&quot;chisq&quot;</span>, <span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">1500</span>,<span class="dv">2000</span>,<span class="dv">2340</span>))
+show.recall.percent &lt;-<span class="st"> </span>function(mydata, AM, n.percent) {
+  <span class="kw">stopifnot</span>(AM %in%<span class="st"> </span><span class="kw">colnames</span>(mydata)) <span class="co"># 개별 AM을 열 제목으로 갖는 자료만 계산 대상이 됨!</span>
+  sort.idx &lt;-<span class="st"> </span><span class="kw">order</span>(mydata[[AM]], <span class="dt">decreasing=</span><span class="ot">TRUE</span>)
+  recall &lt;-<span class="st"> </span><span class="kw">cumsum</span>(mydata$human[sort.idx]) /<span class="st"> </span><span class="kw">sum</span>(mydata$human)
+  result &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dv">100</span> *<span class="st"> </span>recall[<span class="kw">nrow</span>(mydata)*n.percent/<span class="dv">100</span>]) <span class="co"># 포함률을 퍼센트로 나타내줌. </span>
+  result &lt;-<span class="st"> </span><span class="kw">round</span>(result, <span class="dv">2</span>)
+  <span class="kw">rownames</span>(result) &lt;-<span class="st"> </span>n.percent <span class="co"># 행 이름은 n.percent로.</span>
+  <span class="kw">colnames</span>(result) &lt;-<span class="st"> </span>AM <span class="co"># 열 이름은 개별 AM으로.</span>
+  result <span class="co"># n개의 목+술 연쇄에 대한 특정 AM의 연어 포함률을 결과로 보고해줌.</span>
+}</code></pre>
+</div>
+<div id="-am---n----" class="section level3">
+<h3>3) 5개 AM 통합 상위 <em>n</em>대 연어 포함률 표 작성하기</h3>
+<p>먼저 상위 <em>n</em>대 목+술 연쇄에 대한 5개 AM의 연어 포함률을 하나의 표로 나타낸다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">n.list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">1500</span>,<span class="dv">2000</span>,<span class="dv">2340</span>)
+recall.list &lt;-<span class="st"> </span><span class="kw">lapply</span>(
+  <span class="kw">c</span>(<span class="st">&quot;o11&quot;</span>, <span class="st">&quot;MI&quot;</span>, <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;ttest&quot;</span>, <span class="st">&quot;logl&quot;</span>),
+  function (AM) <span class="kw">show.recall</span>(whole.one.am.human, AM, n.list)
+)
+recall.table &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, recall.list)</code></pre>
+</div>
+<div id="-am---n----" class="section level3">
+<h3>4) 5개 AM 통합 상위 <em>n</em>퍼센트 연어 포함률 표 작성하기</h3>
+<p>이어서 상위 <em>n</em>퍼센트 목+술 연쇄에 대한 5개 AM의 연어 포함률을 하나의 표로 나타낸다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p.list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)
+recall.percent.list &lt;-<span class="st"> </span><span class="kw">lapply</span>(
+  <span class="kw">c</span>(<span class="st">&quot;o11&quot;</span>, <span class="st">&quot;MI&quot;</span>, <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;ttest&quot;</span>, <span class="st">&quot;logl&quot;</span>),
+  function (AM) <span class="kw">show.recall.percent</span>(whole.one.am.human, AM, p.list)
+)
+recall.percent.table &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, recall.percent.list)</code></pre>
+</div>
+<div id="-am-----" class="section level3">
+<h3>6) 5개 AM 통합 연어 포함률 표 출력하기</h3>
+<p>데이터프레임을 R 뷰어나 html 문서에 표의 형태로 출력해주는 패키지 sjPlot을 활용하여 R상에서 연어 포함률 분석 결과 표를 출력한다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 모든 목+술 연쇄에 대한 상위 n대별 5개 AM 연어 포함률 표(문서용) 출력하기.</span>
+<span class="kw">sjt.df</span>(recall.table, <span class="dt">describe =</span> F) 
+<span class="co"># 모든 목+술 연쇄에 대한 상위 n%별 5개 AM 연어 포함률 표(문서용) 출력하기.</span>
+<span class="kw">sjt.df</span>(recall.percent.table, <span class="dt">describe =</span> F) </code></pre>
+<div id="----5-am--n--" class="section level6">
+<h6><표 6> 모든 목+술 연쇄에 대한 5개 AM의 상위 <em>n</em>대별 연어 포함률</h6>
+<table>
+<thead>
+<tr class="header">
+<th align="left">상위 <em>n</em>대</th>
+<th align="left">빈도</th>
+<th align="left">상호정보</th>
+<th align="left">카이제곱 검정</th>
+<th align="left"><em>t</em>-검정</th>
+<th align="left">로그 우도비</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">50</td>
+<td align="left">4.77</td>
+<td align="left">1.06</td>
+<td align="left">2.22</td>
+<td align="left">3.50</td>
+<td align="left">3.18</td>
+</tr>
+<tr class="even">
+<td align="left">100</td>
+<td align="left">8.26</td>
+<td align="left">2.75</td>
+<td align="left">4.13</td>
+<td align="left">6.46</td>
+<td align="left">5.93</td>
+</tr>
+<tr class="odd">
+<td align="left">200</td>
+<td align="left">15.25</td>
+<td align="left">6.78</td>
+<td align="left">7.94</td>
+<td align="left">12.29</td>
+<td align="left">10.59</td>
+</tr>
+<tr class="even">
+<td align="left">500</td>
+<td align="left">33.90</td>
+<td align="left">16.10</td>
+<td align="left">17.58</td>
+<td align="left">25.00</td>
+<td align="left">22.03</td>
+</tr>
+<tr class="odd">
+<td align="left">1000</td>
+<td align="left">58.79</td>
+<td align="left">29.34</td>
+<td align="left">31.78</td>
+<td align="left">44.28</td>
+<td align="left">37.39</td>
+</tr>
+<tr class="even">
+<td align="left">1500</td>
+<td align="left">73.83</td>
+<td align="left">39.51</td>
+<td align="left">46.08</td>
+<td align="left">54.45</td>
+<td align="left">52.44</td>
+</tr>
+<tr class="odd">
+<td align="left">2000</td>
+<td align="left">90.04</td>
+<td align="left">75.74</td>
+<td align="left">76.27</td>
+<td align="left">77.22</td>
+<td align="left">80.93</td>
+</tr>
+<tr class="even">
+<td align="left">2340</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="----5-am--n---1" class="section level6">
+<h6><표 7> 모든 목+술 연쇄에 대한 5개 AM의 상위 <em>n</em>%대별 연어 포함률</h6>
+<table>
+<thead>
+<tr class="header">
+<th align="left">상위 <em>n</em>대</th>
+<th align="left">빈도</th>
+<th align="left">상호정보</th>
+<th align="left">카이제곱 검정</th>
+<th align="left"><em>t</em>-검정</th>
+<th align="left">로그 우도비</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">2.33</td>
+<td align="left">0.53</td>
+<td align="left">0.85</td>
+<td align="left">1.91</td>
+<td align="left">1.80</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">9.11</td>
+<td align="left">3.39</td>
+<td align="left">4.98</td>
+<td align="left">7.63</td>
+<td align="left">6.99</td>
+</tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">17.90</td>
+<td align="left">7.94</td>
+<td align="left">8.79</td>
+<td align="left">13.88</td>
+<td align="left">12.08</td>
+</tr>
+<tr class="even">
+<td align="left">20</td>
+<td align="left">32.31</td>
+<td align="left">14.94</td>
+<td align="left">16.42</td>
+<td align="left">23.73</td>
+<td align="left">20.76</td>
+</tr>
+<tr class="odd">
+<td align="left">30</td>
+<td align="left">44.28</td>
+<td align="left">21.93</td>
+<td align="left">24.05</td>
+<td align="left">33.16</td>
+<td align="left">29.34</td>
+</tr>
+<tr class="even">
+<td align="left">40</td>
+<td align="left">55.51</td>
+<td align="left">27.65</td>
+<td align="left">29.77</td>
+<td align="left">42.06</td>
+<td align="left">36.02</td>
+</tr>
+<tr class="odd">
+<td align="left">50</td>
+<td align="left">64.51</td>
+<td align="left">33.90</td>
+<td align="left">36.97</td>
+<td align="left">48.41</td>
+<td align="left">42.69</td>
+</tr>
+<tr class="even">
+<td align="left">60</td>
+<td align="left">70.66</td>
+<td align="left">37.61</td>
+<td align="left">43.33</td>
+<td align="left">52.65</td>
+<td align="left">48.31</td>
+</tr>
+<tr class="odd">
+<td align="left">70</td>
+<td align="left">78.28</td>
+<td align="left">41.53</td>
+<td align="left">52.54</td>
+<td align="left">56.36</td>
+<td align="left">58.37</td>
+</tr>
+<tr class="even">
+<td align="left">80</td>
+<td align="left">86.55</td>
+<td align="left">64.09</td>
+<td align="left">67.48</td>
+<td align="left">67.80</td>
+<td align="left">69.60</td>
+</tr>
+<tr class="odd">
+<td align="left">90</td>
+<td align="left">93.22</td>
+<td align="left">84.96</td>
+<td align="left">85.81</td>
+<td align="left">86.76</td>
+<td align="left">87.29</td>
+</tr>
+<tr class="even">
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="--------" class="section level2">
+<h2>(2) 비(非)하다류 연쇄 대상으로 연어 포함률 계산 및 표 작성하기</h2>
+<div id="-am---n-----1" class="section level3">
+<h3>1) 5개 AM 통합 상위 <em>n</em>대 연어 포함률 표 작성하기</h3>
+<p>먼저 비(非)하다류 연쇄에 대한 5개 AM의 연어 포함률을 하나의 표로 나타낸다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">n.no.ha.list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">50</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">500</span>,<span class="dv">1000</span>,<span class="dv">1500</span>,<span class="dv">1729</span>)
+recall.no.ha.list &lt;-<span class="st"> </span><span class="kw">lapply</span>(
+  <span class="kw">c</span>(<span class="st">&quot;o11&quot;</span>, <span class="st">&quot;MI&quot;</span>, <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;ttest&quot;</span>, <span class="st">&quot;logl&quot;</span>),
+  function (AM) <span class="kw">show.recall</span>(whole.one.no.ha, AM, n.no.ha.list)
+)
+recall.no.ha.table &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, recall.no.ha.list)</code></pre>
+</div>
+<div id="-am---n-----1" class="section level3">
+<h3>2) 5개 AM 통합 상위 <em>n</em>퍼센트 연어 포함률 표 작성하기</h3>
+<p>이어서 비(非)하다류 연쇄에 대한 5개 AM의 연어 포함률을 하나의 표로 나타낸다.</p>
+<pre class="sourceCode r"><code class="sourceCode r">p.list &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span>,<span class="dv">40</span>,<span class="dv">50</span>,<span class="dv">60</span>,<span class="dv">70</span>,<span class="dv">80</span>,<span class="dv">90</span>,<span class="dv">100</span>)
+recall.percent.no.ha.list &lt;-<span class="st"> </span><span class="kw">lapply</span>(
+  <span class="kw">c</span>(<span class="st">&quot;o11&quot;</span>, <span class="st">&quot;MI&quot;</span>, <span class="st">&quot;chisq&quot;</span>, <span class="st">&quot;ttest&quot;</span>, <span class="st">&quot;logl&quot;</span>),
+  function (AM) <span class="kw">show.recall.percent</span>(whole.one.no.ha, AM, p.list)
+)
+recall.percent.no.ha.table &lt;-<span class="st"> </span><span class="kw">do.call</span>(cbind, recall.percent.no.ha.list)</code></pre>
+</div>
+<div id="-am------1" class="section level3">
+<h3>3) 5개 AM 통합 연어 포함률 표 출력하기</h3>
+<p>데이터프레임을 R 뷰어나 html 문서에 표의 형태로 출력해주는 패키지 sjPlot을 활용하여 R상에서 연어 포함률 분석 결과 표를 출력한다.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="co"># 비(非)하다류 연쇄에 대한 상위 n대별 5개 AM 연어판별 정확도 표(문서용) 출력하기.</span>
+<span class="kw">sjt.df</span>(recall.no.ha.table, <span class="dt">describe =</span> F)
+<span class="co"># 비(非)하다류 연쇄에 대한 상위 n%별 5개 AM의 연어판별 정확도 표(문서용) 출력하기.</span>
+<span class="kw">sjt.df</span>(recall.percent.no.ha.table, <span class="dt">describe =</span> F)</code></pre>
+<div id="---5-am--n--" class="section level6">
+<h6><표 8> 비(非)하다류 연쇄에 대한 5개 AM의 상위 <em>n</em>대별 연어 포함률</h6>
+<table>
+<thead>
+<tr class="header">
+<th align="left">상위 <em>n</em>대</th>
+<th align="left">빈도</th>
+<th align="left">상호정보</th>
+<th align="left">카이제곱 검정</th>
+<th align="left"><em>t</em>-검정</th>
+<th align="left">로그 우도비</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">50</td>
+<td align="left">5.26</td>
+<td align="left">2.51</td>
+<td align="left">5.26</td>
+<td align="left">5.51</td>
+<td align="left">6.77</td>
+</tr>
+<tr class="even">
+<td align="left">100</td>
+<td align="left">10.78</td>
+<td align="left">6.52</td>
+<td align="left">9.77</td>
+<td align="left">11.53</td>
+<td align="left">12.53</td>
+</tr>
+<tr class="odd">
+<td align="left">200</td>
+<td align="left">18.05</td>
+<td align="left">16.04</td>
+<td align="left">18.80</td>
+<td align="left">19.80</td>
+<td align="left">21.55</td>
+</tr>
+<tr class="even">
+<td align="left">500</td>
+<td align="left">41.10</td>
+<td align="left">38.10</td>
+<td align="left">41.10</td>
+<td align="left">43.36</td>
+<td align="left">45.61</td>
+</tr>
+<tr class="odd">
+<td align="left">1000</td>
+<td align="left">65.16</td>
+<td align="left">69.42</td>
+<td align="left">73.68</td>
+<td align="left">74.19</td>
+<td align="left">73.68</td>
+</tr>
+<tr class="even">
+<td align="left">1500</td>
+<td align="left">89.97</td>
+<td align="left">93.48</td>
+<td align="left">93.48</td>
+<td align="left">93.48</td>
+<td align="left">92.98</td>
+</tr>
+<tr class="odd">
+<td align="left">1729</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="---5-am--n---1" class="section level6">
+<h6><표 9> 비(非)하다류 연쇄에 대한 5개 AM의 상위 <em>n</em>%대별 연어 포함률</h6>
+<table>
+<thead>
+<tr class="header">
+<th align="left">상위 <em>n</em>%대</th>
+<th align="left">빈도</th>
+<th align="left">상호정보</th>
+<th align="left">카이제곱 검정</th>
+<th align="left"><em>t</em>-검정</th>
+<th align="left">로그 우도비</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left">3.01</td>
+<td align="left">1.00</td>
+<td align="left">1.25</td>
+<td align="left">2.76</td>
+<td align="left">3.01</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="left">8.52</td>
+<td align="left">5.01</td>
+<td align="left">8.52</td>
+<td align="left">10.28</td>
+<td align="left">10.53</td>
+</tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="left">17.04</td>
+<td align="left">12.03</td>
+<td align="left">16.04</td>
+<td align="left">17.29</td>
+<td align="left">18.05</td>
+</tr>
+<tr class="even">
+<td align="left">20</td>
+<td align="left">30.33</td>
+<td align="left">26.07</td>
+<td align="left">29.32</td>
+<td align="left">30.08</td>
+<td align="left">32.08</td>
+</tr>
+<tr class="odd">
+<td align="left">30</td>
+<td align="left">42.61</td>
+<td align="left">39.85</td>
+<td align="left">42.36</td>
+<td align="left">44.86</td>
+<td align="left">46.62</td>
+</tr>
+<tr class="even">
+<td align="left">40</td>
+<td align="left">53.63</td>
+<td align="left">51.38</td>
+<td align="left">55.64</td>
+<td align="left">55.14</td>
+<td align="left">59.40</td>
+</tr>
+<tr class="odd">
+<td align="left">50</td>
+<td align="left">59.15</td>
+<td align="left">60.40</td>
+<td align="left">65.91</td>
+<td align="left">66.92</td>
+<td align="left">68.17</td>
+</tr>
+<tr class="even">
+<td align="left">60</td>
+<td align="left">67.42</td>
+<td align="left">71.68</td>
+<td align="left">74.69</td>
+<td align="left">75.94</td>
+<td align="left">76.44</td>
+</tr>
+<tr class="odd">
+<td align="left">70</td>
+<td align="left">77.19</td>
+<td align="left">81.70</td>
+<td align="left">83.21</td>
+<td align="left">82.21</td>
+<td align="left">83.46</td>
+</tr>
+<tr class="even">
+<td align="left">80</td>
+<td align="left">86.47</td>
+<td align="left">88.47</td>
+<td align="left">89.72</td>
+<td align="left">90.98</td>
+<td align="left">89.22</td>
+</tr>
+<tr class="odd">
+<td align="left">90</td>
+<td align="left">93.23</td>
+<td align="left">95.24</td>
+<td align="left">94.99</td>
+<td align="left">95.49</td>
+<td align="left">94.99</td>
+</tr>
+<tr class="even">
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+<td align="left">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>국립국어원. (2007). <strong>21세기 세종계획 최종 성과물.</strong> 서울: 국립국어원.</p>
+<p>신효필. (2007). 연어의 통계적 접근을 통한 로그 우도비 중심의 연어 검증. <strong>언어학</strong>, 47, 107-138.</p>
+<p>임근석. (2006). <strong>한국어 연어 연구.</strong> 미출간 박사학위논문, 서울대학교, 서울.</p>
+<p>Pecina, P. (2010). Lexical association measures and collocation extraction. <em>Language Resources and Evaluation</em>, <em>44</em>(1), 137-158.</p>
+<p><strong><인터넷 자료></strong></p>
+<div class="references">
+<p>Ludecke, D. (2015). <em>sjPlot: Data visualization for statistics in social science</em>. Retrieved from <a href="http://CRAN.R-project.org/package=sjPlot">http://CRAN.R-project.org/package=sjPlot</a></p>
+<p>Wickham, H., &amp; Chang, W. (2014). <em>devtools: Tools to make developing r code easier</em>. Retrieved from <a href="http://CRAN.R-project.org/package=devtools">http://CRAN.R-project.org/package=devtools</a></p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>연어판별 정확도와 연어 포함률 계산 및 표 작성을 위한 R 코드는 Marco Baroni와 Stefan Evert의 온라인 강좌 <a href="http://www.stefan-evert.de/SIGIL/sigil_R/">Statistical Analysis of Corpus Data with R</a>을 많은 부분 참조했다.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>연어 포함률 0-5퍼센트 및 95-100퍼센트 구간의 연어판별 정확도는 다소 불안정한 탓에 신뢰도가 낮다. 따라서 본 연구에서는 이를 제외한 연어 포함률 5-95퍼센트 구간의 연어구성 후보를 대상으로 산출한 평균 연어판별 정확도만을 보고하기로 한다(Pecina, 2010).<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>1단계에 이은 본 2단계 말뭉치 자료 분석 작업에 새롭게 사용된 R 패키지 목록은 다음과 같다: devtools<span class="citation">(Wickham &amp; Chang, 2014)</span>, sjPlot<span class="citation">(Ludecke, 2015)</span>.<a href="#fnref3">↩</a></p></li>
+</ol>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

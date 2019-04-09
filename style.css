@@ -1,0 +1,63 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css)
+
+/* Whole document: */
+body{
+  font-family: '나눔고딕';
+  font-size: 12pt;
+}
+
+/* Headers */
+h1,h2,h3,h4,h5,h6{
+  font-family: '나눔고딕';
+    line-height: 200%;
+}
+h1{font-size: 22pt}
+h2{font-size: 20pt}
+h3{font-size: 18pt}
+h4{font-size: 16pt}
+h5{font-size: 14pt}
+h6{
+  font-size: 12pt;
+  font-weight: 100;
+  color: grey;
+}
+/* Whole document: */
+body{
+  font-family: '나눔고딕';
+  font-size: 12pt;
+}
+.flat-table {
+  display: block;
+  overflow: auto;
+  width: auto;
+  border: 1px solid #ccc;
+}
+  th {
+    background-color: rgb(112, 196, 105);
+    color: white;
+    padding: 20px 30px;
+    text-align: left;
+  }
+  td {
+    background-color: rgb(238, 238, 238);
+    color: rgb(111, 111, 111);
+    padding: 20px 30px;
+}
+blockquote{
+  font-size: 12pt;
+}
+.MathJax_Display{
+    text-align: center;
+    margin: 1em 0em;
+    background-color: rgb(238, 238, 238);
+    color: grey;
+    border:  2px solid #ccc;
+    padding: 1px 3px;
+    font-family: 'MathJax_Script-Regular';
+    font-style: 'normal';
+    font-size:  90%;    
+}
+
+
+ 
+
