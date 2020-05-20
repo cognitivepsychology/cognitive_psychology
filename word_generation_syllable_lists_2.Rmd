@@ -1,0 +1,161 @@
+---
+title: "위치별, 품사별, 어종별 표제어 출현 빈도 상위 100개 음절 목록"
+author: "Cognitive Psychology"
+date: "2020년 5월 20일"
+output:
+  html_document:
+    css: style.css
+    self_contained: no
+    theme: journal
+    highlight: haddock
+    toc: yes
+csl: apa.csl
+mainfont: NanumGothic
+---
+
+# 표준국어대사전 기반 한국어 품사별 표제어 음절 출현형 상위빈도 100개 음절 목록
+
+## (1) 위치무관 음절 출현형 상위빈도 100개 음절 목록
+
+### 1) 한글 음절 출현형 상위빈도 100개 음절 목록
+
+#### A. 체언(일반명사) 표제어 위치무관 한글 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.kor.nng.syls.rda")
+kable(standard.dic.kor.nng.syls[1:100, ], caption = "<표 7> 체언 표제어 위치무관 한글 음절 출현형 상위빈도 100개 음절 목록")
+```
+
+#### B. 용언(동사 및 형용사) 표제어 위치무관 한글 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.kor.verbadj.syls.rda")
+kable(standard.dic.kor.verbadj.syls[1:100, ], caption = "<표 8> 용언 표제어 위치무관 한글 음절 출현형 상위빈도 100개 음절 목록")
+```
+
+### 2) 한자 음절 출현형 상위빈도 100개 음절 목록
+
+#### 1) 체언 표제어 위치무관 한자 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.cn.nng.syls.rda")
+kable(standard.dic.cn.nng.syls[1:100, ], caption = "<표 9> 체언 표제어 위치무관 한자 음절 출현형 상위빈도 100개 음절 목록")
+```
+
+#### 2) 용언 표제어 위치무관 한자 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.cn.verbadj.syls.rda")
+kable(standard.dic.cn.verbadj.syls[1:100, ], caption = "<표 10> 용언 표제어 위치무관 한자 음절 출현형 상위빈도 100개 음절 목록")
+```
+
+## (2) 위치고려 음절 출현형 상위빈도 100개 음절 목록
+
+### 1) 한글 음절 출현형 상위빈도 100개 음절 목록
+
+#### A. 체언 표제어 첫째 자리 한글 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.kor.nng.syl1.freq.rda")
+kable(standard.dic.kor.nng.syl1.freq[1:100, ], caption = "<표 11> 체언 표제어 첫째 자리 한글 음절 출현형 상위빈도 100개 음절 목록")
+```
+
+#### B. 체언 표제어 둘째 자리 한글 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.kor.nng.syl2.freq.rda")
+kable(standard.dic.kor.nng.syl2.freq[1:100, ], caption = "<표 12> 체언 표제어 둘째 자리 한글 음절 출현형 상위빈도 100개 음절 목록")
+```
+
+#### C. 용언 표제어 첫째 자리 한글 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.kor.verbadj.syl1.freq.rda")
+kable(standard.dic.kor.verbadj.syl1.freq[1:100, ], caption = "<표 13> 용언 표제어 첫째 자리 한글 음절 출현형 상위빈도 100개 음절 목록")
+```
+
+#### D. 용언 표제어 둘째 자리 한글 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.kor.verbadj.syl2.freq.rda")
+kable(standard.dic.kor.verbadj.syl2.freq[1:100, ], caption = "<표 14> 용언 표제어 둘째 자리 한글 음절 출현형 상위빈도 100개 음절 목록")
+```
+
+### 2) 한자 음절 출현형 상위빈도 100개 음절 목록
+
+#### A. 체언 표제어 첫째 자리 한자 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.cn.nng.syl1.freq.rda")
+kable(standard.dic.cn.nng.syl1.freq[1:100, ], caption = "<표 15> 체언 표제어 첫째 자리 한자 음절 출현형 상위빈도 100개 음절 목록")
+```
+
+#### B. 체언 표제어 둘째 자리 한자 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.cn.nng.syl2.freq.rda")
+kable(standard.dic.cn.nng.syl2.freq[1:100, ], caption = "<표 16> 체언 표제어 둘째 자리 한자 음절 출현형 상위빈도 100개 음절 목록")
+```
+
+#### C. 용언 표제어 첫째 자리 한자 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.cn.verbadj.syl1.freq.rda")
+kable(standard.dic.cn.verbadj.syl1.freq[1:100, ], caption = "<표 17> 용언 표제어 첫째 자리 한자 음절 출현형 상위빈도 100개 음절 목록")
+```
+
+#### D. 용언 표제어 둘째 자리 한자 음절 출현형 상위빈도 100개 음절 목록
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.cn.verbadj.syl2.freq.rda")
+kable(standard.dic.cn.verbadj.syl2.freq[1:100, ], caption = "<표 18> 용언 표제어 둘째 자리 한자 음절 출현형 상위빈도 100개 음절 목록")
+```
+

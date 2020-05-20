@@ -1,0 +1,28 @@
+---
+title: "위치별, 품사별, 어종별 표제어 출현 빈도 상위 100개 음절 목록"
+author: "Cognitive Psychology"
+date: "2020년 5월 20일"
+output:
+  html_document:
+    css: style.css
+    self_contained: no
+    theme: journal
+    highlight: haddock
+    toc: yes
+csl: apa.csl
+mainfont: NanumGothic
+---
+
+# 표준국어대사전 수록 한자 + 한글 혼종어 1000개 무선표집 예시 목록
+
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/sjfreq")
+load("standard.dic.kor.cn.sample.1.rda")
+kable(standard.dic.kor.cn.sample.1[1:100, ], caption = "<표 19> 표준국어대사전 수록 한자 + 한글 혼종어 1000개 무선표집 예시 목록")
+```
+
+

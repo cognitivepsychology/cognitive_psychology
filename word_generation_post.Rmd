@@ -1,0 +1,194 @@
+---
+title: "<한국어 단어의 어휘성에 영향을 미치는 표기음절 요인 탐구> 실험 1, 2, 3 대조용 목록 버전별 후속검정 결과"
+author: "Cognitive Psychology"
+date: "2020년 5월 20일"
+output:
+  html_document:
+    css: style.css
+    self_contained: no
+    theme: journal
+    highlight: haddock
+    toc: yes
+csl: apa.csl
+mainfont: NanumGothic
+---
+
+# 1. 실험 1 후속검정 결과
+
+## (1) 대조용 표제어 목록: 전체 표제어 모집단(HP)[^firstnote]
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.1.post.rda")
+exp.1.post.hp <- exp.1.post %>%
+  filter(`대조용 표제어 유형` == "HP") %>%
+  select(-1)
+kable(exp.1.post.hp, caption = "<표 1> 실험 1: HP 버전 후속검정 결과")
+```
+
+## (2) 대조용 표제어 목록: 전체 표제어 표본(HS)
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.1.post.rda")
+exp.1.post.hp <- exp.1.post %>%
+  filter(`대조용 표제어 유형` == "HS") %>%
+  select(-1)
+kable(exp.1.post.hp, caption = "<표 2> 실험 1: HS 버전 후속검정 결과")
+```
+
+## (3) 대조용 표제어 목록: 품사별 표제어 모집단(HPC)
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.1.post.rda")
+exp.1.post.hp <- exp.1.post %>%
+  filter(`대조용 표제어 유형` == "HPC") %>%
+  select(-1)
+kable(exp.1.post.hp, caption = "<표 3> 실험 1: HPC 버전 후속검정 결과")
+```
+
+## (4) 대조용 표제어 목록: 품사별 표제어 표본(HSC)
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.1.post.rda")
+exp.1.post.hp <- exp.1.post %>%
+  filter(`대조용 표제어 유형` == "HSC") %>%
+  select(-1)
+kable(exp.1.post.hp, caption = "<표 4> 실험 1: HSC 버전 후속검정 결과")
+```
+
+# 2. 실험 2 후속검정 결과
+
+## (1) 대조용 표제어 목록: 전체 표제어 모집단(HP)[^secondnote]
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.2.post.rda")
+exp.2.post.hp <- exp.2.post %>%
+  filter(`대조용 표제어 유형` == "HP") %>%
+  select(-1)
+kable(exp.2.post.hp, caption = "<표 5> 실험 2: HP 버전 후속검정 결과")
+```
+
+## (2) 대조용 표제어 목록: 전체 표제어 표본(HS)
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.2.post.rda")
+exp.2.post.hp <- exp.2.post %>%
+  filter(`대조용 표제어 유형` == "HS") %>%
+  select(-1)
+kable(exp.2.post.hp, caption = "<표 6> 실험 2: HS 버전 후속검정 결과")
+```
+
+## (3) 대조용 표제어 목록: 품사별 표제어 모집단(HPC)
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.2.post.rda")
+exp.2.post.hp <- exp.2.post %>%
+  filter(`대조용 표제어 유형` == "HPC") %>%
+  select(-1)
+kable(exp.2.post.hp, caption = "<표 7> 실험 2: HPC 버전 후속검정 결과")
+```
+
+## (4) 대조용 표제어 목록: 품사별 표제어 표본(HSC)
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.2.post.rda")
+exp.2.post.hp <- exp.2.post %>%
+  filter(`대조용 표제어 유형` == "HSC") %>%
+  select(-1)
+kable(exp.2.post.hp, caption = "<표 8> 실험 2: HSC 버전 후속검정 결과")
+```
+
+# 3. 실험 3 후속검정 결과
+
+## (1) 대조용 표제어 목록: 전체 표제어 모집단(HP)
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.3.post.rda")
+exp.3.post.hp <- exp.3.post %>%
+  filter(`대조용 표제어 유형` == "HP") %>%
+  select(-1)
+kable(exp.3.post.hp, caption = "<표 9> 실험 3: HP 버전 후속검정 결과")
+```
+
+## (2) 대조용 표제어 목록: 전체 표제어 표본(HS)
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.3.post.rda")
+exp.3.post.hp <- exp.3.post %>%
+  filter(`대조용 표제어 유형` == "HS") %>%
+  select(-1)
+kable(exp.3.post.hp, caption = "<표 10> 실험 3: HS 버전 후속검정 결과")
+```
+
+## (3) 대조용 표제어 목록: 품사별 표제어 모집단(HPC)
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.3.post.rda")
+exp.3.post.hp <- exp.3.post %>%
+  filter(`대조용 표제어 유형` == "HPC") %>%
+  select(-1)
+kable(exp.3.post.hp, caption = "<표 11> 실험 3: HPC 버전 후속검정 결과")
+```
+
+## (4) 대조용 표제어 목록: 품사별 표제어 표본(HSC)
+```{r eval=T, warning=F, echo=F, message=F, results='asis'}
+library(tidyverse)
+library(knitr)
+options(scipen = 999) # 지수 사용 금지
+options(tibble.width = Inf)
+setwd("D:/음절연구 2020/R 분석_단어생성 시뮬레이션")
+load("exp.3.post.rda")
+exp.3.post.hp <- exp.3.post %>%
+  filter(`대조용 표제어 유형` == "HSC") %>%
+  select(-1)
+kable(exp.3.post.hp, caption = "<표 12> 실험 3: HSC 버전 후속검정 결과")
+```
+
+
+
+[^firstnote]: 첫째, 대조용 표제어 목록 유형의 HP는 전체 표제어 모집단(Headword Population: 표준국어대사전에 등장하는 모든 표제어), HS는 전체 표제어 표본(Headword Sample:  표준국어대사전에 등장하는 모든 표제어 중에서 무작위로 뽑은 1,000개의 표제어), HPC는 품사별 표제어 모집단(Headword Population for the relevant word Class: 표준국어대사전에 등장하는 모든 체언, 용언 또는 체언 + 용언 표제어), 그리고 HSC는 품사별 표제어 표본(Headword Sample for the relevant word Class: 표준국어대사전에 등장하는 모든 체언, 용언 또는 체언 + 용언 표제어 중에서 각각 무작위로 뽑은 1,000개의 표제어)을 가리킨다. 둘째, 통계량의 M은 평균(mean), SE는 평균의 표준오차(standard error) 그리고 SD는 표준편차(standard deviation)를 가리킨다. 셋째, NN(noun + noun)은 체언 + 체언, VV(verb + verb)는 용언 + 용언, NV(noun + verb)는 체언 + 용언 그리고 VN(verb + noun)은 용언 + 체언 음절 조합을 가리킨다.
+
+[^secondnote]: KK(Korean + Korean)는 한글 + 한글, CC(Chinese + Chinese)는 한자 + 한자, KC(Korean + Chinese)는 한글 + 한자 그리고 CK(Chinese + Korean)는 한자 + 한글 음절 조합을 가리킨다.
