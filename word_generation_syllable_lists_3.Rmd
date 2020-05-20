@@ -1,7 +1,7 @@
 ---
-title: "위치별, 품사별, 어종별 표제어 출현 빈도 상위 100개 음절 목록"
-author: "Cognitive Psychology"
-date: "2020년 5월 20일"
+title: "표준국어대사전 수록 혼종어 예시 목록"
+author: "*Cognitive Psychology*"
+date: "*2020년 5월 20일*"
 output:
   html_document:
     css: style.css

@@ -1,7 +1,7 @@
 ---
-title: "위치별, 품사별, 어종별 표제어 출현 빈도 상위 100개 음절 목록"
-author: "Cognitive Psychology"
-date: "2020년 5월 20일"
+title: "위치별, 품사별, 어종별 표제어 출현 빈도 상위 100개 음절 목록 II"
+author: "*Cognitive Psychology*"
+date: "*2020년 5월 20일*"
 output:
   html_document:
     css: style.css
@@ -13,7 +13,7 @@ csl: apa.csl
 mainfont: NanumGothic
 ---
 
-# 표준국어대사전 기반 한국어 품사별 표제어 음절 출현형 상위빈도 100개 음절 목록
+# 2. 표준국어대사전 기반 한국어 품사별 표제어 음절 출현형 상위빈도 100개 음절 목록
 
 ## (1) 위치무관 음절 출현형 상위빈도 100개 음절 목록
 
