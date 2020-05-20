@@ -52,7 +52,7 @@ load("nng.nochange.root.token.1st.syl.1.rda")
 kable(nng.nochange.root.token.1st.syl.1[1:100, ], caption = "<표 3> 체언 어간 첫째 음절 출현형 상위빈도 100개 음절 목록")
 ```
 
-## (2) 체언 어간 둘째 음절 출현형 상위빈도 100개 음절 목록
+### (2) 체언 어간 둘째 음절 출현형 상위빈도 100개 음절 목록
 ```{r eval=T, warning=F, echo=F, message=F, results='asis'}
 library(tidyverse)
 library(knitr)
@@ -63,7 +63,7 @@ load("nng.nochange.root.token.2nd.syl.1.rda")
 kable(nng.nochange.root.token.2nd.syl.1[1:100, ], caption = "<표 4> 체언 어간 둘째 음절 출현형 상위빈도 100개 음절 목록")
 ```
 
-## (3) 용언 어간 첫째 음절 출현형 상위빈도 100개 음절 목록
+### (3) 용언 어간 첫째 음절 출현형 상위빈도 100개 음절 목록
 ```{r eval=T, warning=F, echo=F, message=F, results='asis'}
 library(tidyverse)
 library(knitr)
@@ -74,7 +74,7 @@ load("verbadj.nochange.root.token.1st.syl.1.rda")
 kable(verbadj.nochange.root.token.1st.syl.1[1:100, ], caption = "<표 5> 용언 어간 첫째 음절 출현형 상위빈도 100개 음절 목록")
 ```
 
-## (4) 용언 어간 둘째 음절 출현형 상위빈도 100개 음절 목록
+### (4) 용언 어간 둘째 음절 출현형 상위빈도 100개 음절 목록
 ```{r eval=T, warning=F, echo=F, message=F, results='asis'}
 library(tidyverse)
 library(knitr)
