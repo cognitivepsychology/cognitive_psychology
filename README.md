@@ -15,7 +15,7 @@
 * **[word_generation_syllable_lists_3.html](http://cognitivepsychology.github.io/cognitive_psychology/word_generation_syllable_lists_3.html):** 표준국어대사전 수록 한자 + 한글 혼종어 예시: 표준국어대사전 수록 한자 + 한글 혼종어 1000개 무선표집 예시 목록. 해당 자료를 열람하려면 링크를 클릭할 것.
 
 ### 3. 실험 1, 2, 3 후속검정 결과표
-* **[word_generation_post.html](http://cognitivepsychology.github.io/cognitive_psychology/word_generation_post.html):** 후속검정 결과표: 실험 1, 2, 3 대조용 목록 버전별 후속검정 결과표. 해당 자료를 열람하려면 링크를 클릭할 것.
+* **[word_generation_post.html](http://cognitivepsychology.github.io/cognitive_psychology/word_generation_post.html):** 실험 1, 2, 3 후속검정 결과표: 실험 1, 2, 3 대조용 목록 버전별 후속검정 결과표. 해당 자료를 열람하려면 링크를 클릭할 것.
 
 
 
