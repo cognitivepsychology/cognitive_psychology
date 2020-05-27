@@ -8,7 +8,7 @@
 #### (1) 세종 형태의미 분석 말뭉치 기반 한국어 품사별 어간 음절 출현형 상위빈도 100개 음절 목록
 * **[word_generation_syllable_lists_1.html](http://cognitivepsychology.github.io/cognitive_psychology/word_generation_syllable_lists_1.html):** 세종 말뭉치 기반 한국어 음절 정보 1: 세종 말뭉치 기반 위치무관 및 위치고려 음절 출현형 상위빈도 100개 음절 목록. 해당 자료를 열람하려면 링크를 클릭할 것.
 
-#### (2) 표준국어대사전 기반 한국어 품사별 표제어 음절 출현형 상위빈도 100개 음절 목록
+#### (2) 표준국어대사전 기반 한국어 위치별, 품사별, 어종별 표제어 음절 출현형 상위빈도 100개 음절 목록
 * **[word_generation_syllable_lists_2.html](http://cognitivepsychology.github.io/cognitive_psychology/word_generation_syllable_lists_2.html):** 표준국어대사전 기반 한국어 음절 정보 2: 표준국어대사전 기반 위치별, 품사별, 어종별 표제어 음절 출현형 상위빈도 100개 음절 목록. 해당 자료를 열람하려면 링크를 클릭할 것.
 
 #### (3) 표준국어대사전 수록 한자 + 한글 혼종어 1000개 무선표집 예시 목록
